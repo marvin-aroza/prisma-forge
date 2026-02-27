@@ -1,0 +1,191 @@
+[
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.slider-border.default.default",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "root",
+    "state": "hover",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.slider-border.default.hover",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "root",
+    "state": "active",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.slider-border.default.active",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.slider-border.default.disabled",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.slider-border.default.focus",
+    "fallbackRef": "dk.color.border.focus.focus"
+  },
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "track",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.slider-track.default.default",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "track",
+    "state": "hover",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.slider-track.default.hover",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "track",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.slider-track.default.active",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "track",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.slider-track.default.disabled",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "fill",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.slider-fill.default.default",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "fill",
+    "state": "hover",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.slider-fill.default.hover",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "fill",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.slider-fill.default.active",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "fill",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.slider-fill.default.disabled",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "thumb",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.slider-thumb.default.default",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "thumb",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.slider-thumb.default.active",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "thumb",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.slider-thumb.default.disabled",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "label",
+    "state": "default",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.slider-label.default.default",
+    "fallbackRef": "dk.color.text.default.base"
+  },
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "label",
+    "state": "disabled",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.slider-label.default.disabled",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "box-shadow",
+    "tokenRef": "dk.component.slider-shadow.default.focus",
+    "fallbackRef": "dk.shadow.control.default.base"
+  },
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "opacity",
+    "tokenRef": "dk.component.slider-opacity.default.disabled",
+    "fallbackRef": "dk.opacity.disabled.default.base"
+  },
+  {
+    "component": "slider",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "transition-duration",
+    "tokenRef": "dk.component.slider-motion.default.default",
+    "fallbackRef": "dk.motion.duration.control.base"
+  }
+]

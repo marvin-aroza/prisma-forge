@@ -1,0 +1,164 @@
+[
+  {
+    "component": "drawer",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.drawer-border.default.default",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "drawer",
+    "variant": "default",
+    "slot": "root",
+    "state": "hover",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.drawer-border.default.hover",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "drawer",
+    "variant": "default",
+    "slot": "root",
+    "state": "active",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.drawer-border.default.active",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "drawer",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.drawer-border.default.disabled",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "drawer",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.drawer-border.default.focus",
+    "fallbackRef": "dk.color.border.focus.focus"
+  },
+  {
+    "component": "drawer",
+    "variant": "default",
+    "slot": "panel",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.drawer-panel.default.default",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "drawer",
+    "variant": "default",
+    "slot": "panel",
+    "state": "hover",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.drawer-panel.default.hover",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "drawer",
+    "variant": "default",
+    "slot": "panel",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.drawer-panel.default.active",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "drawer",
+    "variant": "default",
+    "slot": "panel",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.drawer-panel.default.disabled",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "drawer",
+    "variant": "default",
+    "slot": "scrim",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.drawer-scrim.default.default",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "drawer",
+    "variant": "default",
+    "slot": "scrim",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.drawer-scrim.default.disabled",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "drawer",
+    "variant": "default",
+    "slot": "title",
+    "state": "default",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.drawer-title.default.default",
+    "fallbackRef": "dk.color.text.default.base"
+  },
+  {
+    "component": "drawer",
+    "variant": "default",
+    "slot": "title",
+    "state": "disabled",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.drawer-title.default.disabled",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "drawer",
+    "variant": "default",
+    "slot": "body",
+    "state": "default",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.drawer-body.default.default",
+    "fallbackRef": "dk.color.text.default.base"
+  },
+  {
+    "component": "drawer",
+    "variant": "default",
+    "slot": "body",
+    "state": "disabled",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.drawer-body.default.disabled",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "drawer",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "box-shadow",
+    "tokenRef": "dk.component.drawer-shadow.default.focus",
+    "fallbackRef": "dk.shadow.control.default.base"
+  },
+  {
+    "component": "drawer",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "opacity",
+    "tokenRef": "dk.component.drawer-opacity.default.disabled",
+    "fallbackRef": "dk.opacity.disabled.default.base"
+  },
+  {
+    "component": "drawer",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "transition-duration",
+    "tokenRef": "dk.component.drawer-motion.default.default",
+    "fallbackRef": "dk.motion.duration.control.base"
+  }
+]

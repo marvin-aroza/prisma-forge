@@ -1,0 +1,182 @@
+[
+  {
+    "component": "segmented-control",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.segmented-control-border.default.default",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "segmented-control",
+    "variant": "default",
+    "slot": "root",
+    "state": "hover",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.segmented-control-border.default.hover",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "segmented-control",
+    "variant": "default",
+    "slot": "root",
+    "state": "active",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.segmented-control-border.default.active",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "segmented-control",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.segmented-control-border.default.disabled",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "segmented-control",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.segmented-control-border.default.focus",
+    "fallbackRef": "dk.color.border.focus.focus"
+  },
+  {
+    "component": "segmented-control",
+    "variant": "default",
+    "slot": "container",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.segmented-control-container.default.default",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "segmented-control",
+    "variant": "default",
+    "slot": "container",
+    "state": "hover",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.segmented-control-container.default.hover",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "segmented-control",
+    "variant": "default",
+    "slot": "container",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.segmented-control-container.default.active",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "segmented-control",
+    "variant": "default",
+    "slot": "container",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.segmented-control-container.default.disabled",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "segmented-control",
+    "variant": "default",
+    "slot": "segment",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.segmented-control-segment.default.default",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "segmented-control",
+    "variant": "default",
+    "slot": "segment",
+    "state": "hover",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.segmented-control-segment.default.hover",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "segmented-control",
+    "variant": "default",
+    "slot": "segment",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.segmented-control-segment.default.active",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "segmented-control",
+    "variant": "default",
+    "slot": "segment",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.segmented-control-segment.default.disabled",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "segmented-control",
+    "variant": "default",
+    "slot": "label",
+    "state": "default",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.segmented-control-label.default.default",
+    "fallbackRef": "dk.color.text.default.base"
+  },
+  {
+    "component": "segmented-control",
+    "variant": "default",
+    "slot": "label",
+    "state": "disabled",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.segmented-control-label.default.disabled",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "segmented-control",
+    "variant": "default",
+    "slot": "indicator",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.segmented-control-indicator.default.default",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "segmented-control",
+    "variant": "default",
+    "slot": "indicator",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.segmented-control-indicator.default.active",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "segmented-control",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "box-shadow",
+    "tokenRef": "dk.component.segmented-control-shadow.default.focus",
+    "fallbackRef": "dk.shadow.control.default.base"
+  },
+  {
+    "component": "segmented-control",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "opacity",
+    "tokenRef": "dk.component.segmented-control-opacity.default.disabled",
+    "fallbackRef": "dk.opacity.disabled.default.base"
+  },
+  {
+    "component": "segmented-control",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "transition-duration",
+    "tokenRef": "dk.component.segmented-control-motion.default.default",
+    "fallbackRef": "dk.motion.duration.control.base"
+  }
+]

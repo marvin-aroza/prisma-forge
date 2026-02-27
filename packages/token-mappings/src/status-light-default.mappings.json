@@ -1,0 +1,164 @@
+[
+  {
+    "component": "status-light",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.status-light-border.default.default",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "status-light",
+    "variant": "default",
+    "slot": "root",
+    "state": "hover",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.status-light-border.default.hover",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "status-light",
+    "variant": "default",
+    "slot": "root",
+    "state": "active",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.status-light-border.default.active",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "status-light",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.status-light-border.default.disabled",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "status-light",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.status-light-border.default.focus",
+    "fallbackRef": "dk.color.border.focus.focus"
+  },
+  {
+    "component": "status-light",
+    "variant": "default",
+    "slot": "track",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.status-light-track.default.default",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "status-light",
+    "variant": "default",
+    "slot": "track",
+    "state": "hover",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.status-light-track.default.hover",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "status-light",
+    "variant": "default",
+    "slot": "track",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.status-light-track.default.active",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "status-light",
+    "variant": "default",
+    "slot": "track",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.status-light-track.default.disabled",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "status-light",
+    "variant": "default",
+    "slot": "indicator",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.status-light-indicator.default.default",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "status-light",
+    "variant": "default",
+    "slot": "indicator",
+    "state": "hover",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.status-light-indicator.default.hover",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "status-light",
+    "variant": "default",
+    "slot": "indicator",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.status-light-indicator.default.active",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "status-light",
+    "variant": "default",
+    "slot": "indicator",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.status-light-indicator.default.disabled",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "status-light",
+    "variant": "default",
+    "slot": "label",
+    "state": "default",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.status-light-label.default.default",
+    "fallbackRef": "dk.color.text.default.base"
+  },
+  {
+    "component": "status-light",
+    "variant": "default",
+    "slot": "label",
+    "state": "disabled",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.status-light-label.default.disabled",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "status-light",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "box-shadow",
+    "tokenRef": "dk.component.status-light-shadow.default.focus",
+    "fallbackRef": "dk.shadow.control.default.base"
+  },
+  {
+    "component": "status-light",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "opacity",
+    "tokenRef": "dk.component.status-light-opacity.default.disabled",
+    "fallbackRef": "dk.opacity.disabled.default.base"
+  },
+  {
+    "component": "status-light",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "transition-duration",
+    "tokenRef": "dk.component.status-light-motion.default.default",
+    "fallbackRef": "dk.motion.duration.control.base"
+  }
+]
