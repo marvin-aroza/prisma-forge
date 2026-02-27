@@ -1,0 +1,182 @@
+[
+  {
+    "component": "split-button",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.split-button-border.default.default",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "split-button",
+    "variant": "default",
+    "slot": "root",
+    "state": "hover",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.split-button-border.default.hover",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "split-button",
+    "variant": "default",
+    "slot": "root",
+    "state": "active",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.split-button-border.default.active",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "split-button",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.split-button-border.default.disabled",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "split-button",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.split-button-border.default.focus",
+    "fallbackRef": "dk.color.border.focus.focus"
+  },
+  {
+    "component": "split-button",
+    "variant": "default",
+    "slot": "primary",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.split-button-primary.default.default",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "split-button",
+    "variant": "default",
+    "slot": "primary",
+    "state": "hover",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.split-button-primary.default.hover",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "split-button",
+    "variant": "default",
+    "slot": "primary",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.split-button-primary.default.active",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "split-button",
+    "variant": "default",
+    "slot": "primary",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.split-button-primary.default.disabled",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "split-button",
+    "variant": "default",
+    "slot": "secondary",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.split-button-secondary.default.default",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "split-button",
+    "variant": "default",
+    "slot": "secondary",
+    "state": "hover",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.split-button-secondary.default.hover",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "split-button",
+    "variant": "default",
+    "slot": "secondary",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.split-button-secondary.default.active",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "split-button",
+    "variant": "default",
+    "slot": "secondary",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.split-button-secondary.default.disabled",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "split-button",
+    "variant": "default",
+    "slot": "label",
+    "state": "default",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.split-button-label.default.default",
+    "fallbackRef": "dk.color.text.default.base"
+  },
+  {
+    "component": "split-button",
+    "variant": "default",
+    "slot": "label",
+    "state": "disabled",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.split-button-label.default.disabled",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "split-button",
+    "variant": "default",
+    "slot": "icon",
+    "state": "default",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.split-button-icon.default.default",
+    "fallbackRef": "dk.color.text.default.base"
+  },
+  {
+    "component": "split-button",
+    "variant": "default",
+    "slot": "icon",
+    "state": "disabled",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.split-button-icon.default.disabled",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "split-button",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "box-shadow",
+    "tokenRef": "dk.component.split-button-shadow.default.focus",
+    "fallbackRef": "dk.shadow.control.default.base"
+  },
+  {
+    "component": "split-button",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "opacity",
+    "tokenRef": "dk.component.split-button-opacity.default.disabled",
+    "fallbackRef": "dk.opacity.disabled.default.base"
+  },
+  {
+    "component": "split-button",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "transition-duration",
+    "tokenRef": "dk.component.split-button-motion.default.default",
+    "fallbackRef": "dk.motion.duration.control.base"
+  }
+]

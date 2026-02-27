@@ -1,0 +1,182 @@
+[
+  {
+    "component": "tabs-vertical",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.tabs-vertical-border.default.default",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "tabs-vertical",
+    "variant": "default",
+    "slot": "root",
+    "state": "hover",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.tabs-vertical-border.default.hover",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "tabs-vertical",
+    "variant": "default",
+    "slot": "root",
+    "state": "active",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.tabs-vertical-border.default.active",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "tabs-vertical",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.tabs-vertical-border.default.disabled",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "tabs-vertical",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.tabs-vertical-border.default.focus",
+    "fallbackRef": "dk.color.border.focus.focus"
+  },
+  {
+    "component": "tabs-vertical",
+    "variant": "default",
+    "slot": "panel",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.tabs-vertical-panel.default.default",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "tabs-vertical",
+    "variant": "default",
+    "slot": "panel",
+    "state": "hover",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.tabs-vertical-panel.default.hover",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "tabs-vertical",
+    "variant": "default",
+    "slot": "panel",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.tabs-vertical-panel.default.active",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "tabs-vertical",
+    "variant": "default",
+    "slot": "panel",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.tabs-vertical-panel.default.disabled",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "tabs-vertical",
+    "variant": "default",
+    "slot": "tab",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.tabs-vertical-tab.default.default",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "tabs-vertical",
+    "variant": "default",
+    "slot": "tab",
+    "state": "hover",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.tabs-vertical-tab.default.hover",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "tabs-vertical",
+    "variant": "default",
+    "slot": "tab",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.tabs-vertical-tab.default.active",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "tabs-vertical",
+    "variant": "default",
+    "slot": "tab",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.tabs-vertical-tab.default.disabled",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "tabs-vertical",
+    "variant": "default",
+    "slot": "label",
+    "state": "default",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.tabs-vertical-label.default.default",
+    "fallbackRef": "dk.color.text.default.base"
+  },
+  {
+    "component": "tabs-vertical",
+    "variant": "default",
+    "slot": "label",
+    "state": "disabled",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.tabs-vertical-label.default.disabled",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "tabs-vertical",
+    "variant": "default",
+    "slot": "indicator",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.tabs-vertical-indicator.default.default",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "tabs-vertical",
+    "variant": "default",
+    "slot": "indicator",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.tabs-vertical-indicator.default.active",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "tabs-vertical",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "box-shadow",
+    "tokenRef": "dk.component.tabs-vertical-shadow.default.focus",
+    "fallbackRef": "dk.shadow.control.default.base"
+  },
+  {
+    "component": "tabs-vertical",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "opacity",
+    "tokenRef": "dk.component.tabs-vertical-opacity.default.disabled",
+    "fallbackRef": "dk.opacity.disabled.default.base"
+  },
+  {
+    "component": "tabs-vertical",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "transition-duration",
+    "tokenRef": "dk.component.tabs-vertical-motion.default.default",
+    "fallbackRef": "dk.motion.duration.control.base"
+  }
+]

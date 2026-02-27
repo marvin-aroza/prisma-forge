@@ -1,0 +1,146 @@
+[
+  {
+    "component": "chip",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.chip-border.default.default",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "chip",
+    "variant": "default",
+    "slot": "root",
+    "state": "hover",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.chip-border.default.hover",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "chip",
+    "variant": "default",
+    "slot": "root",
+    "state": "active",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.chip-border.default.active",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "chip",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.chip-border.default.disabled",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "chip",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.chip-border.default.focus",
+    "fallbackRef": "dk.color.border.focus.focus"
+  },
+  {
+    "component": "chip",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.chip-bg.default.default",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "chip",
+    "variant": "default",
+    "slot": "root",
+    "state": "hover",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.chip-bg.default.hover",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "chip",
+    "variant": "default",
+    "slot": "root",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.chip-bg.default.active",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "chip",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.chip-bg.default.disabled",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "chip",
+    "variant": "default",
+    "slot": "label",
+    "state": "default",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.chip-label.default.default",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "chip",
+    "variant": "default",
+    "slot": "label",
+    "state": "disabled",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.chip-label.default.disabled",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "chip",
+    "variant": "default",
+    "slot": "icon",
+    "state": "default",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.chip-icon.default.default",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "chip",
+    "variant": "default",
+    "slot": "icon",
+    "state": "disabled",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.chip-icon.default.disabled",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "chip",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "box-shadow",
+    "tokenRef": "dk.component.chip-shadow.default.focus",
+    "fallbackRef": "dk.shadow.control.default.base"
+  },
+  {
+    "component": "chip",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "opacity",
+    "tokenRef": "dk.component.chip-opacity.default.disabled",
+    "fallbackRef": "dk.opacity.disabled.default.base"
+  },
+  {
+    "component": "chip",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "transition-duration",
+    "tokenRef": "dk.component.chip-motion.default.default",
+    "fallbackRef": "dk.motion.duration.control.base"
+  }
+]

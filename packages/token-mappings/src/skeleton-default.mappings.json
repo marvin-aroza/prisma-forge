@@ -1,0 +1,137 @@
+[
+  {
+    "component": "skeleton",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.skeleton-border.default.default",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "skeleton",
+    "variant": "default",
+    "slot": "root",
+    "state": "hover",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.skeleton-border.default.hover",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "skeleton",
+    "variant": "default",
+    "slot": "root",
+    "state": "active",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.skeleton-border.default.active",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "skeleton",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.skeleton-border.default.disabled",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "skeleton",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.skeleton-border.default.focus",
+    "fallbackRef": "dk.color.border.focus.focus"
+  },
+  {
+    "component": "skeleton",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.skeleton-bg.default.default",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "skeleton",
+    "variant": "default",
+    "slot": "root",
+    "state": "hover",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.skeleton-bg.default.hover",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "skeleton",
+    "variant": "default",
+    "slot": "root",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.skeleton-bg.default.active",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "skeleton",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.skeleton-bg.default.disabled",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "skeleton",
+    "variant": "default",
+    "slot": "shimmer",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.skeleton-shimmer.default.default",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "skeleton",
+    "variant": "default",
+    "slot": "shimmer",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.skeleton-shimmer.default.active",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "skeleton",
+    "variant": "default",
+    "slot": "shimmer",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.skeleton-shimmer.default.disabled",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "skeleton",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "box-shadow",
+    "tokenRef": "dk.component.skeleton-shadow.default.focus",
+    "fallbackRef": "dk.shadow.control.default.base"
+  },
+  {
+    "component": "skeleton",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "opacity",
+    "tokenRef": "dk.component.skeleton-opacity.default.disabled",
+    "fallbackRef": "dk.opacity.disabled.default.base"
+  },
+  {
+    "component": "skeleton",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "transition-duration",
+    "tokenRef": "dk.component.skeleton-motion.default.default",
+    "fallbackRef": "dk.motion.duration.control.base"
+  }
+]

@@ -10,7 +10,7 @@ test("default mappings resolve against token refs", () => {
   assert.equal(validation.valid, true);
 });
 
-test("default mapping set includes button, input, card, select, textarea, checkbox, radio, switch, modal, tabs, tooltip, dropdown, menu, badge, alert, toast, avatar, pagination, and breadcrumb component variants", () => {
+test("default mapping set includes button, input, card, select, textarea, checkbox, radio, switch, modal, tabs, tooltip, dropdown, menu, badge, alert, toast, avatar, pagination, breadcrumb, chip, progress, skeleton, drawer, date-picker, slider, stepper, file-upload, popover, accordion, table, list, tree, tabs-vertical, command-palette, context-menu, combobox, segmented-control, split-button, toolbar, side-nav, toggle-group, search, command-bar, action-group, status-light, tray, and well component variants", () => {
   const mappings = loadMappings();
   const groups = new Set(mappings.map((mapping) => `${mapping.component}:${mapping.variant}`));
   assert.ok(groups.has("button:primary"));
@@ -32,6 +32,34 @@ test("default mapping set includes button, input, card, select, textarea, checkb
   assert.ok(groups.has("avatar:default"));
   assert.ok(groups.has("pagination:default"));
   assert.ok(groups.has("breadcrumb:default"));
+  assert.ok(groups.has("chip:default"));
+  assert.ok(groups.has("progress:default"));
+  assert.ok(groups.has("skeleton:default"));
+  assert.ok(groups.has("drawer:default"));
+  assert.ok(groups.has("date-picker:default"));
+  assert.ok(groups.has("slider:default"));
+  assert.ok(groups.has("stepper:default"));
+  assert.ok(groups.has("file-upload:default"));
+  assert.ok(groups.has("popover:default"));
+  assert.ok(groups.has("accordion:default"));
+  assert.ok(groups.has("table:default"));
+  assert.ok(groups.has("list:default"));
+  assert.ok(groups.has("tree:default"));
+  assert.ok(groups.has("tabs-vertical:default"));
+  assert.ok(groups.has("command-palette:default"));
+  assert.ok(groups.has("context-menu:default"));
+  assert.ok(groups.has("combobox:default"));
+  assert.ok(groups.has("segmented-control:default"));
+  assert.ok(groups.has("split-button:default"));
+  assert.ok(groups.has("toolbar:default"));
+  assert.ok(groups.has("side-nav:default"));
+  assert.ok(groups.has("toggle-group:default"));
+  assert.ok(groups.has("search:default"));
+  assert.ok(groups.has("command-bar:default"));
+  assert.ok(groups.has("action-group:default"));
+  assert.ok(groups.has("status-light:default"));
+  assert.ok(groups.has("tray:default"));
+  assert.ok(groups.has("well:default"));
 });
 
 test("missing required states are rejected", () => {

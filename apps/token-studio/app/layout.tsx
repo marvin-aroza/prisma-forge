@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="topbar">
           <div className="topbar-inner">
             <div className="brand-cluster">
-              <Link className="brand-link" href="/">
+              <Link className="brand-link" href="/studio">
                 <span className="brand-mark" aria-hidden>
                   PF
                 </span>
@@ -48,7 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 Stable + Next channels
               </p>
               <nav className="topnav" aria-label="Documentation links">
-                <Link href="/">Studio</Link>
+                <Link href="/studio">Studio</Link>
                 <Link href="/docs/react">React</Link>
                 <Link href="/docs/vue">Vue</Link>
                 <Link href="/docs/angular">Angular</Link>

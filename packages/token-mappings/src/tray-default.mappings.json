@@ -1,0 +1,182 @@
+[
+  {
+    "component": "tray",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.tray-border.default.default",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "tray",
+    "variant": "default",
+    "slot": "root",
+    "state": "hover",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.tray-border.default.hover",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "tray",
+    "variant": "default",
+    "slot": "root",
+    "state": "active",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.tray-border.default.active",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "tray",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.tray-border.default.disabled",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "tray",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.tray-border.default.focus",
+    "fallbackRef": "dk.color.border.focus.focus"
+  },
+  {
+    "component": "tray",
+    "variant": "default",
+    "slot": "panel",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.tray-panel.default.default",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "tray",
+    "variant": "default",
+    "slot": "panel",
+    "state": "hover",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.tray-panel.default.hover",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "tray",
+    "variant": "default",
+    "slot": "panel",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.tray-panel.default.active",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "tray",
+    "variant": "default",
+    "slot": "panel",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.tray-panel.default.disabled",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "tray",
+    "variant": "default",
+    "slot": "header",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.tray-header.default.default",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "tray",
+    "variant": "default",
+    "slot": "header",
+    "state": "hover",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.tray-header.default.hover",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "tray",
+    "variant": "default",
+    "slot": "header",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.tray-header.default.active",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "tray",
+    "variant": "default",
+    "slot": "header",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.tray-header.default.disabled",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "tray",
+    "variant": "default",
+    "slot": "label",
+    "state": "default",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.tray-label.default.default",
+    "fallbackRef": "dk.color.text.default.base"
+  },
+  {
+    "component": "tray",
+    "variant": "default",
+    "slot": "label",
+    "state": "disabled",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.tray-label.default.disabled",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "tray",
+    "variant": "default",
+    "slot": "icon",
+    "state": "default",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.tray-icon.default.default",
+    "fallbackRef": "dk.color.text.default.base"
+  },
+  {
+    "component": "tray",
+    "variant": "default",
+    "slot": "icon",
+    "state": "disabled",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.tray-icon.default.disabled",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "tray",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "box-shadow",
+    "tokenRef": "dk.component.tray-shadow.default.focus",
+    "fallbackRef": "dk.shadow.control.default.base"
+  },
+  {
+    "component": "tray",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "opacity",
+    "tokenRef": "dk.component.tray-opacity.default.disabled",
+    "fallbackRef": "dk.opacity.disabled.default.base"
+  },
+  {
+    "component": "tray",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "transition-duration",
+    "tokenRef": "dk.component.tray-motion.default.default",
+    "fallbackRef": "dk.motion.duration.control.base"
+  }
+]
