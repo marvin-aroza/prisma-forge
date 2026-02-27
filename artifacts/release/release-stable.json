@@ -1,0 +1,8 @@
+{
+  "channel": "stable",
+  "publishTag": "latest",
+  "steps": [
+    "pnpm changeset version",
+    "pnpm changeset publish --tag latest"
+  ]
+}

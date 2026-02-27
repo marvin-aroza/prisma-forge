@@ -1,0 +1,299 @@
+{
+  "dk": {
+    "semantic": {
+      "surface": {
+        "default": {
+          "base": {
+            "$type": "color",
+            "$value": "#0B1720",
+            "id": "dk.color.surface.default.base",
+            "description": "Nova dark default surface.",
+            "brand": "nova",
+            "mode": "dark",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "surface", "nova"]
+          }
+        },
+        "raised": {
+          "base": {
+            "$type": "color",
+            "$value": "#13232F",
+            "id": "dk.color.surface.raised.base",
+            "description": "Nova dark raised surface.",
+            "brand": "nova",
+            "mode": "dark",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "surface", "nova"]
+          }
+        }
+      },
+      "text": {
+        "default": {
+          "base": {
+            "$type": "color",
+            "$value": "#ECFDF5",
+            "id": "dk.color.text.default.base",
+            "description": "Nova dark default text.",
+            "brand": "nova",
+            "mode": "dark",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "text", "nova"]
+          }
+        },
+        "muted": {
+          "base": {
+            "$type": "color",
+            "$value": "#A7F3D0",
+            "id": "dk.color.text.muted.base",
+            "description": "Nova dark muted text.",
+            "brand": "nova",
+            "mode": "dark",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "text", "nova"]
+          }
+        }
+      },
+      "border": {
+        "subtle": {
+          "base": {
+            "$type": "color",
+            "$value": "#1D3A45",
+            "id": "dk.color.border.subtle.base",
+            "description": "Nova dark subtle border.",
+            "brand": "nova",
+            "mode": "dark",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "border", "nova"]
+          }
+        },
+        "focus": {
+          "focus": {
+            "$type": "color",
+            "$value": "#10B981",
+            "id": "dk.color.border.focus.focus",
+            "description": "Nova dark focus border color.",
+            "brand": "nova",
+            "mode": "dark",
+            "state": "focus",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "border", "focus", "nova"]
+          }
+        }
+      },
+      "accent": {
+        "primary": {
+          "base": {
+            "$type": "color",
+            "$value": "#10B981",
+            "id": "dk.color.accent.primary.base",
+            "description": "Nova dark primary accent.",
+            "brand": "nova",
+            "mode": "dark",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "accent", "nova"]
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "#059669",
+            "id": "dk.color.accent.primary.hover",
+            "description": "Nova dark primary accent hover.",
+            "brand": "nova",
+            "mode": "dark",
+            "state": "hover",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "accent", "nova"]
+          }
+        }
+      },
+      "typography": {
+        "body": {
+          "default": {
+            "$type": "typography",
+            "$value": "{dk.typography.body.md.base}",
+            "id": "dk.typography.body.default.base",
+            "description": "Default body typography.",
+            "brand": "nova",
+            "mode": "dark",
+            "state": "base",
+            "category": "typography",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "typography", "nova"]
+          }
+        }
+      },
+      "spacing": {
+        "controlX": {
+          "default": {
+            "$type": "dimension",
+            "$value": "{dk.spacing.scale.16.base}",
+            "id": "dk.spacing.control-x.default.base",
+            "description": "Horizontal control spacing.",
+            "brand": "nova",
+            "mode": "dark",
+            "state": "base",
+            "category": "spacing",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "spacing", "nova"]
+          }
+        },
+        "controlY": {
+          "default": {
+            "$type": "dimension",
+            "$value": "{dk.spacing.scale.8.base}",
+            "id": "dk.spacing.control-y.default.base",
+            "description": "Vertical control spacing.",
+            "brand": "nova",
+            "mode": "dark",
+            "state": "base",
+            "category": "spacing",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "spacing", "nova"]
+          }
+        }
+      },
+      "radius": {
+        "control": {
+          "default": {
+            "$type": "dimension",
+            "$value": "{dk.radius.scale.pill.base}",
+            "id": "dk.radius.control.default.base",
+            "description": "Nova default control radius.",
+            "brand": "nova",
+            "mode": "dark",
+            "state": "base",
+            "category": "radius",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "radius", "nova"]
+          }
+        }
+      },
+      "shadow": {
+        "control": {
+          "default": {
+            "$type": "shadow",
+            "$value": "{dk.shadow.elevation.100.base}",
+            "id": "dk.shadow.control.default.base",
+            "description": "Default control shadow.",
+            "brand": "nova",
+            "mode": "dark",
+            "state": "base",
+            "category": "shadow",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "shadow", "nova"]
+          }
+        }
+      },
+      "motion": {
+        "duration": {
+          "control": {
+            "$type": "duration",
+            "$value": "{dk.motion.duration.medium.base}",
+            "id": "dk.motion.duration.control.base",
+            "description": "Default control transition duration.",
+            "brand": "nova",
+            "mode": "dark",
+            "state": "base",
+            "category": "motion-duration",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "motion", "nova"]
+          }
+        },
+        "easing": {
+          "control": {
+            "$type": "cubicBezier",
+            "$value": "{dk.motion.easing.standard.base}",
+            "id": "dk.motion.easing.control.base",
+            "description": "Default control easing.",
+            "brand": "nova",
+            "mode": "dark",
+            "state": "base",
+            "category": "motion-easing",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "motion", "nova"]
+          }
+        }
+      },
+      "opacity": {
+        "disabled": {
+          "default": {
+            "$type": "number",
+            "$value": "{dk.opacity.state.disabled.base}",
+            "id": "dk.opacity.disabled.default.base",
+            "description": "Disabled semantic opacity.",
+            "brand": "nova",
+            "mode": "dark",
+            "state": "disabled",
+            "category": "opacity",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "opacity", "nova"]
+          }
+        }
+      },
+      "zIndex": {
+        "popover": {
+          "default": {
+            "$type": "number",
+            "$value": "{dk.z-index.layer.dropdown.base}",
+            "id": "dk.z-index.popover.default.base",
+            "description": "Popover layer index.",
+            "brand": "nova",
+            "mode": "dark",
+            "state": "base",
+            "category": "z-index",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "z-index", "nova"]
+          }
+        }
+      },
+      "breakpoint": {
+        "content": {
+          "default": {
+            "$type": "dimension",
+            "$value": "{dk.breakpoint.screen.lg.base}",
+            "id": "dk.breakpoint.content.default.base",
+            "description": "Content max width breakpoint.",
+            "brand": "nova",
+            "mode": "dark",
+            "state": "base",
+            "category": "breakpoint",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "breakpoint", "nova"]
+          }
+        }
+      }
+    }
+  }
+}
+

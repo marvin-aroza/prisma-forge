@@ -1,0 +1,16 @@
+{
+  "name": "@prismforge/token-source",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Canonical DTCG-inspired token source files for PrismForge.",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "scripts": {
+    "build": "node -e \"console.log('token-source build: no-op')\"",
+    "validate": "node ./src/index.js --list",
+    "test": "node --test ./test/*.test.mjs"
+  }
+}
+

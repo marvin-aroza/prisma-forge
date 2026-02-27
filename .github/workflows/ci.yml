@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Enable pnpm
+        run: corepack enable pnpm
+      - name: Install dependencies
+        run: pnpm install
+      - name: Validate token contracts
+        run: node ./packages/token-cli/src/cli.js validate
+      - name: Run tests
+        run: node --test ./packages/token-source/test/*.test.mjs ./packages/token-schema/test/*.test.mjs ./packages/token-mappings/test/*.test.mjs ./packages/token-build/test/*.test.mjs ./packages/token-cli/test/*.test.mjs ./apps/token-studio/test/*.test.mjs
+      - name: Verify integrations
+        run: node ./scripts/verify-examples.mjs
+

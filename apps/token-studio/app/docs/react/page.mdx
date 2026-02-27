@@ -1,0 +1,37 @@
+# React Integration
+
+Use generated CSS variables plus semantic token classes.
+
+```tsx
+import { useEffect } from "react";
+import "@prismforge/tokens-css/tokens.css";
+
+export function App() {
+  useEffect(() => {
+    document.documentElement.dataset.brand = "acme";
+    document.documentElement.dataset.mode = "light";
+  }, []);
+
+  return (
+    <button
+      style={{
+        background: "var(--dk-component-button-bg-primary-default)",
+        color: "var(--dk-component-button-label-primary-default)",
+        borderColor: "var(--dk-component-button-border-primary-default)"
+      }}
+    >
+      Primary Action
+    </button>
+  );
+}
+```
+
+## Runtime theme switch
+
+```ts
+function setTheme(brand: "acme" | "nova", mode: "light" | "dark") {
+  document.documentElement.dataset.brand = brand;
+  document.documentElement.dataset.mode = mode;
+}
+```
+

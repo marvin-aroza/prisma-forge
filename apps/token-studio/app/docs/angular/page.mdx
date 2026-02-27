@@ -1,0 +1,43 @@
+# Angular Integration
+
+Load generated token CSS in global styles and consume via custom properties.
+
+```ts
+// main.ts
+import "@prismforge/tokens-css/tokens.css";
+```
+
+```ts
+// app.component.ts
+import { Component } from "@angular/core";
+
+@Component({
+  selector: "app-root",
+  standalone: true,
+  template: `<button class="btn">Save</button>`,
+  styles: [`
+    :host {
+      display: block;
+      padding: 1rem;
+    }
+    .btn {
+      background: var(--dk-component-button-bg-primary-default);
+      color: var(--dk-component-button-label-primary-default);
+      border-color: var(--dk-component-button-border-primary-default);
+      padding: var(--dk-spacing-control-y-default-base) var(--dk-spacing-control-x-default-base);
+      border-radius: var(--dk-radius-control-default-base);
+    }
+  `]
+})
+export class AppComponent {}
+```
+
+## Theme setter service
+
+```ts
+export function applyTheme(brand: "acme" | "nova", mode: "light" | "dark") {
+  document.documentElement.dataset.brand = brand;
+  document.documentElement.dataset.mode = mode;
+}
+```
+

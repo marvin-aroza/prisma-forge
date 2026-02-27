@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <item name="dk_border_style_default_dashed_base">dashed</item>
+  <item name="dk_border_style_default_solid_base">solid</item>
+  <dimen name="dk_border_width_scale_1_base">1dp</dimen>
+  <dimen name="dk_border_width_scale_2_base">2dp</dimen>
+  <dimen name="dk_breakpoint_content_default_base">{&quot;$type&quot;:&quot;dimension&quot;,&quot;$value&quot;:&quot;1024px&quot;,&quot;id&quot;:&quot;dk.breakpoint.screen.lg.base&quot;,&quot;description&quot;:&quot;Large breakpoint.&quot;,&quot;brand&quot;:&quot;global&quot;,&quot;mode&quot;:&quot;all&quot;,&quot;state&quot;:&quot;base&quot;,&quot;category&quot;:&quot;breakpoint&quot;,&quot;deprecated&quot;:false,&quot;since&quot;:&quot;0.1.0&quot;,&quot;tags&quot;:[&quot;reference&quot;,&quot;breakpoint&quot;]}</dimen>
+  <dimen name="dk_breakpoint_screen_lg_base">1024dp</dimen>
+  <dimen name="dk_breakpoint_screen_md_base">768dp</dimen>
+  <dimen name="dk_breakpoint_screen_sm_base">640dp</dimen>
+  <color name="dk_color_accent_primary_base">#10B981</color>
+  <color name="dk_color_accent_primary_hover">#059669</color>
+  <color name="dk_color_blue_500_base">#2563EB</color>
+  <color name="dk_color_blue_600_base">#1D4ED8</color>
+  <color name="dk_color_border_focus_focus">#10B981</color>
+  <color name="dk_color_border_subtle_base">#1D3A45</color>
+  <color name="dk_color_emerald_500_base">#059669</color>
+  <color name="dk_color_emerald_600_base">#047857</color>
+  <color name="dk_color_gray_0_base">#FFFFFF</color>
+  <color name="dk_color_gray_100_base">#F3F4F6</color>
+  <color name="dk_color_gray_300_base">#D1D5DB</color>
+  <color name="dk_color_gray_600_base">#4B5563</color>
+  <color name="dk_color_gray_900_base">#111827</color>
+  <color name="dk_color_surface_default_base">#0B1720</color>
+  <color name="dk_color_surface_raised_base">#13232F</color>
+  <color name="dk_color_text_default_base">#ECFDF5</color>
+  <color name="dk_color_text_muted_base">#A7F3D0</color>
+  <color name="dk_component_button_bg_primary_active">{&quot;$type&quot;:&quot;color&quot;,&quot;$value&quot;:&quot;#059669&quot;,&quot;id&quot;:&quot;dk.color.accent.primary.hover&quot;,&quot;description&quot;:&quot;Nova dark primary accent hover.&quot;,&quot;brand&quot;:&quot;nova&quot;,&quot;mode&quot;:&quot;dark&quot;,&quot;state&quot;:&quot;hover&quot;,&quot;category&quot;:&quot;color&quot;,&quot;deprecated&quot;:false,&quot;since&quot;:&quot;0.1.0&quot;,&quot;tags&quot;:[&quot;semantic&quot;,&quot;accent&quot;,&quot;nova&quot;]}</color>
+  <color name="dk_component_button_bg_primary_default">{&quot;$type&quot;:&quot;color&quot;,&quot;$value&quot;:&quot;#10B981&quot;,&quot;id&quot;:&quot;dk.color.accent.primary.base&quot;,&quot;description&quot;:&quot;Nova dark primary accent.&quot;,&quot;brand&quot;:&quot;nova&quot;,&quot;mode&quot;:&quot;dark&quot;,&quot;state&quot;:&quot;base&quot;,&quot;category&quot;:&quot;color&quot;,&quot;deprecated&quot;:false,&quot;since&quot;:&quot;0.1.0&quot;,&quot;tags&quot;:[&quot;semantic&quot;,&quot;accent&quot;,&quot;nova&quot;]}</color>
+  <color name="dk_component_button_bg_primary_disabled">{&quot;$type&quot;:&quot;color&quot;,&quot;$value&quot;:&quot;#10B981&quot;,&quot;id&quot;:&quot;dk.color.accent.primary.base&quot;,&quot;description&quot;:&quot;Nova dark primary accent.&quot;,&quot;brand&quot;:&quot;nova&quot;,&quot;mode&quot;:&quot;dark&quot;,&quot;state&quot;:&quot;base&quot;,&quot;category&quot;:&quot;color&quot;,&quot;deprecated&quot;:false,&quot;since&quot;:&quot;0.1.0&quot;,&quot;tags&quot;:[&quot;semantic&quot;,&quot;accent&quot;,&quot;nova&quot;]}</color>
+  <color name="dk_component_button_bg_primary_hover">{&quot;$type&quot;:&quot;color&quot;,&quot;$value&quot;:&quot;#059669&quot;,&quot;id&quot;:&quot;dk.color.accent.primary.hover&quot;,&quot;description&quot;:&quot;Nova dark primary accent hover.&quot;,&quot;brand&quot;:&quot;nova&quot;,&quot;mode&quot;:&quot;dark&quot;,&quot;state&quot;:&quot;hover&quot;,&quot;category&quot;:&quot;color&quot;,&quot;deprecated&quot;:false,&quot;since&quot;:&quot;0.1.0&quot;,&quot;tags&quot;:[&quot;semantic&quot;,&quot;accent&quot;,&quot;nova&quot;]}</color>
+  <color name="dk_component_button_border_primary_default">{&quot;$type&quot;:&quot;color&quot;,&quot;$value&quot;:&quot;#10B981&quot;,&quot;id&quot;:&quot;dk.color.accent.primary.base&quot;,&quot;description&quot;:&quot;Nova dark primary accent.&quot;,&quot;brand&quot;:&quot;nova&quot;,&quot;mode&quot;:&quot;dark&quot;,&quot;state&quot;:&quot;base&quot;,&quot;category&quot;:&quot;color&quot;,&quot;deprecated&quot;:false,&quot;since&quot;:&quot;0.1.0&quot;,&quot;tags&quot;:[&quot;semantic&quot;,&quot;accent&quot;,&quot;nova&quot;]}</color>
+  <color name="dk_component_button_border_primary_focus">{&quot;$type&quot;:&quot;color&quot;,&quot;$value&quot;:&quot;#10B981&quot;,&quot;id&quot;:&quot;dk.color.border.focus.focus&quot;,&quot;description&quot;:&quot;Nova dark focus border color.&quot;,&quot;brand&quot;:&quot;nova&quot;,&quot;mode&quot;:&quot;dark&quot;,&quot;state&quot;:&quot;focus&quot;,&quot;category&quot;:&quot;color&quot;,&quot;deprecated&quot;:false,&quot;since&quot;:&quot;0.1.0&quot;,&quot;tags&quot;:[&quot;semantic&quot;,&quot;border&quot;,&quot;focus&quot;,&quot;nova&quot;]}</color>
+  <color name="dk_component_button_label_primary_default">{&quot;$type&quot;:&quot;color&quot;,&quot;$value&quot;:&quot;#FFFFFF&quot;,&quot;id&quot;:&quot;dk.color.gray.0.base&quot;,&quot;description&quot;:&quot;Reference pure white.&quot;,&quot;brand&quot;:&quot;global&quot;,&quot;mode&quot;:&quot;all&quot;,&quot;state&quot;:&quot;base&quot;,&quot;category&quot;:&quot;color&quot;,&quot;deprecated&quot;:false,&quot;since&quot;:&quot;0.1.0&quot;,&quot;tags&quot;:[&quot;reference&quot;,&quot;color&quot;,&quot;gray&quot;]}</color>
+  <color name="dk_component_button_label_primary_disabled">#A7F3D0</color>
+  <item name="dk_component_button_motion_primary_default">{&quot;$type&quot;:&quot;duration&quot;,&quot;$value&quot;:{&quot;$type&quot;:&quot;duration&quot;,&quot;$value&quot;:&quot;220ms&quot;,&quot;id&quot;:&quot;dk.motion.duration.medium.base&quot;,&quot;description&quot;:&quot;Medium motion duration.&quot;,&quot;brand&quot;:&quot;global&quot;,&quot;mode&quot;:&quot;all&quot;,&quot;state&quot;:&quot;base&quot;,&quot;category&quot;:&quot;motion-duration&quot;,&quot;deprecated&quot;:false,&quot;since&quot;:&quot;0.1.0&quot;,&quot;tags&quot;:[&quot;reference&quot;,&quot;motion&quot;]},&quot;id&quot;:&quot;dk.motion.duration.control.base&quot;,&quot;description&quot;:&quot;Default control transition duration.&quot;,&quot;brand&quot;:&quot;nova&quot;,&quot;mode&quot;:&quot;dark&quot;,&quot;state&quot;:&quot;base&quot;,&quot;category&quot;:&quot;motion-duration&quot;,&quot;deprecated&quot;:false,&quot;since&quot;:&quot;0.1.0&quot;,&quot;tags&quot;:[&quot;semantic&quot;,&quot;motion&quot;,&quot;nova&quot;]}</item>
+  <item type="integer" name="dk_component_button_opacity_primary_disabled">{&quot;$type&quot;:&quot;number&quot;,&quot;$value&quot;:{&quot;$type&quot;:&quot;number&quot;,&quot;$value&quot;:0.38,&quot;id&quot;:&quot;dk.opacity.state.disabled.base&quot;,&quot;description&quot;:&quot;Disabled state opacity.&quot;,&quot;brand&quot;:&quot;global&quot;,&quot;mode&quot;:&quot;all&quot;,&quot;state&quot;:&quot;base&quot;,&quot;category&quot;:&quot;opacity&quot;,&quot;deprecated&quot;:false,&quot;since&quot;:&quot;0.1.0&quot;,&quot;tags&quot;:[&quot;reference&quot;,&quot;opacity&quot;]},&quot;id&quot;:&quot;dk.opacity.disabled.default.base&quot;,&quot;description&quot;:&quot;Disabled semantic opacity.&quot;,&quot;brand&quot;:&quot;nova&quot;,&quot;mode&quot;:&quot;dark&quot;,&quot;state&quot;:&quot;disabled&quot;,&quot;category&quot;:&quot;opacity&quot;,&quot;deprecated&quot;:false,&quot;since&quot;:&quot;0.1.0&quot;,&quot;tags&quot;:[&quot;semantic&quot;,&quot;opacity&quot;,&quot;nova&quot;]}</item>
+  <item name="dk_component_button_shadow_primary_focus">undefined undefined undefined undefined undefined</item>
+  <color name="dk_focus_ring_default_color_base">{&quot;$type&quot;:&quot;color&quot;,&quot;$value&quot;:&quot;#2563EB&quot;,&quot;id&quot;:&quot;dk.color.blue.500.base&quot;,&quot;description&quot;:&quot;Reference blue 500.&quot;,&quot;brand&quot;:&quot;global&quot;,&quot;mode&quot;:&quot;all&quot;,&quot;state&quot;:&quot;base&quot;,&quot;category&quot;:&quot;color&quot;,&quot;deprecated&quot;:false,&quot;since&quot;:&quot;0.1.0&quot;,&quot;tags&quot;:[&quot;reference&quot;,&quot;color&quot;,&quot;blue&quot;]}</color>
+  <dimen name="dk_focus_ring_default_offset_base">2dp</dimen>
+  <dimen name="dk_focus_ring_default_width_base">2dp</dimen>
+  <item name="dk_motion_duration_control_base">{&quot;$type&quot;:&quot;duration&quot;,&quot;$value&quot;:&quot;220ms&quot;,&quot;id&quot;:&quot;dk.motion.duration.medium.base&quot;,&quot;description&quot;:&quot;Medium motion duration.&quot;,&quot;brand&quot;:&quot;global&quot;,&quot;mode&quot;:&quot;all&quot;,&quot;state&quot;:&quot;base&quot;,&quot;category&quot;:&quot;motion-duration&quot;,&quot;deprecated&quot;:false,&quot;since&quot;:&quot;0.1.0&quot;,&quot;tags&quot;:[&quot;reference&quot;,&quot;motion&quot;]}</item>
+  <item name="dk_motion_duration_fast_base">120ms</item>
+  <item name="dk_motion_duration_medium_base">220ms</item>
+  <item name="dk_motion_easing_control_base">{&quot;$type&quot;:&quot;cubicBezier&quot;,&quot;$value&quot;:[0.2,0,0,1],&quot;id&quot;:&quot;dk.motion.easing.standard.base&quot;,&quot;description&quot;:&quot;Standard easing curve.&quot;,&quot;brand&quot;:&quot;global&quot;,&quot;mode&quot;:&quot;all&quot;,&quot;state&quot;:&quot;base&quot;,&quot;category&quot;:&quot;motion-easing&quot;,&quot;deprecated&quot;:false,&quot;since&quot;:&quot;0.1.0&quot;,&quot;tags&quot;:[&quot;reference&quot;,&quot;motion&quot;]}</item>
+  <item name="dk_motion_easing_standard_base">0.2, 0, 0, 1</item>
+  <item type="integer" name="dk_opacity_disabled_default_base">{&quot;$type&quot;:&quot;number&quot;,&quot;$value&quot;:0.38,&quot;id&quot;:&quot;dk.opacity.state.disabled.base&quot;,&quot;description&quot;:&quot;Disabled state opacity.&quot;,&quot;brand&quot;:&quot;global&quot;,&quot;mode&quot;:&quot;all&quot;,&quot;state&quot;:&quot;base&quot;,&quot;category&quot;:&quot;opacity&quot;,&quot;deprecated&quot;:false,&quot;since&quot;:&quot;0.1.0&quot;,&quot;tags&quot;:[&quot;reference&quot;,&quot;opacity&quot;]}</item>
+  <item type="integer" name="dk_opacity_state_disabled_base">0.38</item>
+  <item type="integer" name="dk_opacity_state_overlay_base">0.72</item>
+  <dimen name="dk_radius_control_default_base">{&quot;$type&quot;:&quot;dimension&quot;,&quot;$value&quot;:&quot;999px&quot;,&quot;id&quot;:&quot;dk.radius.scale.pill.base&quot;,&quot;description&quot;:&quot;Pill radius.&quot;,&quot;brand&quot;:&quot;global&quot;,&quot;mode&quot;:&quot;all&quot;,&quot;state&quot;:&quot;base&quot;,&quot;category&quot;:&quot;radius&quot;,&quot;deprecated&quot;:false,&quot;since&quot;:&quot;0.1.0&quot;,&quot;tags&quot;:[&quot;reference&quot;,&quot;radius&quot;]}</dimen>
+  <dimen name="dk_radius_scale_md_base">8dp</dimen>
+  <dimen name="dk_radius_scale_pill_base">999dp</dimen>
+  <dimen name="dk_radius_scale_sm_base">4dp</dimen>
+  <item name="dk_shadow_control_default_base">undefined undefined undefined undefined undefined</item>
+  <item name="dk_shadow_elevation_100_base">0px 2px 8px 0px rgba(17,24,39,0.12)</item>
+  <dimen name="dk_sizing_control_lg_base">48dp</dimen>
+  <dimen name="dk_sizing_control_md_base">40dp</dimen>
+  <dimen name="dk_sizing_control_sm_base">32dp</dimen>
+  <dimen name="dk_spacing_control_x_default_base">{&quot;$type&quot;:&quot;dimension&quot;,&quot;$value&quot;:&quot;16px&quot;,&quot;id&quot;:&quot;dk.spacing.scale.16.base&quot;,&quot;description&quot;:&quot;Spacing scale 16.&quot;,&quot;brand&quot;:&quot;global&quot;,&quot;mode&quot;:&quot;all&quot;,&quot;state&quot;:&quot;base&quot;,&quot;category&quot;:&quot;spacing&quot;,&quot;deprecated&quot;:false,&quot;since&quot;:&quot;0.1.0&quot;,&quot;tags&quot;:[&quot;reference&quot;,&quot;spacing&quot;]}</dimen>
+  <dimen name="dk_spacing_control_y_default_base">{&quot;$type&quot;:&quot;dimension&quot;,&quot;$value&quot;:&quot;8px&quot;,&quot;id&quot;:&quot;dk.spacing.scale.8.base&quot;,&quot;description&quot;:&quot;Spacing scale 8.&quot;,&quot;brand&quot;:&quot;global&quot;,&quot;mode&quot;:&quot;all&quot;,&quot;state&quot;:&quot;base&quot;,&quot;category&quot;:&quot;spacing&quot;,&quot;deprecated&quot;:false,&quot;since&quot;:&quot;0.1.0&quot;,&quot;tags&quot;:[&quot;reference&quot;,&quot;spacing&quot;]}</dimen>
+  <dimen name="dk_spacing_scale_12_base">12dp</dimen>
+  <dimen name="dk_spacing_scale_16_base">16dp</dimen>
+  <dimen name="dk_spacing_scale_2_base">2dp</dimen>
+  <dimen name="dk_spacing_scale_24_base">24dp</dimen>
+  <dimen name="dk_spacing_scale_4_base">4dp</dimen>
+  <dimen name="dk_spacing_scale_8_base">8dp</dimen>
+  <item name="dk_typography_body_default_base">undefined undefined/undefined undefined</item>
+  <item name="dk_typography_body_md_base">400 16px/24px &apos;Source Sans 3&apos;, sans-serif</item>
+  <item name="dk_typography_heading_sm_base">600 24px/32px &apos;Sora&apos;, sans-serif</item>
+  <item type="integer" name="dk_z_index_layer_dropdown_base">1000</item>
+  <item type="integer" name="dk_z_index_layer_modal_base">1300</item>
+  <item type="integer" name="dk_z_index_popover_default_base">{&quot;$type&quot;:&quot;number&quot;,&quot;$value&quot;:1000,&quot;id&quot;:&quot;dk.z-index.layer.dropdown.base&quot;,&quot;description&quot;:&quot;Dropdown z-index.&quot;,&quot;brand&quot;:&quot;global&quot;,&quot;mode&quot;:&quot;all&quot;,&quot;state&quot;:&quot;base&quot;,&quot;category&quot;:&quot;z-index&quot;,&quot;deprecated&quot;:false,&quot;since&quot;:&quot;0.1.0&quot;,&quot;tags&quot;:[&quot;reference&quot;,&quot;z-index&quot;]}</item>
+</resources>

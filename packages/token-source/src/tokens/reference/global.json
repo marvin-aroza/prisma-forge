@@ -1,0 +1,618 @@
+{
+  "dk": {
+    "reference": {
+      "color": {
+        "gray": {
+          "0": {
+            "$type": "color",
+            "$value": "#FFFFFF",
+            "id": "dk.color.gray.0.base",
+            "description": "Reference pure white.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "color", "gray"]
+          },
+          "100": {
+            "$type": "color",
+            "$value": "#F3F4F6",
+            "id": "dk.color.gray.100.base",
+            "description": "Reference gray 100.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "color", "gray"]
+          },
+          "300": {
+            "$type": "color",
+            "$value": "#D1D5DB",
+            "id": "dk.color.gray.300.base",
+            "description": "Reference gray 300.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "color", "gray"]
+          },
+          "600": {
+            "$type": "color",
+            "$value": "#4B5563",
+            "id": "dk.color.gray.600.base",
+            "description": "Reference gray 600.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "color", "gray"]
+          },
+          "900": {
+            "$type": "color",
+            "$value": "#111827",
+            "id": "dk.color.gray.900.base",
+            "description": "Reference gray 900.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "color", "gray"]
+          }
+        },
+        "blue": {
+          "500": {
+            "$type": "color",
+            "$value": "#2563EB",
+            "id": "dk.color.blue.500.base",
+            "description": "Reference blue 500.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "color", "blue"]
+          },
+          "600": {
+            "$type": "color",
+            "$value": "#1D4ED8",
+            "id": "dk.color.blue.600.base",
+            "description": "Reference blue 600.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "color", "blue"]
+          }
+        },
+        "emerald": {
+          "500": {
+            "$type": "color",
+            "$value": "#059669",
+            "id": "dk.color.emerald.500.base",
+            "description": "Reference emerald 500.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "color", "emerald"]
+          },
+          "600": {
+            "$type": "color",
+            "$value": "#047857",
+            "id": "dk.color.emerald.600.base",
+            "description": "Reference emerald 600.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "color", "emerald"]
+          }
+        }
+      },
+      "spacing": {
+        "scale": {
+          "2": {
+            "$type": "dimension",
+            "$value": "2px",
+            "id": "dk.spacing.scale.2.base",
+            "description": "Spacing scale 2.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "spacing",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "spacing"]
+          },
+          "4": {
+            "$type": "dimension",
+            "$value": "4px",
+            "id": "dk.spacing.scale.4.base",
+            "description": "Spacing scale 4.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "spacing",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "spacing"]
+          },
+          "8": {
+            "$type": "dimension",
+            "$value": "8px",
+            "id": "dk.spacing.scale.8.base",
+            "description": "Spacing scale 8.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "spacing",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "spacing"]
+          },
+          "12": {
+            "$type": "dimension",
+            "$value": "12px",
+            "id": "dk.spacing.scale.12.base",
+            "description": "Spacing scale 12.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "spacing",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "spacing"]
+          },
+          "16": {
+            "$type": "dimension",
+            "$value": "16px",
+            "id": "dk.spacing.scale.16.base",
+            "description": "Spacing scale 16.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "spacing",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "spacing"]
+          },
+          "24": {
+            "$type": "dimension",
+            "$value": "24px",
+            "id": "dk.spacing.scale.24.base",
+            "description": "Spacing scale 24.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "spacing",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "spacing"]
+          }
+        }
+      },
+      "sizing": {
+        "control": {
+          "sm": {
+            "$type": "dimension",
+            "$value": "32px",
+            "id": "dk.sizing.control.sm.base",
+            "description": "Small control height.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "sizing",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "sizing"]
+          },
+          "md": {
+            "$type": "dimension",
+            "$value": "40px",
+            "id": "dk.sizing.control.md.base",
+            "description": "Medium control height.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "sizing",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "sizing"]
+          },
+          "lg": {
+            "$type": "dimension",
+            "$value": "48px",
+            "id": "dk.sizing.control.lg.base",
+            "description": "Large control height.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "sizing",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "sizing"]
+          }
+        }
+      },
+      "radius": {
+        "scale": {
+          "sm": {
+            "$type": "dimension",
+            "$value": "4px",
+            "id": "dk.radius.scale.sm.base",
+            "description": "Small corner radius.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "radius",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "radius"]
+          },
+          "md": {
+            "$type": "dimension",
+            "$value": "8px",
+            "id": "dk.radius.scale.md.base",
+            "description": "Medium corner radius.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "radius",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "radius"]
+          },
+          "pill": {
+            "$type": "dimension",
+            "$value": "999px",
+            "id": "dk.radius.scale.pill.base",
+            "description": "Pill radius.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "radius",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "radius"]
+          }
+        }
+      },
+      "borderWidth": {
+        "scale": {
+          "1": {
+            "$type": "dimension",
+            "$value": "1px",
+            "id": "dk.border-width.scale.1.base",
+            "description": "Border width 1.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "border-width",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "border"]
+          },
+          "2": {
+            "$type": "dimension",
+            "$value": "2px",
+            "id": "dk.border-width.scale.2.base",
+            "description": "Border width 2.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "border-width",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "border"]
+          }
+        }
+      },
+      "borderStyle": {
+        "default": {
+          "solid": {
+            "$type": "strokeStyle",
+            "$value": "solid",
+            "id": "dk.border-style.default.solid.base",
+            "description": "Solid border style.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "border-style",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "border"]
+          },
+          "dashed": {
+            "$type": "strokeStyle",
+            "$value": "dashed",
+            "id": "dk.border-style.default.dashed.base",
+            "description": "Dashed border style.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "border-style",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "border"]
+          }
+        }
+      },
+      "typography": {
+        "body": {
+          "md": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "'Source Sans 3', sans-serif",
+              "fontWeight": 400,
+              "fontSize": "16px",
+              "lineHeight": "24px",
+              "letterSpacing": "0px"
+            },
+            "id": "dk.typography.body.md.base",
+            "description": "Body medium typography.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "typography",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "typography"]
+          }
+        },
+        "heading": {
+          "sm": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "'Sora', sans-serif",
+              "fontWeight": 600,
+              "fontSize": "24px",
+              "lineHeight": "32px",
+              "letterSpacing": "-0.01em"
+            },
+            "id": "dk.typography.heading.sm.base",
+            "description": "Heading small typography.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "typography",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "typography"]
+          }
+        }
+      },
+      "shadow": {
+        "elevation": {
+          "100": {
+            "$type": "shadow",
+            "$value": {
+              "color": "rgba(17,24,39,0.12)",
+              "x": "0px",
+              "y": "2px",
+              "blur": "8px",
+              "spread": "0px"
+            },
+            "id": "dk.shadow.elevation.100.base",
+            "description": "Elevation shadow 100.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "shadow",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "shadow"]
+          }
+        }
+      },
+      "opacity": {
+        "state": {
+          "disabled": {
+            "$type": "number",
+            "$value": 0.38,
+            "id": "dk.opacity.state.disabled.base",
+            "description": "Disabled state opacity.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "opacity",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "opacity"]
+          },
+          "overlay": {
+            "$type": "number",
+            "$value": 0.72,
+            "id": "dk.opacity.state.overlay.base",
+            "description": "Overlay opacity.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "opacity",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "opacity"]
+          }
+        }
+      },
+      "motion": {
+        "duration": {
+          "fast": {
+            "$type": "duration",
+            "$value": "120ms",
+            "id": "dk.motion.duration.fast.base",
+            "description": "Fast motion duration.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "motion-duration",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "motion"]
+          },
+          "medium": {
+            "$type": "duration",
+            "$value": "220ms",
+            "id": "dk.motion.duration.medium.base",
+            "description": "Medium motion duration.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "motion-duration",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "motion"]
+          }
+        },
+        "easing": {
+          "standard": {
+            "$type": "cubicBezier",
+            "$value": [0.2, 0, 0, 1],
+            "id": "dk.motion.easing.standard.base",
+            "description": "Standard easing curve.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "motion-easing",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "motion"]
+          }
+        }
+      },
+      "zIndex": {
+        "layer": {
+          "dropdown": {
+            "$type": "number",
+            "$value": 1000,
+            "id": "dk.z-index.layer.dropdown.base",
+            "description": "Dropdown z-index.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "z-index",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "z-index"]
+          },
+          "modal": {
+            "$type": "number",
+            "$value": 1300,
+            "id": "dk.z-index.layer.modal.base",
+            "description": "Modal z-index.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "z-index",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "z-index"]
+          }
+        }
+      },
+      "breakpoint": {
+        "screen": {
+          "sm": {
+            "$type": "dimension",
+            "$value": "640px",
+            "id": "dk.breakpoint.screen.sm.base",
+            "description": "Small breakpoint.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "breakpoint",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "breakpoint"]
+          },
+          "md": {
+            "$type": "dimension",
+            "$value": "768px",
+            "id": "dk.breakpoint.screen.md.base",
+            "description": "Medium breakpoint.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "breakpoint",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "breakpoint"]
+          },
+          "lg": {
+            "$type": "dimension",
+            "$value": "1024px",
+            "id": "dk.breakpoint.screen.lg.base",
+            "description": "Large breakpoint.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "breakpoint",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "breakpoint"]
+          }
+        }
+      },
+      "focusRing": {
+        "default": {
+          "width": {
+            "$type": "dimension",
+            "$value": "2px",
+            "id": "dk.focus-ring.default.width.base",
+            "description": "Focus ring width.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "focus-ring",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "focus-ring"]
+          },
+          "offset": {
+            "$type": "dimension",
+            "$value": "2px",
+            "id": "dk.focus-ring.default.offset.base",
+            "description": "Focus ring offset.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "focus-ring",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "focus-ring"]
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{dk.color.blue.500.base}",
+            "id": "dk.focus-ring.default.color.base",
+            "description": "Focus ring color.",
+            "brand": "global",
+            "mode": "all",
+            "state": "base",
+            "category": "focus-ring",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["reference", "focus-ring", "color"]
+          }
+        }
+      }
+    }
+  }
+}
+

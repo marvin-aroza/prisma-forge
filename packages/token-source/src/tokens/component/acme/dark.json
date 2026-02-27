@@ -1,0 +1,166 @@
+{
+  "dk": {
+    "component": {
+      "button": {
+        "primary": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.button-bg.primary.default",
+              "description": "Primary button background default.",
+              "brand": "acme",
+              "mode": "dark",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": ["component", "button", "primary"]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.button-bg.primary.hover",
+              "description": "Primary button background hover.",
+              "brand": "acme",
+              "mode": "dark",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": ["component", "button", "primary"]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.button-bg.primary.active",
+              "description": "Primary button background active.",
+              "brand": "acme",
+              "mode": "dark",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": ["component", "button", "primary"]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.button-bg.primary.disabled",
+              "description": "Primary button background disabled.",
+              "brand": "acme",
+              "mode": "dark",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": ["component", "button", "primary"]
+            }
+          },
+          "label": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.gray.0.base}",
+              "id": "dk.component.button-label.primary.default",
+              "description": "Primary button label default.",
+              "brand": "acme",
+              "mode": "dark",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": ["component", "button", "primary"]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.gray.300.base}",
+              "id": "dk.component.button-label.primary.disabled",
+              "description": "Primary button label disabled.",
+              "brand": "acme",
+              "mode": "dark",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": ["component", "button", "primary"]
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.button-border.primary.default",
+              "description": "Primary button border default.",
+              "brand": "acme",
+              "mode": "dark",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": ["component", "button", "primary"]
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{dk.color.border.focus.focus}",
+              "id": "dk.component.button-border.primary.focus",
+              "description": "Primary button border focus.",
+              "brand": "acme",
+              "mode": "dark",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": ["component", "button", "primary"]
+            }
+          },
+          "shadow": {
+            "focus": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.button-shadow.primary.focus",
+              "description": "Primary button focus shadow.",
+              "brand": "acme",
+              "mode": "dark",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": ["component", "button", "primary"]
+            }
+          },
+          "opacity": {
+            "disabled": {
+              "$type": "number",
+              "$value": "{dk.opacity.disabled.default.base}",
+              "id": "dk.component.button-opacity.primary.disabled",
+              "description": "Primary button opacity disabled.",
+              "brand": "acme",
+              "mode": "dark",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": ["component", "button", "primary"]
+            }
+          },
+          "motion": {
+            "duration": {
+              "$type": "duration",
+              "$value": "{dk.motion.duration.control.base}",
+              "id": "dk.component.button-motion.primary.default",
+              "description": "Primary button transition duration.",
+              "brand": "acme",
+              "mode": "dark",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": ["component", "button", "primary"]
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

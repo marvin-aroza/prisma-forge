@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://prismforge.dev/schema/mapping.schema.json",
+  "title": "prismforge Component Mapping",
+  "type": "object",
+  "required": [
+    "component",
+    "variant",
+    "slot",
+    "state",
+    "platformProperty",
+    "tokenRef",
+    "fallbackRef"
+  ],
+  "properties": {
+    "component": { "type": "string", "minLength": 1 },
+    "variant": { "type": "string", "minLength": 1 },
+    "slot": { "type": "string", "minLength": 1 },
+    "state": {
+      "type": "string",
+      "enum": ["default", "hover", "active", "disabled", "focus"]
+    },
+    "platformProperty": { "type": "string", "minLength": 1 },
+    "tokenRef": { "type": "string", "pattern": "^[a-z0-9]+(\\.[a-z0-9-]+){4,}$" },
+    "fallbackRef": { "type": "string", "pattern": "^[a-z0-9]+(\\.[a-z0-9-]+){4,}$" }
+  },
+  "additionalProperties": true
+}
+
+

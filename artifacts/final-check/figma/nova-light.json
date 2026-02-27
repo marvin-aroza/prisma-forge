@@ -1,0 +1,1073 @@
+{
+  "meta": {
+    "source": "prismforge",
+    "exportType": "figma-variables",
+    "brand": "nova",
+    "mode": "light"
+  },
+  "variables": [
+    {
+      "name": "dk.border-style.default.dashed.base",
+      "type": "strokeStyle",
+      "value": "dashed",
+      "description": "Dashed border style."
+    },
+    {
+      "name": "dk.border-style.default.solid.base",
+      "type": "strokeStyle",
+      "value": "solid",
+      "description": "Solid border style."
+    },
+    {
+      "name": "dk.border-width.scale.1.base",
+      "type": "dimension",
+      "value": "1px",
+      "description": "Border width 1."
+    },
+    {
+      "name": "dk.border-width.scale.2.base",
+      "type": "dimension",
+      "value": "2px",
+      "description": "Border width 2."
+    },
+    {
+      "name": "dk.breakpoint.content.default.base",
+      "type": "dimension",
+      "value": {
+        "$type": "dimension",
+        "$value": "1024px",
+        "id": "dk.breakpoint.screen.lg.base",
+        "description": "Large breakpoint.",
+        "brand": "global",
+        "mode": "all",
+        "state": "base",
+        "category": "breakpoint",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "reference",
+          "breakpoint"
+        ]
+      },
+      "description": "Content max width breakpoint."
+    },
+    {
+      "name": "dk.breakpoint.screen.lg.base",
+      "type": "dimension",
+      "value": "1024px",
+      "description": "Large breakpoint."
+    },
+    {
+      "name": "dk.breakpoint.screen.md.base",
+      "type": "dimension",
+      "value": "768px",
+      "description": "Medium breakpoint."
+    },
+    {
+      "name": "dk.breakpoint.screen.sm.base",
+      "type": "dimension",
+      "value": "640px",
+      "description": "Small breakpoint."
+    },
+    {
+      "name": "dk.color.accent.primary.base",
+      "type": "color",
+      "value": {
+        "$type": "color",
+        "$value": "#059669",
+        "id": "dk.color.emerald.500.base",
+        "description": "Reference emerald 500.",
+        "brand": "global",
+        "mode": "all",
+        "state": "base",
+        "category": "color",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "reference",
+          "color",
+          "emerald"
+        ]
+      },
+      "description": "Nova light primary accent."
+    },
+    {
+      "name": "dk.color.accent.primary.hover",
+      "type": "color",
+      "value": {
+        "$type": "color",
+        "$value": "#047857",
+        "id": "dk.color.emerald.600.base",
+        "description": "Reference emerald 600.",
+        "brand": "global",
+        "mode": "all",
+        "state": "base",
+        "category": "color",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "reference",
+          "color",
+          "emerald"
+        ]
+      },
+      "description": "Nova light primary accent hover."
+    },
+    {
+      "name": "dk.color.blue.500.base",
+      "type": "color",
+      "value": "#2563EB",
+      "description": "Reference blue 500."
+    },
+    {
+      "name": "dk.color.blue.600.base",
+      "type": "color",
+      "value": "#1D4ED8",
+      "description": "Reference blue 600."
+    },
+    {
+      "name": "dk.color.border.focus.focus",
+      "type": "color",
+      "value": {
+        "$type": "color",
+        "$value": "#059669",
+        "id": "dk.color.emerald.500.base",
+        "description": "Reference emerald 500.",
+        "brand": "global",
+        "mode": "all",
+        "state": "base",
+        "category": "color",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "reference",
+          "color",
+          "emerald"
+        ]
+      },
+      "description": "Nova light focus border color."
+    },
+    {
+      "name": "dk.color.border.subtle.base",
+      "type": "color",
+      "value": {
+        "$type": "color",
+        "$value": "#D1D5DB",
+        "id": "dk.color.gray.300.base",
+        "description": "Reference gray 300.",
+        "brand": "global",
+        "mode": "all",
+        "state": "base",
+        "category": "color",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "reference",
+          "color",
+          "gray"
+        ]
+      },
+      "description": "Nova light subtle border."
+    },
+    {
+      "name": "dk.color.emerald.500.base",
+      "type": "color",
+      "value": "#059669",
+      "description": "Reference emerald 500."
+    },
+    {
+      "name": "dk.color.emerald.600.base",
+      "type": "color",
+      "value": "#047857",
+      "description": "Reference emerald 600."
+    },
+    {
+      "name": "dk.color.gray.0.base",
+      "type": "color",
+      "value": "#FFFFFF",
+      "description": "Reference pure white."
+    },
+    {
+      "name": "dk.color.gray.100.base",
+      "type": "color",
+      "value": "#F3F4F6",
+      "description": "Reference gray 100."
+    },
+    {
+      "name": "dk.color.gray.300.base",
+      "type": "color",
+      "value": "#D1D5DB",
+      "description": "Reference gray 300."
+    },
+    {
+      "name": "dk.color.gray.600.base",
+      "type": "color",
+      "value": "#4B5563",
+      "description": "Reference gray 600."
+    },
+    {
+      "name": "dk.color.gray.900.base",
+      "type": "color",
+      "value": "#111827",
+      "description": "Reference gray 900."
+    },
+    {
+      "name": "dk.color.surface.default.base",
+      "type": "color",
+      "value": {
+        "$type": "color",
+        "$value": "#FFFFFF",
+        "id": "dk.color.gray.0.base",
+        "description": "Reference pure white.",
+        "brand": "global",
+        "mode": "all",
+        "state": "base",
+        "category": "color",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "reference",
+          "color",
+          "gray"
+        ]
+      },
+      "description": "Nova light default surface."
+    },
+    {
+      "name": "dk.color.surface.raised.base",
+      "type": "color",
+      "value": "#F8FAFC",
+      "description": "Nova light raised surface."
+    },
+    {
+      "name": "dk.color.text.default.base",
+      "type": "color",
+      "value": {
+        "$type": "color",
+        "$value": "#111827",
+        "id": "dk.color.gray.900.base",
+        "description": "Reference gray 900.",
+        "brand": "global",
+        "mode": "all",
+        "state": "base",
+        "category": "color",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "reference",
+          "color",
+          "gray"
+        ]
+      },
+      "description": "Nova light default text."
+    },
+    {
+      "name": "dk.color.text.muted.base",
+      "type": "color",
+      "value": {
+        "$type": "color",
+        "$value": "#4B5563",
+        "id": "dk.color.gray.600.base",
+        "description": "Reference gray 600.",
+        "brand": "global",
+        "mode": "all",
+        "state": "base",
+        "category": "color",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "reference",
+          "color",
+          "gray"
+        ]
+      },
+      "description": "Nova light muted text."
+    },
+    {
+      "name": "dk.component.button-bg.primary.active",
+      "type": "color",
+      "value": {
+        "$type": "color",
+        "$value": {
+          "$type": "color",
+          "$value": "#047857",
+          "id": "dk.color.emerald.600.base",
+          "description": "Reference emerald 600.",
+          "brand": "global",
+          "mode": "all",
+          "state": "base",
+          "category": "color",
+          "deprecated": false,
+          "since": "0.1.0",
+          "tags": [
+            "reference",
+            "color",
+            "emerald"
+          ]
+        },
+        "id": "dk.color.accent.primary.hover",
+        "description": "Nova light primary accent hover.",
+        "brand": "nova",
+        "mode": "light",
+        "state": "hover",
+        "category": "color",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "semantic",
+          "accent",
+          "nova"
+        ]
+      },
+      "description": "Primary button background active."
+    },
+    {
+      "name": "dk.component.button-bg.primary.default",
+      "type": "color",
+      "value": {
+        "$type": "color",
+        "$value": {
+          "$type": "color",
+          "$value": "#059669",
+          "id": "dk.color.emerald.500.base",
+          "description": "Reference emerald 500.",
+          "brand": "global",
+          "mode": "all",
+          "state": "base",
+          "category": "color",
+          "deprecated": false,
+          "since": "0.1.0",
+          "tags": [
+            "reference",
+            "color",
+            "emerald"
+          ]
+        },
+        "id": "dk.color.accent.primary.base",
+        "description": "Nova light primary accent.",
+        "brand": "nova",
+        "mode": "light",
+        "state": "base",
+        "category": "color",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "semantic",
+          "accent",
+          "nova"
+        ]
+      },
+      "description": "Primary button background default."
+    },
+    {
+      "name": "dk.component.button-bg.primary.disabled",
+      "type": "color",
+      "value": {
+        "$type": "color",
+        "$value": {
+          "$type": "color",
+          "$value": "#059669",
+          "id": "dk.color.emerald.500.base",
+          "description": "Reference emerald 500.",
+          "brand": "global",
+          "mode": "all",
+          "state": "base",
+          "category": "color",
+          "deprecated": false,
+          "since": "0.1.0",
+          "tags": [
+            "reference",
+            "color",
+            "emerald"
+          ]
+        },
+        "id": "dk.color.accent.primary.base",
+        "description": "Nova light primary accent.",
+        "brand": "nova",
+        "mode": "light",
+        "state": "base",
+        "category": "color",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "semantic",
+          "accent",
+          "nova"
+        ]
+      },
+      "description": "Primary button background disabled."
+    },
+    {
+      "name": "dk.component.button-bg.primary.hover",
+      "type": "color",
+      "value": {
+        "$type": "color",
+        "$value": {
+          "$type": "color",
+          "$value": "#047857",
+          "id": "dk.color.emerald.600.base",
+          "description": "Reference emerald 600.",
+          "brand": "global",
+          "mode": "all",
+          "state": "base",
+          "category": "color",
+          "deprecated": false,
+          "since": "0.1.0",
+          "tags": [
+            "reference",
+            "color",
+            "emerald"
+          ]
+        },
+        "id": "dk.color.accent.primary.hover",
+        "description": "Nova light primary accent hover.",
+        "brand": "nova",
+        "mode": "light",
+        "state": "hover",
+        "category": "color",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "semantic",
+          "accent",
+          "nova"
+        ]
+      },
+      "description": "Primary button background hover."
+    },
+    {
+      "name": "dk.component.button-border.primary.default",
+      "type": "color",
+      "value": {
+        "$type": "color",
+        "$value": {
+          "$type": "color",
+          "$value": "#059669",
+          "id": "dk.color.emerald.500.base",
+          "description": "Reference emerald 500.",
+          "brand": "global",
+          "mode": "all",
+          "state": "base",
+          "category": "color",
+          "deprecated": false,
+          "since": "0.1.0",
+          "tags": [
+            "reference",
+            "color",
+            "emerald"
+          ]
+        },
+        "id": "dk.color.accent.primary.base",
+        "description": "Nova light primary accent.",
+        "brand": "nova",
+        "mode": "light",
+        "state": "base",
+        "category": "color",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "semantic",
+          "accent",
+          "nova"
+        ]
+      },
+      "description": "Primary button border default."
+    },
+    {
+      "name": "dk.component.button-border.primary.focus",
+      "type": "color",
+      "value": {
+        "$type": "color",
+        "$value": {
+          "$type": "color",
+          "$value": "#059669",
+          "id": "dk.color.emerald.500.base",
+          "description": "Reference emerald 500.",
+          "brand": "global",
+          "mode": "all",
+          "state": "base",
+          "category": "color",
+          "deprecated": false,
+          "since": "0.1.0",
+          "tags": [
+            "reference",
+            "color",
+            "emerald"
+          ]
+        },
+        "id": "dk.color.border.focus.focus",
+        "description": "Nova light focus border color.",
+        "brand": "nova",
+        "mode": "light",
+        "state": "focus",
+        "category": "color",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "semantic",
+          "border",
+          "focus",
+          "nova"
+        ]
+      },
+      "description": "Primary button border focus."
+    },
+    {
+      "name": "dk.component.button-label.primary.default",
+      "type": "color",
+      "value": {
+        "$type": "color",
+        "$value": "#FFFFFF",
+        "id": "dk.color.gray.0.base",
+        "description": "Reference pure white.",
+        "brand": "global",
+        "mode": "all",
+        "state": "base",
+        "category": "color",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "reference",
+          "color",
+          "gray"
+        ]
+      },
+      "description": "Primary button label default."
+    },
+    {
+      "name": "dk.component.button-label.primary.disabled",
+      "type": "color",
+      "value": {
+        "$type": "color",
+        "$value": "#F3F4F6",
+        "id": "dk.color.gray.100.base",
+        "description": "Reference gray 100.",
+        "brand": "global",
+        "mode": "all",
+        "state": "base",
+        "category": "color",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "reference",
+          "color",
+          "gray"
+        ]
+      },
+      "description": "Primary button label disabled."
+    },
+    {
+      "name": "dk.component.button-motion.primary.default",
+      "type": "duration",
+      "value": {
+        "$type": "duration",
+        "$value": {
+          "$type": "duration",
+          "$value": "220ms",
+          "id": "dk.motion.duration.medium.base",
+          "description": "Medium motion duration.",
+          "brand": "global",
+          "mode": "all",
+          "state": "base",
+          "category": "motion-duration",
+          "deprecated": false,
+          "since": "0.1.0",
+          "tags": [
+            "reference",
+            "motion"
+          ]
+        },
+        "id": "dk.motion.duration.control.base",
+        "description": "Default control transition duration.",
+        "brand": "nova",
+        "mode": "light",
+        "state": "base",
+        "category": "motion-duration",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "semantic",
+          "motion",
+          "nova"
+        ]
+      },
+      "description": "Primary button transition duration."
+    },
+    {
+      "name": "dk.component.button-opacity.primary.disabled",
+      "type": "number",
+      "value": {
+        "$type": "number",
+        "$value": {
+          "$type": "number",
+          "$value": 0.38,
+          "id": "dk.opacity.state.disabled.base",
+          "description": "Disabled state opacity.",
+          "brand": "global",
+          "mode": "all",
+          "state": "base",
+          "category": "opacity",
+          "deprecated": false,
+          "since": "0.1.0",
+          "tags": [
+            "reference",
+            "opacity"
+          ]
+        },
+        "id": "dk.opacity.disabled.default.base",
+        "description": "Disabled semantic opacity.",
+        "brand": "nova",
+        "mode": "light",
+        "state": "disabled",
+        "category": "opacity",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "semantic",
+          "opacity",
+          "nova"
+        ]
+      },
+      "description": "Primary button opacity disabled."
+    },
+    {
+      "name": "dk.component.button-shadow.primary.focus",
+      "type": "shadow",
+      "value": {
+        "$type": "shadow",
+        "$value": {
+          "$type": "shadow",
+          "$value": {
+            "color": "rgba(17,24,39,0.12)",
+            "x": "0px",
+            "y": "2px",
+            "blur": "8px",
+            "spread": "0px"
+          },
+          "id": "dk.shadow.elevation.100.base",
+          "description": "Elevation shadow 100.",
+          "brand": "global",
+          "mode": "all",
+          "state": "base",
+          "category": "shadow",
+          "deprecated": false,
+          "since": "0.1.0",
+          "tags": [
+            "reference",
+            "shadow"
+          ]
+        },
+        "id": "dk.shadow.control.default.base",
+        "description": "Default control shadow.",
+        "brand": "nova",
+        "mode": "light",
+        "state": "base",
+        "category": "shadow",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "semantic",
+          "shadow",
+          "nova"
+        ]
+      },
+      "description": "Primary button focus shadow."
+    },
+    {
+      "name": "dk.focus-ring.default.color.base",
+      "type": "color",
+      "value": {
+        "$type": "color",
+        "$value": "#2563EB",
+        "id": "dk.color.blue.500.base",
+        "description": "Reference blue 500.",
+        "brand": "global",
+        "mode": "all",
+        "state": "base",
+        "category": "color",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "reference",
+          "color",
+          "blue"
+        ]
+      },
+      "description": "Focus ring color."
+    },
+    {
+      "name": "dk.focus-ring.default.offset.base",
+      "type": "dimension",
+      "value": "2px",
+      "description": "Focus ring offset."
+    },
+    {
+      "name": "dk.focus-ring.default.width.base",
+      "type": "dimension",
+      "value": "2px",
+      "description": "Focus ring width."
+    },
+    {
+      "name": "dk.motion.duration.control.base",
+      "type": "duration",
+      "value": {
+        "$type": "duration",
+        "$value": "220ms",
+        "id": "dk.motion.duration.medium.base",
+        "description": "Medium motion duration.",
+        "brand": "global",
+        "mode": "all",
+        "state": "base",
+        "category": "motion-duration",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "reference",
+          "motion"
+        ]
+      },
+      "description": "Default control transition duration."
+    },
+    {
+      "name": "dk.motion.duration.fast.base",
+      "type": "duration",
+      "value": "120ms",
+      "description": "Fast motion duration."
+    },
+    {
+      "name": "dk.motion.duration.medium.base",
+      "type": "duration",
+      "value": "220ms",
+      "description": "Medium motion duration."
+    },
+    {
+      "name": "dk.motion.easing.control.base",
+      "type": "cubicBezier",
+      "value": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.2,
+          0,
+          0,
+          1
+        ],
+        "id": "dk.motion.easing.standard.base",
+        "description": "Standard easing curve.",
+        "brand": "global",
+        "mode": "all",
+        "state": "base",
+        "category": "motion-easing",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "reference",
+          "motion"
+        ]
+      },
+      "description": "Default control easing."
+    },
+    {
+      "name": "dk.motion.easing.standard.base",
+      "type": "cubicBezier",
+      "value": [
+        0.2,
+        0,
+        0,
+        1
+      ],
+      "description": "Standard easing curve."
+    },
+    {
+      "name": "dk.opacity.disabled.default.base",
+      "type": "number",
+      "value": {
+        "$type": "number",
+        "$value": 0.38,
+        "id": "dk.opacity.state.disabled.base",
+        "description": "Disabled state opacity.",
+        "brand": "global",
+        "mode": "all",
+        "state": "base",
+        "category": "opacity",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "reference",
+          "opacity"
+        ]
+      },
+      "description": "Disabled semantic opacity."
+    },
+    {
+      "name": "dk.opacity.state.disabled.base",
+      "type": "number",
+      "value": 0.38,
+      "description": "Disabled state opacity."
+    },
+    {
+      "name": "dk.opacity.state.overlay.base",
+      "type": "number",
+      "value": 0.72,
+      "description": "Overlay opacity."
+    },
+    {
+      "name": "dk.radius.control.default.base",
+      "type": "dimension",
+      "value": {
+        "$type": "dimension",
+        "$value": "999px",
+        "id": "dk.radius.scale.pill.base",
+        "description": "Pill radius.",
+        "brand": "global",
+        "mode": "all",
+        "state": "base",
+        "category": "radius",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "reference",
+          "radius"
+        ]
+      },
+      "description": "Nova default control radius."
+    },
+    {
+      "name": "dk.radius.scale.md.base",
+      "type": "dimension",
+      "value": "8px",
+      "description": "Medium corner radius."
+    },
+    {
+      "name": "dk.radius.scale.pill.base",
+      "type": "dimension",
+      "value": "999px",
+      "description": "Pill radius."
+    },
+    {
+      "name": "dk.radius.scale.sm.base",
+      "type": "dimension",
+      "value": "4px",
+      "description": "Small corner radius."
+    },
+    {
+      "name": "dk.shadow.control.default.base",
+      "type": "shadow",
+      "value": {
+        "$type": "shadow",
+        "$value": {
+          "color": "rgba(17,24,39,0.12)",
+          "x": "0px",
+          "y": "2px",
+          "blur": "8px",
+          "spread": "0px"
+        },
+        "id": "dk.shadow.elevation.100.base",
+        "description": "Elevation shadow 100.",
+        "brand": "global",
+        "mode": "all",
+        "state": "base",
+        "category": "shadow",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "reference",
+          "shadow"
+        ]
+      },
+      "description": "Default control shadow."
+    },
+    {
+      "name": "dk.shadow.elevation.100.base",
+      "type": "shadow",
+      "value": {
+        "color": "rgba(17,24,39,0.12)",
+        "x": "0px",
+        "y": "2px",
+        "blur": "8px",
+        "spread": "0px"
+      },
+      "description": "Elevation shadow 100."
+    },
+    {
+      "name": "dk.sizing.control.lg.base",
+      "type": "dimension",
+      "value": "48px",
+      "description": "Large control height."
+    },
+    {
+      "name": "dk.sizing.control.md.base",
+      "type": "dimension",
+      "value": "40px",
+      "description": "Medium control height."
+    },
+    {
+      "name": "dk.sizing.control.sm.base",
+      "type": "dimension",
+      "value": "32px",
+      "description": "Small control height."
+    },
+    {
+      "name": "dk.spacing.control-x.default.base",
+      "type": "dimension",
+      "value": {
+        "$type": "dimension",
+        "$value": "12px",
+        "id": "dk.spacing.scale.12.base",
+        "description": "Spacing scale 12.",
+        "brand": "global",
+        "mode": "all",
+        "state": "base",
+        "category": "spacing",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "reference",
+          "spacing"
+        ]
+      },
+      "description": "Horizontal control spacing."
+    },
+    {
+      "name": "dk.spacing.control-y.default.base",
+      "type": "dimension",
+      "value": {
+        "$type": "dimension",
+        "$value": "8px",
+        "id": "dk.spacing.scale.8.base",
+        "description": "Spacing scale 8.",
+        "brand": "global",
+        "mode": "all",
+        "state": "base",
+        "category": "spacing",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "reference",
+          "spacing"
+        ]
+      },
+      "description": "Vertical control spacing."
+    },
+    {
+      "name": "dk.spacing.scale.12.base",
+      "type": "dimension",
+      "value": "12px",
+      "description": "Spacing scale 12."
+    },
+    {
+      "name": "dk.spacing.scale.16.base",
+      "type": "dimension",
+      "value": "16px",
+      "description": "Spacing scale 16."
+    },
+    {
+      "name": "dk.spacing.scale.2.base",
+      "type": "dimension",
+      "value": "2px",
+      "description": "Spacing scale 2."
+    },
+    {
+      "name": "dk.spacing.scale.24.base",
+      "type": "dimension",
+      "value": "24px",
+      "description": "Spacing scale 24."
+    },
+    {
+      "name": "dk.spacing.scale.4.base",
+      "type": "dimension",
+      "value": "4px",
+      "description": "Spacing scale 4."
+    },
+    {
+      "name": "dk.spacing.scale.8.base",
+      "type": "dimension",
+      "value": "8px",
+      "description": "Spacing scale 8."
+    },
+    {
+      "name": "dk.typography.body.default.base",
+      "type": "typography",
+      "value": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "'Source Sans 3', sans-serif",
+          "fontWeight": 400,
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "letterSpacing": "0px"
+        },
+        "id": "dk.typography.body.md.base",
+        "description": "Body medium typography.",
+        "brand": "global",
+        "mode": "all",
+        "state": "base",
+        "category": "typography",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "reference",
+          "typography"
+        ]
+      },
+      "description": "Default body typography."
+    },
+    {
+      "name": "dk.typography.body.md.base",
+      "type": "typography",
+      "value": {
+        "fontFamily": "'Source Sans 3', sans-serif",
+        "fontWeight": 400,
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "letterSpacing": "0px"
+      },
+      "description": "Body medium typography."
+    },
+    {
+      "name": "dk.typography.heading.sm.base",
+      "type": "typography",
+      "value": {
+        "fontFamily": "'Sora', sans-serif",
+        "fontWeight": 600,
+        "fontSize": "24px",
+        "lineHeight": "32px",
+        "letterSpacing": "-0.01em"
+      },
+      "description": "Heading small typography."
+    },
+    {
+      "name": "dk.z-index.layer.dropdown.base",
+      "type": "number",
+      "value": 1000,
+      "description": "Dropdown z-index."
+    },
+    {
+      "name": "dk.z-index.layer.modal.base",
+      "type": "number",
+      "value": 1300,
+      "description": "Modal z-index."
+    },
+    {
+      "name": "dk.z-index.popover.default.base",
+      "type": "number",
+      "value": {
+        "$type": "number",
+        "$value": 1000,
+        "id": "dk.z-index.layer.dropdown.base",
+        "description": "Dropdown z-index.",
+        "brand": "global",
+        "mode": "all",
+        "state": "base",
+        "category": "z-index",
+        "deprecated": false,
+        "since": "0.1.0",
+        "tags": [
+          "reference",
+          "z-index"
+        ]
+      },
+      "description": "Popover layer index."
+    }
+  ]
+}
+

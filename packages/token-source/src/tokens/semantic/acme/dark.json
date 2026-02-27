@@ -1,0 +1,299 @@
+{
+  "dk": {
+    "semantic": {
+      "surface": {
+        "default": {
+          "base": {
+            "$type": "color",
+            "$value": "{dk.color.gray.900.base}",
+            "id": "dk.color.surface.default.base",
+            "description": "Acme dark default surface.",
+            "brand": "acme",
+            "mode": "dark",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "surface", "acme"]
+          }
+        },
+        "raised": {
+          "base": {
+            "$type": "color",
+            "$value": "#1F2937",
+            "id": "dk.color.surface.raised.base",
+            "description": "Acme dark raised surface.",
+            "brand": "acme",
+            "mode": "dark",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "surface", "acme"]
+          }
+        }
+      },
+      "text": {
+        "default": {
+          "base": {
+            "$type": "color",
+            "$value": "{dk.color.gray.0.base}",
+            "id": "dk.color.text.default.base",
+            "description": "Acme dark default text.",
+            "brand": "acme",
+            "mode": "dark",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "text", "acme"]
+          }
+        },
+        "muted": {
+          "base": {
+            "$type": "color",
+            "$value": "{dk.color.gray.300.base}",
+            "id": "dk.color.text.muted.base",
+            "description": "Acme dark muted text.",
+            "brand": "acme",
+            "mode": "dark",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "text", "acme"]
+          }
+        }
+      },
+      "border": {
+        "subtle": {
+          "base": {
+            "$type": "color",
+            "$value": "#374151",
+            "id": "dk.color.border.subtle.base",
+            "description": "Acme dark subtle border.",
+            "brand": "acme",
+            "mode": "dark",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "border", "acme"]
+          }
+        },
+        "focus": {
+          "focus": {
+            "$type": "color",
+            "$value": "{dk.color.blue.500.base}",
+            "id": "dk.color.border.focus.focus",
+            "description": "Acme dark focus border color.",
+            "brand": "acme",
+            "mode": "dark",
+            "state": "focus",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "border", "focus", "acme"]
+          }
+        }
+      },
+      "accent": {
+        "primary": {
+          "base": {
+            "$type": "color",
+            "$value": "#3B82F6",
+            "id": "dk.color.accent.primary.base",
+            "description": "Acme dark primary accent.",
+            "brand": "acme",
+            "mode": "dark",
+            "state": "base",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "accent", "acme"]
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "#2563EB",
+            "id": "dk.color.accent.primary.hover",
+            "description": "Acme dark primary accent hover.",
+            "brand": "acme",
+            "mode": "dark",
+            "state": "hover",
+            "category": "color",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "accent", "acme"]
+          }
+        }
+      },
+      "typography": {
+        "body": {
+          "default": {
+            "$type": "typography",
+            "$value": "{dk.typography.body.md.base}",
+            "id": "dk.typography.body.default.base",
+            "description": "Default body typography.",
+            "brand": "acme",
+            "mode": "dark",
+            "state": "base",
+            "category": "typography",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "typography", "acme"]
+          }
+        }
+      },
+      "spacing": {
+        "controlX": {
+          "default": {
+            "$type": "dimension",
+            "$value": "{dk.spacing.scale.12.base}",
+            "id": "dk.spacing.control-x.default.base",
+            "description": "Horizontal control spacing.",
+            "brand": "acme",
+            "mode": "dark",
+            "state": "base",
+            "category": "spacing",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "spacing", "acme"]
+          }
+        },
+        "controlY": {
+          "default": {
+            "$type": "dimension",
+            "$value": "{dk.spacing.scale.8.base}",
+            "id": "dk.spacing.control-y.default.base",
+            "description": "Vertical control spacing.",
+            "brand": "acme",
+            "mode": "dark",
+            "state": "base",
+            "category": "spacing",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "spacing", "acme"]
+          }
+        }
+      },
+      "radius": {
+        "control": {
+          "default": {
+            "$type": "dimension",
+            "$value": "{dk.radius.scale.md.base}",
+            "id": "dk.radius.control.default.base",
+            "description": "Default control radius.",
+            "brand": "acme",
+            "mode": "dark",
+            "state": "base",
+            "category": "radius",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "radius", "acme"]
+          }
+        }
+      },
+      "shadow": {
+        "control": {
+          "default": {
+            "$type": "shadow",
+            "$value": "{dk.shadow.elevation.100.base}",
+            "id": "dk.shadow.control.default.base",
+            "description": "Default control shadow.",
+            "brand": "acme",
+            "mode": "dark",
+            "state": "base",
+            "category": "shadow",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "shadow", "acme"]
+          }
+        }
+      },
+      "motion": {
+        "duration": {
+          "control": {
+            "$type": "duration",
+            "$value": "{dk.motion.duration.fast.base}",
+            "id": "dk.motion.duration.control.base",
+            "description": "Default control transition duration.",
+            "brand": "acme",
+            "mode": "dark",
+            "state": "base",
+            "category": "motion-duration",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "motion", "acme"]
+          }
+        },
+        "easing": {
+          "control": {
+            "$type": "cubicBezier",
+            "$value": "{dk.motion.easing.standard.base}",
+            "id": "dk.motion.easing.control.base",
+            "description": "Default control easing.",
+            "brand": "acme",
+            "mode": "dark",
+            "state": "base",
+            "category": "motion-easing",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "motion", "acme"]
+          }
+        }
+      },
+      "opacity": {
+        "disabled": {
+          "default": {
+            "$type": "number",
+            "$value": "{dk.opacity.state.disabled.base}",
+            "id": "dk.opacity.disabled.default.base",
+            "description": "Disabled semantic opacity.",
+            "brand": "acme",
+            "mode": "dark",
+            "state": "disabled",
+            "category": "opacity",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "opacity", "acme"]
+          }
+        }
+      },
+      "zIndex": {
+        "popover": {
+          "default": {
+            "$type": "number",
+            "$value": "{dk.z-index.layer.dropdown.base}",
+            "id": "dk.z-index.popover.default.base",
+            "description": "Popover layer index.",
+            "brand": "acme",
+            "mode": "dark",
+            "state": "base",
+            "category": "z-index",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "z-index", "acme"]
+          }
+        }
+      },
+      "breakpoint": {
+        "content": {
+          "default": {
+            "$type": "dimension",
+            "$value": "{dk.breakpoint.screen.md.base}",
+            "id": "dk.breakpoint.content.default.base",
+            "description": "Content max width breakpoint.",
+            "brand": "acme",
+            "mode": "dark",
+            "state": "base",
+            "category": "breakpoint",
+            "deprecated": false,
+            "since": "0.1.0",
+            "tags": ["semantic", "breakpoint", "acme"]
+          }
+        }
+      }
+    }
+  }
+}
+

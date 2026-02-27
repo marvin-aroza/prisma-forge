@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://prismforge.dev/schema/token.schema.json",
+  "title": "prismforge Token",
+  "type": "object",
+  "required": [
+    "id",
+    "$type",
+    "$value",
+    "description",
+    "brand",
+    "mode",
+    "state",
+    "category",
+    "deprecated",
+    "since",
+    "tags"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(\\.[a-z0-9-]+){4,}$"
+    },
+    "$type": {
+      "type": "string",
+      "enum": [
+        "color",
+        "dimension",
+        "typography",
+        "shadow",
+        "number",
+        "duration",
+        "cubicBezier",
+        "strokeStyle"
+      ]
+    },
+    "$value": {},
+    "description": {
+      "type": "string",
+      "minLength": 3
+    },
+    "brand": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state": {
+      "type": "string",
+      "minLength": 1
+    },
+    "category": {
+      "type": "string",
+      "minLength": 1
+    },
+    "deprecated": {
+      "type": "boolean"
+    },
+    "since": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}
+
+

@@ -1,0 +1,14 @@
+:root {
+  font-family: "Source Sans 3", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(140deg, #f0f8f8, #fbfdfd);
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+

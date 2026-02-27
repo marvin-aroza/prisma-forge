@@ -1,0 +1,10 @@
+{
+  "channel": "next",
+  "publishTag": "next",
+  "steps": [
+    "pnpm changeset pre enter next",
+    "pnpm changeset version",
+    "pnpm changeset publish --tag next",
+    "pnpm changeset pre exit"
+  ]
+}

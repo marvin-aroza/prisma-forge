@@ -1,0 +1,19 @@
+{
+  "name": "@prismforge/token-build",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Deterministic token artifact builders for PrismForge.",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "scripts": {
+    "build": "node -e \"console.log('token-build build: no-op')\"",
+    "test": "node --test ./test/*.test.mjs"
+  },
+  "dependencies": {
+    "@prismforge/token-mappings": "workspace:*",
+    "@prismforge/token-schema": "workspace:*",
+    "@prismforge/token-source": "workspace:*"
+  }
+}
+

@@ -1,0 +1,24 @@
+{
+  "name": "prismforge",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Global open-source token platform for multi-brand, multi-mode design systems.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "packageManager": "pnpm@10.17.0",
+  "scripts": {
+    "bootstrap": "corepack enable pnpm && pnpm install",
+    "build": "turbo run build",
+    "test": "turbo run test && node ./scripts/verify-examples.mjs",
+    "validate": "turbo run validate",
+    "dev:studio": "pnpm --filter @prismforge/token-studio dev",
+    "prismforge": "pnpm --filter @prismforge/token-cli prismforge",
+    "release:guard:stable": "node ./scripts/release-guard.mjs --channel stable",
+    "release:guard:next": "node ./scripts/release-guard.mjs --channel next"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.8",
+    "turbo": "^2.1.3"
+  }
+}
+

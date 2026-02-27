@@ -1,0 +1,35 @@
+# Vue Integration
+
+Import the CSS token package once and bind vars in component styles.
+
+```vue
+<script setup lang="ts">
+import "@prismforge/tokens-css/tokens.css";
+
+document.documentElement.dataset.brand = "nova";
+document.documentElement.dataset.mode = "dark";
+</script>
+
+<template>
+  <button class="btn">Deploy</button>
+</template>
+
+<style scoped>
+.btn {
+  background: var(--dk-component-button-bg-primary-default);
+  color: var(--dk-component-button-label-primary-default);
+  border: 1px solid var(--dk-component-button-border-primary-default);
+  transition-duration: var(--dk-component-button-motion-primary-default);
+}
+</style>
+```
+
+## Switching theme
+
+```ts
+export function applyTheme(brand: "acme" | "nova", mode: "light" | "dark") {
+  document.documentElement.dataset.brand = brand;
+  document.documentElement.dataset.mode = mode;
+}
+```
+

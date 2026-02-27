@@ -1,0 +1,5 @@
+* @prismforge/core-maintainers
+packages/token-source/** @prismforge/token-maintainers
+packages/token-schema/** @prismforge/platform-maintainers
+packages/token-mappings/** @prismforge/platform-maintainers
+apps/token-studio/** @prismforge/studio-maintainers

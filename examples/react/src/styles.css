@@ -1,0 +1,54 @@
+:root {
+  font-family: "Source Sans 3", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(140deg, #eef6f8, #f8fbfc);
+}
+
+.shell {
+  max-width: 760px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: var(--dk-color-surface-default-base);
+  color: var(--dk-color-text-default-base);
+  border: 1px solid var(--dk-color-border-subtle-base);
+  border-radius: var(--dk-radius-control-default-base);
+  box-shadow: var(--dk-shadow-control-default-base);
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: var(--dk-spacing-control-y-default-base) var(--dk-spacing-control-x-default-base);
+  border-radius: var(--dk-radius-control-default-base);
+  transition-duration: var(--dk-component-button-motion-primary-default);
+}
+
+.btn-primary {
+  background: var(--dk-component-button-bg-primary-default);
+  color: var(--dk-component-button-label-primary-default);
+  border: 1px solid var(--dk-component-button-border-primary-default);
+}
+
+.btn-primary:hover {
+  background: var(--dk-component-button-bg-primary-hover);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--dk-color-text-default-base);
+  border: 1px solid var(--dk-color-border-subtle-base);
+}
+

@@ -1,0 +1,15 @@
+{
+  "name": "@prismforge/tokens-js",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "JavaScript token artifacts for PrismForge.",
+  "files": ["artifacts", "index.js"],
+  "exports": {
+    ".": "./index.js"
+  },
+  "scripts": {
+    "build": "node ./scripts/generate.js"
+  }
+}
+
+

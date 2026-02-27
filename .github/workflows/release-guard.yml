@@ -1,0 +1,23 @@
+name: Release Guard
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".changeset/**"
+      - "scripts/release-guard.mjs"
+      - "packages/token-cli/**"
+
+jobs:
+  check-channels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Stable guard
+        run: node ./scripts/release-guard.mjs --channel stable
+      - name: Next guard
+        run: node ./scripts/release-guard.mjs --channel next
+

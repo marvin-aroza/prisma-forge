@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://prismforge.dev/schema/token-set.schema.json",
+  "title": "prismforge Token Set",
+  "type": "object",
+  "required": ["brand", "mode", "tokens"],
+  "properties": {
+    "brand": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tokens": {
+      "type": "array",
+      "items": {
+        "$ref": "token.schema.json"
+      }
+    }
+  },
+  "additionalProperties": true
+}
+
+
