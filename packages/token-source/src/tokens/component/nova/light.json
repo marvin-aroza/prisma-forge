@@ -15,7 +15,11 @@
               "category": "component",
               "deprecated": false,
               "since": "0.1.0",
-              "tags": ["component", "button", "primary"]
+              "tags": [
+                "component",
+                "button",
+                "primary"
+              ]
             },
             "hover": {
               "$type": "color",
@@ -28,7 +32,11 @@
               "category": "component",
               "deprecated": false,
               "since": "0.1.0",
-              "tags": ["component", "button", "primary"]
+              "tags": [
+                "component",
+                "button",
+                "primary"
+              ]
             },
             "active": {
               "$type": "color",
@@ -41,7 +49,11 @@
               "category": "component",
               "deprecated": false,
               "since": "0.1.0",
-              "tags": ["component", "button", "primary"]
+              "tags": [
+                "component",
+                "button",
+                "primary"
+              ]
             },
             "disabled": {
               "$type": "color",
@@ -54,7 +66,11 @@
               "category": "component",
               "deprecated": false,
               "since": "0.1.0",
-              "tags": ["component", "button", "primary"]
+              "tags": [
+                "component",
+                "button",
+                "primary"
+              ]
             }
           },
           "label": {
@@ -69,7 +85,11 @@
               "category": "component",
               "deprecated": false,
               "since": "0.1.0",
-              "tags": ["component", "button", "primary"]
+              "tags": [
+                "component",
+                "button",
+                "primary"
+              ]
             },
             "disabled": {
               "$type": "color",
@@ -82,7 +102,11 @@
               "category": "component",
               "deprecated": false,
               "since": "0.1.0",
-              "tags": ["component", "button", "primary"]
+              "tags": [
+                "component",
+                "button",
+                "primary"
+              ]
             }
           },
           "border": {
@@ -97,7 +121,11 @@
               "category": "component",
               "deprecated": false,
               "since": "0.1.0",
-              "tags": ["component", "button", "primary"]
+              "tags": [
+                "component",
+                "button",
+                "primary"
+              ]
             },
             "focus": {
               "$type": "color",
@@ -110,7 +138,11 @@
               "category": "component",
               "deprecated": false,
               "since": "0.1.0",
-              "tags": ["component", "button", "primary"]
+              "tags": [
+                "component",
+                "button",
+                "primary"
+              ]
             }
           },
           "shadow": {
@@ -125,7 +157,11 @@
               "category": "component",
               "deprecated": false,
               "since": "0.1.0",
-              "tags": ["component", "button", "primary"]
+              "tags": [
+                "component",
+                "button",
+                "primary"
+              ]
             }
           },
           "opacity": {
@@ -140,7 +176,11 @@
               "category": "component",
               "deprecated": false,
               "since": "0.1.0",
-              "tags": ["component", "button", "primary"]
+              "tags": [
+                "component",
+                "button",
+                "primary"
+              ]
             }
           },
           "motion": {
@@ -155,7 +195,5204 @@
               "category": "component",
               "deprecated": false,
               "since": "0.1.0",
-              "tags": ["component", "button", "primary"]
+              "tags": [
+                "component",
+                "button",
+                "primary"
+              ]
+            }
+          }
+        }
+      },
+      "input": {
+        "default": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.input-bg.default.default",
+              "description": "Input background default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "input",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.input-bg.default.hover",
+              "description": "Input background hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "input",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.input-bg.default.active",
+              "description": "Input background active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "input",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.input-bg.default.disabled",
+              "description": "Input background disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "input",
+                "default"
+              ]
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.input-border.default.default",
+              "description": "Input border default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "input",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.input-border.default.hover",
+              "description": "Input border hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "input",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.input-border.default.active",
+              "description": "Input border active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "input",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.input-border.default.disabled",
+              "description": "Input border disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "input",
+                "default"
+              ]
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{dk.color.border.focus.focus}",
+              "id": "dk.component.input-border.default.focus",
+              "description": "Input border focus.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "input",
+                "default"
+              ]
+            }
+          },
+          "label": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.default.base}",
+              "id": "dk.component.input-label.default.default",
+              "description": "Input text default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "input",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.input-label.default.disabled",
+              "description": "Input text disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "input",
+                "default"
+              ]
+            }
+          },
+          "shadow": {
+            "focus": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.input-shadow.default.focus",
+              "description": "Input focus shadow.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "input",
+                "default"
+              ]
+            }
+          },
+          "opacity": {
+            "disabled": {
+              "$type": "number",
+              "$value": "{dk.opacity.disabled.default.base}",
+              "id": "dk.component.input-opacity.default.disabled",
+              "description": "Input disabled opacity.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "input",
+                "default"
+              ]
+            }
+          },
+          "motion": {
+            "duration": {
+              "$type": "duration",
+              "$value": "{dk.motion.duration.control.base}",
+              "id": "dk.component.input-motion.default.default",
+              "description": "Input transition duration.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "input",
+                "default"
+              ]
+            }
+          }
+        }
+      },
+      "card": {
+        "default": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.card-bg.default.default",
+              "description": "Card background default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "card",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.card-bg.default.hover",
+              "description": "Card background hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "card",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.card-bg.default.active",
+              "description": "Card background active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "card",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.card-bg.default.disabled",
+              "description": "Card background disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "card",
+                "default"
+              ]
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.card-border.default.default",
+              "description": "Card border default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "card",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.card-border.default.hover",
+              "description": "Card border hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "card",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.card-border.default.active",
+              "description": "Card border active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "card",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.card-border.default.disabled",
+              "description": "Card border disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "card",
+                "default"
+              ]
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{dk.color.border.focus.focus}",
+              "id": "dk.component.card-border.default.focus",
+              "description": "Card border focus.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "card",
+                "default"
+              ]
+            }
+          },
+          "shadow": {
+            "default": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.card-shadow.default.default",
+              "description": "Card shadow default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "card",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.card-shadow.default.hover",
+              "description": "Card shadow hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "card",
+                "default"
+              ]
+            },
+            "focus": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.card-shadow.default.focus",
+              "description": "Card shadow focus.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "card",
+                "default"
+              ]
+            }
+          },
+          "opacity": {
+            "disabled": {
+              "$type": "number",
+              "$value": "{dk.opacity.disabled.default.base}",
+              "id": "dk.component.card-opacity.default.disabled",
+              "description": "Card disabled opacity.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "card",
+                "default"
+              ]
+            }
+          },
+          "motion": {
+            "duration": {
+              "$type": "duration",
+              "$value": "{dk.motion.duration.control.base}",
+              "id": "dk.component.card-motion.default.default",
+              "description": "Card transition duration.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "card",
+                "default"
+              ]
+            }
+          }
+        }
+      },
+      "select": {
+        "default": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.select-bg.default.default",
+              "description": "Select background default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "select",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.select-bg.default.hover",
+              "description": "Select background hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "select",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.select-bg.default.active",
+              "description": "Select background active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "select",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.select-bg.default.disabled",
+              "description": "Select background disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "select",
+                "default"
+              ]
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.select-border.default.default",
+              "description": "Select border default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "select",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.select-border.default.hover",
+              "description": "Select border hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "select",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.select-border.default.active",
+              "description": "Select border active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "select",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.select-border.default.disabled",
+              "description": "Select border disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "select",
+                "default"
+              ]
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{dk.color.border.focus.focus}",
+              "id": "dk.component.select-border.default.focus",
+              "description": "Select border focus.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "select",
+                "default"
+              ]
+            }
+          },
+          "label": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.default.base}",
+              "id": "dk.component.select-label.default.default",
+              "description": "Select text default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "select",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.select-label.default.disabled",
+              "description": "Select text disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "select",
+                "default"
+              ]
+            }
+          },
+          "icon": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.select-icon.default.default",
+              "description": "Select icon default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "select",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.select-icon.default.disabled",
+              "description": "Select icon disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "select",
+                "default"
+              ]
+            }
+          },
+          "shadow": {
+            "focus": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.select-shadow.default.focus",
+              "description": "Select focus shadow.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "select",
+                "default"
+              ]
+            }
+          },
+          "opacity": {
+            "disabled": {
+              "$type": "number",
+              "$value": "{dk.opacity.disabled.default.base}",
+              "id": "dk.component.select-opacity.default.disabled",
+              "description": "Select disabled opacity.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "select",
+                "default"
+              ]
+            }
+          },
+          "motion": {
+            "duration": {
+              "$type": "duration",
+              "$value": "{dk.motion.duration.control.base}",
+              "id": "dk.component.select-motion.default.default",
+              "description": "Select transition duration.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "select",
+                "default"
+              ]
+            }
+          }
+        }
+      },
+      "textarea": {
+        "default": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.textarea-bg.default.default",
+              "description": "Textarea background default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "textarea",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.textarea-bg.default.hover",
+              "description": "Textarea background hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "textarea",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.textarea-bg.default.active",
+              "description": "Textarea background active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "textarea",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.textarea-bg.default.disabled",
+              "description": "Textarea background disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "textarea",
+                "default"
+              ]
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.textarea-border.default.default",
+              "description": "Textarea border default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "textarea",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.textarea-border.default.hover",
+              "description": "Textarea border hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "textarea",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.textarea-border.default.active",
+              "description": "Textarea border active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "textarea",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.textarea-border.default.disabled",
+              "description": "Textarea border disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "textarea",
+                "default"
+              ]
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{dk.color.border.focus.focus}",
+              "id": "dk.component.textarea-border.default.focus",
+              "description": "Textarea border focus.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "textarea",
+                "default"
+              ]
+            }
+          },
+          "label": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.default.base}",
+              "id": "dk.component.textarea-label.default.default",
+              "description": "Textarea text default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "textarea",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.textarea-label.default.disabled",
+              "description": "Textarea text disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "textarea",
+                "default"
+              ]
+            }
+          },
+          "shadow": {
+            "focus": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.textarea-shadow.default.focus",
+              "description": "Textarea focus shadow.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "textarea",
+                "default"
+              ]
+            }
+          },
+          "opacity": {
+            "disabled": {
+              "$type": "number",
+              "$value": "{dk.opacity.disabled.default.base}",
+              "id": "dk.component.textarea-opacity.default.disabled",
+              "description": "Textarea disabled opacity.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "textarea",
+                "default"
+              ]
+            }
+          },
+          "motion": {
+            "duration": {
+              "$type": "duration",
+              "$value": "{dk.motion.duration.control.base}",
+              "id": "dk.component.textarea-motion.default.default",
+              "description": "Textarea transition duration.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "textarea",
+                "default"
+              ]
+            }
+          }
+        }
+      },
+      "checkbox": {
+        "default": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.checkbox-bg.default.default",
+              "description": "Checkbox background default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "checkbox",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.checkbox-bg.default.hover",
+              "description": "Checkbox background hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "checkbox",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.checkbox-bg.default.active",
+              "description": "Checkbox background active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "checkbox",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.checkbox-bg.default.disabled",
+              "description": "Checkbox background disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "checkbox",
+                "default"
+              ]
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.checkbox-border.default.default",
+              "description": "Checkbox border default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "checkbox",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.checkbox-border.default.hover",
+              "description": "Checkbox border hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "checkbox",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.checkbox-border.default.active",
+              "description": "Checkbox border active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "checkbox",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.checkbox-border.default.disabled",
+              "description": "Checkbox border disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "checkbox",
+                "default"
+              ]
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{dk.color.border.focus.focus}",
+              "id": "dk.component.checkbox-border.default.focus",
+              "description": "Checkbox border focus.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "checkbox",
+                "default"
+              ]
+            }
+          },
+          "mark": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.default.base}",
+              "id": "dk.component.checkbox-mark.default.default",
+              "description": "Checkbox check mark default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "checkbox",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.checkbox-mark.default.disabled",
+              "description": "Checkbox check mark disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "checkbox",
+                "default"
+              ]
+            }
+          },
+          "shadow": {
+            "focus": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.checkbox-shadow.default.focus",
+              "description": "Checkbox focus shadow.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "checkbox",
+                "default"
+              ]
+            }
+          },
+          "opacity": {
+            "disabled": {
+              "$type": "number",
+              "$value": "{dk.opacity.disabled.default.base}",
+              "id": "dk.component.checkbox-opacity.default.disabled",
+              "description": "Checkbox disabled opacity.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "checkbox",
+                "default"
+              ]
+            }
+          },
+          "motion": {
+            "duration": {
+              "$type": "duration",
+              "$value": "{dk.motion.duration.control.base}",
+              "id": "dk.component.checkbox-motion.default.default",
+              "description": "Checkbox transition duration.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "checkbox",
+                "default"
+              ]
+            }
+          }
+        }
+      },
+      "radio": {
+        "default": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.radio-bg.default.default",
+              "description": "Radio background default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "radio",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.radio-bg.default.hover",
+              "description": "Radio background hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "radio",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.radio-bg.default.active",
+              "description": "Radio background active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "radio",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.radio-bg.default.disabled",
+              "description": "Radio background disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "radio",
+                "default"
+              ]
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.radio-border.default.default",
+              "description": "Radio border default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "radio",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.radio-border.default.hover",
+              "description": "Radio border hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "radio",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.radio-border.default.active",
+              "description": "Radio border active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "radio",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.radio-border.default.disabled",
+              "description": "Radio border disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "radio",
+                "default"
+              ]
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{dk.color.border.focus.focus}",
+              "id": "dk.component.radio-border.default.focus",
+              "description": "Radio border focus.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "radio",
+                "default"
+              ]
+            }
+          },
+          "dot": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.default.base}",
+              "id": "dk.component.radio-dot.default.default",
+              "description": "Radio dot default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "radio",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.radio-dot.default.disabled",
+              "description": "Radio dot disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "radio",
+                "default"
+              ]
+            }
+          },
+          "shadow": {
+            "focus": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.radio-shadow.default.focus",
+              "description": "Radio focus shadow.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "radio",
+                "default"
+              ]
+            }
+          },
+          "opacity": {
+            "disabled": {
+              "$type": "number",
+              "$value": "{dk.opacity.disabled.default.base}",
+              "id": "dk.component.radio-opacity.default.disabled",
+              "description": "Radio disabled opacity.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "radio",
+                "default"
+              ]
+            }
+          },
+          "motion": {
+            "duration": {
+              "$type": "duration",
+              "$value": "{dk.motion.duration.control.base}",
+              "id": "dk.component.radio-motion.default.default",
+              "description": "Radio transition duration.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "radio",
+                "default"
+              ]
+            }
+          }
+        }
+      },
+      "switch": {
+        "default": {
+          "track": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.switch-track.default.default",
+              "description": "Switch track default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "switch",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.switch-track.default.hover",
+              "description": "Switch track hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "switch",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.switch-track.default.active",
+              "description": "Switch track active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "switch",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.switch-track.default.disabled",
+              "description": "Switch track disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "switch",
+                "default"
+              ]
+            }
+          },
+          "thumb": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.switch-thumb.default.default",
+              "description": "Switch thumb default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "switch",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.switch-thumb.default.disabled",
+              "description": "Switch thumb disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "switch",
+                "default"
+              ]
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.switch-border.default.default",
+              "description": "Switch border default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "switch",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.switch-border.default.hover",
+              "description": "Switch border hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "switch",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.switch-border.default.active",
+              "description": "Switch border active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "switch",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.switch-border.default.disabled",
+              "description": "Switch border disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "switch",
+                "default"
+              ]
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{dk.color.border.focus.focus}",
+              "id": "dk.component.switch-border.default.focus",
+              "description": "Switch border focus.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "switch",
+                "default"
+              ]
+            }
+          },
+          "shadow": {
+            "focus": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.switch-shadow.default.focus",
+              "description": "Switch focus shadow.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "switch",
+                "default"
+              ]
+            }
+          },
+          "opacity": {
+            "disabled": {
+              "$type": "number",
+              "$value": "{dk.opacity.disabled.default.base}",
+              "id": "dk.component.switch-opacity.default.disabled",
+              "description": "Switch disabled opacity.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "switch",
+                "default"
+              ]
+            }
+          },
+          "motion": {
+            "duration": {
+              "$type": "duration",
+              "$value": "{dk.motion.duration.control.base}",
+              "id": "dk.component.switch-motion.default.default",
+              "description": "Switch transition duration.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "switch",
+                "default"
+              ]
+            }
+          }
+        }
+      },
+      "modal": {
+        "default": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.modal-bg.default.default",
+              "description": "Modal background default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "modal",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.modal-bg.default.hover",
+              "description": "Modal background hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "modal",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.modal-bg.default.active",
+              "description": "Modal background active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "modal",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.modal-bg.default.disabled",
+              "description": "Modal background disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "modal",
+                "default"
+              ]
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.modal-border.default.default",
+              "description": "Modal border default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "modal",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.modal-border.default.hover",
+              "description": "Modal border hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "modal",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.modal-border.default.active",
+              "description": "Modal border active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "modal",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.modal-border.default.disabled",
+              "description": "Modal border disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "modal",
+                "default"
+              ]
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{dk.color.border.focus.focus}",
+              "id": "dk.component.modal-border.default.focus",
+              "description": "Modal border focus.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "modal",
+                "default"
+              ]
+            }
+          },
+          "backdrop": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.modal-backdrop.default.default",
+              "description": "Modal backdrop default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "modal",
+                "default"
+              ]
+            }
+          },
+          "title": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.default.base}",
+              "id": "dk.component.modal-title.default.default",
+              "description": "Modal title default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "modal",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.modal-title.default.disabled",
+              "description": "Modal title disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "modal",
+                "default"
+              ]
+            }
+          },
+          "body": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.default.base}",
+              "id": "dk.component.modal-body.default.default",
+              "description": "Modal body default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "modal",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.modal-body.default.disabled",
+              "description": "Modal body disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "modal",
+                "default"
+              ]
+            }
+          },
+          "shadow": {
+            "focus": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.modal-shadow.default.focus",
+              "description": "Modal focus shadow.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "modal",
+                "default"
+              ]
+            }
+          },
+          "opacity": {
+            "disabled": {
+              "$type": "number",
+              "$value": "{dk.opacity.disabled.default.base}",
+              "id": "dk.component.modal-opacity.default.disabled",
+              "description": "Modal disabled opacity.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "modal",
+                "default"
+              ]
+            }
+          },
+          "motion": {
+            "duration": {
+              "$type": "duration",
+              "$value": "{dk.motion.duration.control.base}",
+              "id": "dk.component.modal-motion.default.default",
+              "description": "Modal transition duration.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "modal",
+                "default"
+              ]
+            }
+          }
+        }
+      },
+      "tabs": {
+        "default": {
+          "panel": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.tabs-panel.default.default",
+              "description": "Tabs panel background default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tabs",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.tabs-panel.default.hover",
+              "description": "Tabs panel background hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tabs",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.tabs-panel.default.active",
+              "description": "Tabs panel background active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tabs",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.tabs-panel.default.disabled",
+              "description": "Tabs panel background disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tabs",
+                "default"
+              ]
+            }
+          },
+          "tab": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.tabs-tab.default.default",
+              "description": "Tabs tab background default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tabs",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.tabs-tab.default.hover",
+              "description": "Tabs tab background hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tabs",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.tabs-tab.default.active",
+              "description": "Tabs tab background active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tabs",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.tabs-tab.default.disabled",
+              "description": "Tabs tab background disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tabs",
+                "default"
+              ]
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.tabs-border.default.default",
+              "description": "Tabs border default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tabs",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.tabs-border.default.hover",
+              "description": "Tabs border hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tabs",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.tabs-border.default.active",
+              "description": "Tabs border active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tabs",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.tabs-border.default.disabled",
+              "description": "Tabs border disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tabs",
+                "default"
+              ]
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{dk.color.border.focus.focus}",
+              "id": "dk.component.tabs-border.default.focus",
+              "description": "Tabs border focus.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tabs",
+                "default"
+              ]
+            }
+          },
+          "label": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.default.base}",
+              "id": "dk.component.tabs-label.default.default",
+              "description": "Tabs label default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tabs",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.tabs-label.default.disabled",
+              "description": "Tabs label disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tabs",
+                "default"
+              ]
+            }
+          },
+          "indicator": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.tabs-indicator.default.default",
+              "description": "Tabs indicator default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tabs",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.tabs-indicator.default.active",
+              "description": "Tabs indicator active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tabs",
+                "default"
+              ]
+            }
+          },
+          "shadow": {
+            "focus": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.tabs-shadow.default.focus",
+              "description": "Tabs focus shadow.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tabs",
+                "default"
+              ]
+            }
+          },
+          "opacity": {
+            "disabled": {
+              "$type": "number",
+              "$value": "{dk.opacity.disabled.default.base}",
+              "id": "dk.component.tabs-opacity.default.disabled",
+              "description": "Tabs disabled opacity.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tabs",
+                "default"
+              ]
+            }
+          },
+          "motion": {
+            "duration": {
+              "$type": "duration",
+              "$value": "{dk.motion.duration.control.base}",
+              "id": "dk.component.tabs-motion.default.default",
+              "description": "Tabs transition duration.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tabs",
+                "default"
+              ]
+            }
+          }
+        }
+      },
+      "tooltip": {
+        "default": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.tooltip-bg.default.default",
+              "description": "Tooltip background default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tooltip",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.tooltip-bg.default.hover",
+              "description": "Tooltip background hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tooltip",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.tooltip-bg.default.active",
+              "description": "Tooltip background active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tooltip",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.tooltip-bg.default.disabled",
+              "description": "Tooltip background disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tooltip",
+                "default"
+              ]
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.tooltip-border.default.default",
+              "description": "Tooltip border default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tooltip",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.tooltip-border.default.hover",
+              "description": "Tooltip border hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tooltip",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.tooltip-border.default.active",
+              "description": "Tooltip border active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tooltip",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.tooltip-border.default.disabled",
+              "description": "Tooltip border disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tooltip",
+                "default"
+              ]
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{dk.color.border.focus.focus}",
+              "id": "dk.component.tooltip-border.default.focus",
+              "description": "Tooltip border focus.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tooltip",
+                "default"
+              ]
+            }
+          },
+          "label": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.default.base}",
+              "id": "dk.component.tooltip-label.default.default",
+              "description": "Tooltip text default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tooltip",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.tooltip-label.default.disabled",
+              "description": "Tooltip text disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tooltip",
+                "default"
+              ]
+            }
+          },
+          "shadow": {
+            "focus": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.tooltip-shadow.default.focus",
+              "description": "Tooltip focus shadow.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tooltip",
+                "default"
+              ]
+            }
+          },
+          "opacity": {
+            "disabled": {
+              "$type": "number",
+              "$value": "{dk.opacity.disabled.default.base}",
+              "id": "dk.component.tooltip-opacity.default.disabled",
+              "description": "Tooltip disabled opacity.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tooltip",
+                "default"
+              ]
+            }
+          },
+          "motion": {
+            "duration": {
+              "$type": "duration",
+              "$value": "{dk.motion.duration.control.base}",
+              "id": "dk.component.tooltip-motion.default.default",
+              "description": "Tooltip transition duration.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "tooltip",
+                "default"
+              ]
+            }
+          }
+        }
+      },
+      "dropdown": {
+        "default": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.dropdown-bg.default.default",
+              "description": "Dropdown background default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "dropdown",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.dropdown-bg.default.hover",
+              "description": "Dropdown background hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "dropdown",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.dropdown-bg.default.active",
+              "description": "Dropdown background active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "dropdown",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.dropdown-bg.default.disabled",
+              "description": "Dropdown background disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "dropdown",
+                "default"
+              ]
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.dropdown-border.default.default",
+              "description": "Dropdown border default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "dropdown",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.dropdown-border.default.hover",
+              "description": "Dropdown border hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "dropdown",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.dropdown-border.default.active",
+              "description": "Dropdown border active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "dropdown",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.dropdown-border.default.disabled",
+              "description": "Dropdown border disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "dropdown",
+                "default"
+              ]
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{dk.color.border.focus.focus}",
+              "id": "dk.component.dropdown-border.default.focus",
+              "description": "Dropdown border focus.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "dropdown",
+                "default"
+              ]
+            }
+          },
+          "label": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.default.base}",
+              "id": "dk.component.dropdown-label.default.default",
+              "description": "Dropdown label default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "dropdown",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.dropdown-label.default.disabled",
+              "description": "Dropdown label disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "dropdown",
+                "default"
+              ]
+            }
+          },
+          "icon": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.default.base}",
+              "id": "dk.component.dropdown-icon.default.default",
+              "description": "Dropdown icon default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "dropdown",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.dropdown-icon.default.disabled",
+              "description": "Dropdown icon disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "dropdown",
+                "default"
+              ]
+            }
+          },
+          "shadow": {
+            "focus": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.dropdown-shadow.default.focus",
+              "description": "Dropdown focus shadow.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "dropdown",
+                "default"
+              ]
+            }
+          },
+          "opacity": {
+            "disabled": {
+              "$type": "number",
+              "$value": "{dk.opacity.disabled.default.base}",
+              "id": "dk.component.dropdown-opacity.default.disabled",
+              "description": "Dropdown disabled opacity.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "dropdown",
+                "default"
+              ]
+            }
+          },
+          "motion": {
+            "duration": {
+              "$type": "duration",
+              "$value": "{dk.motion.duration.control.base}",
+              "id": "dk.component.dropdown-motion.default.default",
+              "description": "Dropdown transition duration.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "dropdown",
+                "default"
+              ]
+            }
+          }
+        }
+      },
+      "menu": {
+        "default": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.menu-bg.default.default",
+              "description": "Menu background default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "menu",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.menu-bg.default.hover",
+              "description": "Menu background hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "menu",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.menu-bg.default.active",
+              "description": "Menu background active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "menu",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.menu-bg.default.disabled",
+              "description": "Menu background disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "menu",
+                "default"
+              ]
+            }
+          },
+          "item": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.menu-item.default.default",
+              "description": "Menu item background default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "menu",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.menu-item.default.hover",
+              "description": "Menu item background hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "menu",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.menu-item.default.active",
+              "description": "Menu item background active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "menu",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.menu-item.default.disabled",
+              "description": "Menu item background disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "menu",
+                "default"
+              ]
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.menu-border.default.default",
+              "description": "Menu border default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "menu",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.menu-border.default.hover",
+              "description": "Menu border hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "menu",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.menu-border.default.active",
+              "description": "Menu border active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "menu",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.menu-border.default.disabled",
+              "description": "Menu border disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "menu",
+                "default"
+              ]
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{dk.color.border.focus.focus}",
+              "id": "dk.component.menu-border.default.focus",
+              "description": "Menu border focus.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "menu",
+                "default"
+              ]
+            }
+          },
+          "label": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.default.base}",
+              "id": "dk.component.menu-label.default.default",
+              "description": "Menu label default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "menu",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.menu-label.default.disabled",
+              "description": "Menu label disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "menu",
+                "default"
+              ]
+            }
+          },
+          "shadow": {
+            "focus": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.menu-shadow.default.focus",
+              "description": "Menu focus shadow.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "menu",
+                "default"
+              ]
+            }
+          },
+          "opacity": {
+            "disabled": {
+              "$type": "number",
+              "$value": "{dk.opacity.disabled.default.base}",
+              "id": "dk.component.menu-opacity.default.disabled",
+              "description": "Menu disabled opacity.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "menu",
+                "default"
+              ]
+            }
+          },
+          "motion": {
+            "duration": {
+              "$type": "duration",
+              "$value": "{dk.motion.duration.control.base}",
+              "id": "dk.component.menu-motion.default.default",
+              "description": "Menu transition duration.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "menu",
+                "default"
+              ]
+            }
+          }
+        }
+      },
+      "badge": {
+        "default": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.badge-bg.default.default",
+              "description": "Badge background default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "badge",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.badge-bg.default.hover",
+              "description": "Badge background hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "badge",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.badge-bg.default.active",
+              "description": "Badge background active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "badge",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.badge-bg.default.disabled",
+              "description": "Badge background disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "badge",
+                "default"
+              ]
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.badge-border.default.default",
+              "description": "Badge border default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "badge",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.badge-border.default.hover",
+              "description": "Badge border hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "badge",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.badge-border.default.active",
+              "description": "Badge border active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "badge",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.badge-border.default.disabled",
+              "description": "Badge border disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "badge",
+                "default"
+              ]
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{dk.color.border.focus.focus}",
+              "id": "dk.component.badge-border.default.focus",
+              "description": "Badge border focus.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "badge",
+                "default"
+              ]
+            }
+          },
+          "label": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.badge-label.default.default",
+              "description": "Badge label default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "badge",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.badge-label.default.disabled",
+              "description": "Badge label disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "badge",
+                "default"
+              ]
+            }
+          },
+          "shadow": {
+            "focus": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.badge-shadow.default.focus",
+              "description": "Badge focus shadow.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "badge",
+                "default"
+              ]
+            }
+          },
+          "opacity": {
+            "disabled": {
+              "$type": "number",
+              "$value": "{dk.opacity.disabled.default.base}",
+              "id": "dk.component.badge-opacity.default.disabled",
+              "description": "Badge disabled opacity.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "badge",
+                "default"
+              ]
+            }
+          },
+          "motion": {
+            "duration": {
+              "$type": "duration",
+              "$value": "{dk.motion.duration.control.base}",
+              "id": "dk.component.badge-motion.default.default",
+              "description": "Badge transition duration.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "badge",
+                "default"
+              ]
+            }
+          }
+        }
+      },
+      "alert": {
+        "default": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.alert-bg.default.default",
+              "description": "Alert background default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "alert",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.alert-bg.default.hover",
+              "description": "Alert background hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "alert",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.alert-bg.default.active",
+              "description": "Alert background active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "alert",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.alert-bg.default.disabled",
+              "description": "Alert background disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "alert",
+                "default"
+              ]
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.alert-border.default.default",
+              "description": "Alert border default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "alert",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.alert-border.default.hover",
+              "description": "Alert border hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "alert",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.alert-border.default.active",
+              "description": "Alert border active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "alert",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.alert-border.default.disabled",
+              "description": "Alert border disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "alert",
+                "default"
+              ]
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{dk.color.border.focus.focus}",
+              "id": "dk.component.alert-border.default.focus",
+              "description": "Alert border focus.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "alert",
+                "default"
+              ]
+            }
+          },
+          "title": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.default.base}",
+              "id": "dk.component.alert-title.default.default",
+              "description": "Alert title default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "alert",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.alert-title.default.disabled",
+              "description": "Alert title disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "alert",
+                "default"
+              ]
+            }
+          },
+          "body": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.default.base}",
+              "id": "dk.component.alert-body.default.default",
+              "description": "Alert body default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "alert",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.alert-body.default.disabled",
+              "description": "Alert body disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "alert",
+                "default"
+              ]
+            }
+          },
+          "icon": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.alert-icon.default.default",
+              "description": "Alert icon default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "alert",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.alert-icon.default.disabled",
+              "description": "Alert icon disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "alert",
+                "default"
+              ]
+            }
+          },
+          "shadow": {
+            "focus": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.alert-shadow.default.focus",
+              "description": "Alert focus shadow.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "alert",
+                "default"
+              ]
+            }
+          },
+          "opacity": {
+            "disabled": {
+              "$type": "number",
+              "$value": "{dk.opacity.disabled.default.base}",
+              "id": "dk.component.alert-opacity.default.disabled",
+              "description": "Alert disabled opacity.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "alert",
+                "default"
+              ]
+            }
+          },
+          "motion": {
+            "duration": {
+              "$type": "duration",
+              "$value": "{dk.motion.duration.control.base}",
+              "id": "dk.component.alert-motion.default.default",
+              "description": "Alert transition duration.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "alert",
+                "default"
+              ]
+            }
+          }
+        }
+      },
+      "toast": {
+        "default": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.toast-bg.default.default",
+              "description": "Toast background default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "toast",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.toast-bg.default.hover",
+              "description": "Toast background hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "toast",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.toast-bg.default.active",
+              "description": "Toast background active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "toast",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.toast-bg.default.disabled",
+              "description": "Toast background disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "toast",
+                "default"
+              ]
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.toast-border.default.default",
+              "description": "Toast border default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "toast",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.toast-border.default.hover",
+              "description": "Toast border hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "toast",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.toast-border.default.active",
+              "description": "Toast border active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "toast",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.toast-border.default.disabled",
+              "description": "Toast border disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "toast",
+                "default"
+              ]
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{dk.color.border.focus.focus}",
+              "id": "dk.component.toast-border.default.focus",
+              "description": "Toast border focus.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "toast",
+                "default"
+              ]
+            }
+          },
+          "title": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.default.base}",
+              "id": "dk.component.toast-title.default.default",
+              "description": "Toast title default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "toast",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.toast-title.default.disabled",
+              "description": "Toast title disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "toast",
+                "default"
+              ]
+            }
+          },
+          "body": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.default.base}",
+              "id": "dk.component.toast-body.default.default",
+              "description": "Toast body default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "toast",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.toast-body.default.disabled",
+              "description": "Toast body disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "toast",
+                "default"
+              ]
+            }
+          },
+          "icon": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.toast-icon.default.default",
+              "description": "Toast icon default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "toast",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.toast-icon.default.disabled",
+              "description": "Toast icon disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "toast",
+                "default"
+              ]
+            }
+          },
+          "shadow": {
+            "focus": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.toast-shadow.default.focus",
+              "description": "Toast focus shadow.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "toast",
+                "default"
+              ]
+            }
+          },
+          "opacity": {
+            "disabled": {
+              "$type": "number",
+              "$value": "{dk.opacity.disabled.default.base}",
+              "id": "dk.component.toast-opacity.default.disabled",
+              "description": "Toast disabled opacity.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "toast",
+                "default"
+              ]
+            }
+          },
+          "motion": {
+            "duration": {
+              "$type": "duration",
+              "$value": "{dk.motion.duration.control.base}",
+              "id": "dk.component.toast-motion.default.default",
+              "description": "Toast transition duration.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "toast",
+                "default"
+              ]
+            }
+          }
+        }
+      },
+      "avatar": {
+        "default": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.avatar-bg.default.default",
+              "description": "Avatar background default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "avatar",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.avatar-bg.default.hover",
+              "description": "Avatar background hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "avatar",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.avatar-bg.default.active",
+              "description": "Avatar background active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "avatar",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.avatar-bg.default.disabled",
+              "description": "Avatar background disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "avatar",
+                "default"
+              ]
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.avatar-border.default.default",
+              "description": "Avatar border default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "avatar",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.avatar-border.default.hover",
+              "description": "Avatar border hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "avatar",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.avatar-border.default.active",
+              "description": "Avatar border active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "avatar",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.avatar-border.default.disabled",
+              "description": "Avatar border disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "avatar",
+                "default"
+              ]
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{dk.color.border.focus.focus}",
+              "id": "dk.component.avatar-border.default.focus",
+              "description": "Avatar border focus.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "avatar",
+                "default"
+              ]
+            }
+          },
+          "label": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.avatar-label.default.default",
+              "description": "Avatar label default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "avatar",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.avatar-label.default.disabled",
+              "description": "Avatar label disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "avatar",
+                "default"
+              ]
+            }
+          },
+          "status": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.avatar-status.default.default",
+              "description": "Avatar status default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "avatar",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.avatar-status.default.active",
+              "description": "Avatar status active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "avatar",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.avatar-status.default.disabled",
+              "description": "Avatar status disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "avatar",
+                "default"
+              ]
+            }
+          },
+          "shadow": {
+            "focus": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.avatar-shadow.default.focus",
+              "description": "Avatar focus shadow.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "avatar",
+                "default"
+              ]
+            }
+          },
+          "opacity": {
+            "disabled": {
+              "$type": "number",
+              "$value": "{dk.opacity.disabled.default.base}",
+              "id": "dk.component.avatar-opacity.default.disabled",
+              "description": "Avatar disabled opacity.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "avatar",
+                "default"
+              ]
+            }
+          },
+          "motion": {
+            "duration": {
+              "$type": "duration",
+              "$value": "{dk.motion.duration.control.base}",
+              "id": "dk.component.avatar-motion.default.default",
+              "description": "Avatar transition duration.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "avatar",
+                "default"
+              ]
+            }
+          }
+        }
+      },
+      "pagination": {
+        "default": {
+          "item": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.pagination-item.default.default",
+              "description": "Pagination item background default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "pagination",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.pagination-item.default.hover",
+              "description": "Pagination item background hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "pagination",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.pagination-item.default.active",
+              "description": "Pagination item background active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "pagination",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.pagination-item.default.disabled",
+              "description": "Pagination item background disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "pagination",
+                "default"
+              ]
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.pagination-border.default.default",
+              "description": "Pagination border default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "pagination",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.pagination-border.default.hover",
+              "description": "Pagination border hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "pagination",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.pagination-border.default.active",
+              "description": "Pagination border active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "pagination",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.pagination-border.default.disabled",
+              "description": "Pagination border disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "pagination",
+                "default"
+              ]
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{dk.color.border.focus.focus}",
+              "id": "dk.component.pagination-border.default.focus",
+              "description": "Pagination border focus.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "pagination",
+                "default"
+              ]
+            }
+          },
+          "label": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.default.base}",
+              "id": "dk.component.pagination-label.default.default",
+              "description": "Pagination label default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "pagination",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.pagination-label.default.disabled",
+              "description": "Pagination label disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "pagination",
+                "default"
+              ]
+            }
+          },
+          "indicator": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.pagination-indicator.default.default",
+              "description": "Pagination indicator default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "pagination",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.pagination-indicator.default.active",
+              "description": "Pagination indicator active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "pagination",
+                "default"
+              ]
+            }
+          },
+          "shadow": {
+            "focus": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.pagination-shadow.default.focus",
+              "description": "Pagination focus shadow.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "pagination",
+                "default"
+              ]
+            }
+          },
+          "opacity": {
+            "disabled": {
+              "$type": "number",
+              "$value": "{dk.opacity.disabled.default.base}",
+              "id": "dk.component.pagination-opacity.default.disabled",
+              "description": "Pagination disabled opacity.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "pagination",
+                "default"
+              ]
+            }
+          },
+          "motion": {
+            "duration": {
+              "$type": "duration",
+              "$value": "{dk.motion.duration.control.base}",
+              "id": "dk.component.pagination-motion.default.default",
+              "description": "Pagination transition duration.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "pagination",
+                "default"
+              ]
+            }
+          }
+        }
+      },
+      "breadcrumb": {
+        "default": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.breadcrumb-bg.default.default",
+              "description": "Breadcrumb background default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "breadcrumb",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.breadcrumb-bg.default.hover",
+              "description": "Breadcrumb background hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "breadcrumb",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.surface.raised.base}",
+              "id": "dk.component.breadcrumb-bg.default.active",
+              "description": "Breadcrumb background active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "breadcrumb",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.surface.default.base}",
+              "id": "dk.component.breadcrumb-bg.default.disabled",
+              "description": "Breadcrumb background disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "breadcrumb",
+                "default"
+              ]
+            }
+          },
+          "border": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.breadcrumb-border.default.default",
+              "description": "Breadcrumb border default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "breadcrumb",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.breadcrumb-border.default.hover",
+              "description": "Breadcrumb border hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "breadcrumb",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.breadcrumb-border.default.active",
+              "description": "Breadcrumb border active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "breadcrumb",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.border.subtle.base}",
+              "id": "dk.component.breadcrumb-border.default.disabled",
+              "description": "Breadcrumb border disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "breadcrumb",
+                "default"
+              ]
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{dk.color.border.focus.focus}",
+              "id": "dk.component.breadcrumb-border.default.focus",
+              "description": "Breadcrumb border focus.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "breadcrumb",
+                "default"
+              ]
+            }
+          },
+          "link": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.default.base}",
+              "id": "dk.component.breadcrumb-link.default.default",
+              "description": "Breadcrumb link default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "breadcrumb",
+                "default"
+              ]
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.breadcrumb-link.default.hover",
+              "description": "Breadcrumb link hover.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "hover",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "breadcrumb",
+                "default"
+              ]
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.hover}",
+              "id": "dk.component.breadcrumb-link.default.active",
+              "description": "Breadcrumb link active.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "active",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "breadcrumb",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.breadcrumb-link.default.disabled",
+              "description": "Breadcrumb link disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "breadcrumb",
+                "default"
+              ]
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{dk.color.accent.primary.base}",
+              "id": "dk.component.breadcrumb-link.default.focus",
+              "description": "Breadcrumb link focus.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "breadcrumb",
+                "default"
+              ]
+            }
+          },
+          "separator": {
+            "default": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.breadcrumb-separator.default.default",
+              "description": "Breadcrumb separator default.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "breadcrumb",
+                "default"
+              ]
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{dk.color.text.muted.base}",
+              "id": "dk.component.breadcrumb-separator.default.disabled",
+              "description": "Breadcrumb separator disabled.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "breadcrumb",
+                "default"
+              ]
+            }
+          },
+          "shadow": {
+            "focus": {
+              "$type": "shadow",
+              "$value": "{dk.shadow.control.default.base}",
+              "id": "dk.component.breadcrumb-shadow.default.focus",
+              "description": "Breadcrumb focus shadow.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "focus",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "breadcrumb",
+                "default"
+              ]
+            }
+          },
+          "opacity": {
+            "disabled": {
+              "$type": "number",
+              "$value": "{dk.opacity.disabled.default.base}",
+              "id": "dk.component.breadcrumb-opacity.default.disabled",
+              "description": "Breadcrumb disabled opacity.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "disabled",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "breadcrumb",
+                "default"
+              ]
+            }
+          },
+          "motion": {
+            "duration": {
+              "$type": "duration",
+              "$value": "{dk.motion.duration.control.base}",
+              "id": "dk.component.breadcrumb-motion.default.default",
+              "description": "Breadcrumb transition duration.",
+              "brand": "nova",
+              "mode": "light",
+              "state": "default",
+              "category": "component",
+              "deprecated": false,
+              "since": "0.1.0",
+              "tags": [
+                "component",
+                "breadcrumb",
+                "default"
+              ]
             }
           }
         }
@@ -163,4 +5400,3 @@
     }
   }
 }
-

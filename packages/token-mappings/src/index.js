@@ -18,8 +18,16 @@ const REQUIRED_FIELDS = [
 const REQUIRED_STATES = ["default", "hover", "active", "disabled", "focus"];
 
 export function loadMappings() {
-  const raw = fs.readFileSync(path.join(__dirname, "button-primary.mappings.json"), "utf8");
-  return JSON.parse(raw);
+  const mappingFiles = fs
+    .readdirSync(__dirname)
+    .filter((filename) => filename.endsWith(".mappings.json"))
+    .sort((a, b) => a.localeCompare(b));
+
+  return mappingFiles.flatMap((filename) => {
+    const raw = fs.readFileSync(path.join(__dirname, filename), "utf8");
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  });
 }
 
 function createError(code, message, mapping = null) {
@@ -85,4 +93,3 @@ export function validateMappings(mappings, tokens) {
 }
 
 export { REQUIRED_STATES };
-
