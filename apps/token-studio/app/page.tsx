@@ -1,7 +1,14 @@
 import Link from "next/link";
 import { TokenChangeForm } from "./components/token-change-form";
 import { contrastRatio } from "../lib/color";
-import { diffTokens, filterTokens, getUniqueValues, listBrandsAndModes, loadResolvedTokens } from "../lib/tokens";
+import {
+  diffTokens,
+  filterTokens,
+  getComponentCatalog,
+  getUniqueValues,
+  listBrandsAndModes,
+  loadResolvedTokens
+} from "../lib/tokens";
 
 function getParam(value: string | string[] | undefined, fallback = "") {
   if (Array.isArray(value)) {
@@ -74,6 +81,18 @@ export default async function Page({
   const spacingTokens = filteredTokens.filter((token) => token.category === "spacing").slice(0, 6);
   const shadowTokens = filteredTokens.filter((token) => token.$type === "shadow").slice(0, 4);
   const motionTokens = filteredTokens.filter((token) => token.category.startsWith("motion")).slice(0, 6);
+  const componentQuery = (filters.component || "").trim().toLowerCase();
+  const componentCatalog = getComponentCatalog(tokens).filter((entry) => {
+    if (!componentQuery) {
+      return true;
+    }
+    return (
+      entry.component.toLowerCase().includes(componentQuery) ||
+      entry.variant.toLowerCase().includes(componentQuery) ||
+      entry.key.toLowerCase().includes(componentQuery)
+    );
+  });
+  const componentStateOrder = ["default", "hover", "active", "disabled", "focus"];
 
   const textDefault = tokens.find((token) => token.id === "dk.color.text.default.base");
   const surfaceDefault = tokens.find((token) => token.id === "dk.color.surface.default.base");
@@ -109,6 +128,8 @@ export default async function Page({
             <a href="#preview-board">2. Visual Preview</a>
             <a href="#diff-analysis">3. Diff Analysis</a>
             <a href="#edit-workflow">4. Propose Edit</a>
+            <a href="#token-catalog">5. Token Catalog</a>
+            <a href="#component-docs">6. Component Docs</a>
           </div>
         </div>
 
@@ -427,7 +448,7 @@ export default async function Page({
 
       <TokenChangeForm brand={selectedBrand} mode={selectedMode} sectionId="edit-workflow" />
 
-      <section className="panel">
+      <section id="token-catalog" className="panel">
         <div className="section-heading">
           <h2>5. Token Catalog</h2>
           <p className="muted">Complete listing for final verification before proposing edits.</p>
@@ -474,6 +495,77 @@ export default async function Page({
         </div>
       </section>
 
+      <section id="component-docs" className="panel">
+        <div className="section-heading">
+          <h2>6. Component Previews and Docs</h2>
+          <p className="muted">Per-component state previews with quick variable references for implementation handoff.</p>
+        </div>
+
+        <div className="component-summary">
+          <p className="component-summary-item">{`Components in view: ${componentCatalog.length}`}</p>
+          <p className="component-summary-item">States: default, hover, active, disabled, focus</p>
+          <p className="component-summary-item">{`Component filter: ${componentQuery || "none"}`}</p>
+        </div>
+
+        <div className="component-grid">
+          {componentCatalog.map((entry) => (
+            <article key={entry.key} id={`component-${entry.component}-${entry.variant}`} className="component-card">
+              <div className="component-card-head">
+                <div>
+                  <h3>{entry.component}</h3>
+                  <p className="component-variant">{entry.variant}</p>
+                </div>
+                <p className="component-token-count">{`${entry.tokenCount} tokens`}</p>
+              </div>
+
+              <div className="component-state-grid">
+                {componentStateOrder.map((state) => {
+                  const statePreview = entry.states[state] ?? {};
+                  const previewBackground =
+                    statePreview.background && isRenderableColor(statePreview.background)
+                      ? statePreview.background
+                      : "var(--bg-subtle)";
+                  const previewBorder =
+                    statePreview.border && isRenderableColor(statePreview.border)
+                      ? statePreview.border
+                      : "var(--line)";
+                  const previewText =
+                    statePreview.text && isRenderableColor(statePreview.text) ? statePreview.text : "var(--text-strong)";
+                  const previewAccent =
+                    statePreview.accent && isRenderableColor(statePreview.accent)
+                      ? statePreview.accent
+                      : statePreview.text && isRenderableColor(statePreview.text)
+                        ? statePreview.text
+                        : "transparent";
+
+                  return (
+                    <div
+                      key={`${entry.key}-${state}`}
+                      className="component-state-card"
+                      style={{ backgroundColor: previewBackground, borderColor: previewBorder, color: previewText }}
+                    >
+                      <span className="component-state-label">{state}</span>
+                      <span className="component-state-dot" style={{ backgroundColor: previewAccent }} aria-hidden />
+                    </div>
+                  );
+                })}
+              </div>
+
+              <details className="component-vars">
+                <summary>Variable quick view</summary>
+                <pre className="component-vars-preview">
+                  <code>{entry.cssVars.slice(0, 8).join("\n")}</code>
+                </pre>
+                <Link className="component-doc-link" href={`/docs/components#${entry.component}-${entry.variant}`}>
+                  Open full component docs
+                </Link>
+              </details>
+            </article>
+          ))}
+          {componentCatalog.length === 0 ? <p className="muted">No component tokens match the current filter.</p> : null}
+        </div>
+      </section>
+
       <section className="panel">
         <div className="section-heading">
           <h2>Developer Documentation</h2>
@@ -483,6 +575,7 @@ export default async function Page({
           <Link href="/docs/react">React</Link>
           <Link href="/docs/vue">Vue</Link>
           <Link href="/docs/angular">Angular</Link>
+          <Link href="/docs/components">Components</Link>
         </div>
       </section>
     </div>

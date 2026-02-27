@@ -1,0 +1,155 @@
+[
+  {
+    "component": "avatar",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.avatar-border.default.default",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "avatar",
+    "variant": "default",
+    "slot": "root",
+    "state": "hover",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.avatar-border.default.hover",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "avatar",
+    "variant": "default",
+    "slot": "root",
+    "state": "active",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.avatar-border.default.active",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "avatar",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.avatar-border.default.disabled",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "avatar",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.avatar-border.default.focus",
+    "fallbackRef": "dk.color.border.focus.focus"
+  },
+  {
+    "component": "avatar",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.avatar-bg.default.default",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "avatar",
+    "variant": "default",
+    "slot": "root",
+    "state": "hover",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.avatar-bg.default.hover",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "avatar",
+    "variant": "default",
+    "slot": "root",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.avatar-bg.default.active",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "avatar",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.avatar-bg.default.disabled",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "avatar",
+    "variant": "default",
+    "slot": "label",
+    "state": "default",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.avatar-label.default.default",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "avatar",
+    "variant": "default",
+    "slot": "label",
+    "state": "disabled",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.avatar-label.default.disabled",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "avatar",
+    "variant": "default",
+    "slot": "status",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.avatar-status.default.default",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "avatar",
+    "variant": "default",
+    "slot": "status",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.avatar-status.default.active",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "avatar",
+    "variant": "default",
+    "slot": "status",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.avatar-status.default.disabled",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "avatar",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "box-shadow",
+    "tokenRef": "dk.component.avatar-shadow.default.focus",
+    "fallbackRef": "dk.shadow.control.default.base"
+  },
+  {
+    "component": "avatar",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "opacity",
+    "tokenRef": "dk.component.avatar-opacity.default.disabled",
+    "fallbackRef": "dk.opacity.disabled.default.base"
+  },
+  {
+    "component": "avatar",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "transition-duration",
+    "tokenRef": "dk.component.avatar-motion.default.default",
+    "fallbackRef": "dk.motion.duration.control.base"
+  }
+]

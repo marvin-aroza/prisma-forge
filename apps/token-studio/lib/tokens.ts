@@ -24,6 +24,23 @@ export interface TokenFilters {
   component?: string;
 }
 
+export interface ComponentStatePreview {
+  background?: string;
+  border?: string;
+  text?: string;
+  accent?: string;
+}
+
+export interface ComponentCatalogEntry {
+  key: string;
+  component: string;
+  variant: string;
+  tokenCount: number;
+  tokenIds: string[];
+  cssVars: string[];
+  states: Record<string, ComponentStatePreview>;
+}
+
 export function listBrandsAndModes() {
   return getAvailableBrandsAndModes();
 }
@@ -109,3 +126,100 @@ export function diffTokens(
   return { added, removed, changed };
 }
 
+const BACKGROUND_SLOT_KEYS = ["bg", "background", "panel", "container", "item", "tab", "track", "root"];
+const BORDER_SLOT_KEYS = ["border"];
+const TEXT_SLOT_KEYS = ["label", "title", "body", "link", "text"];
+const ACCENT_SLOT_KEYS = ["icon", "indicator", "status", "dot", "mark", "thumb", "separator"];
+
+function extractComponent(token: StudioToken) {
+  if (Array.isArray(token.tags) && token.tags[0] === "component" && token.tags[1]) {
+    return String(token.tags[1]);
+  }
+  const source = token.id.split(".")[2] ?? "";
+  return source.split("-")[0] ?? "unknown";
+}
+
+function extractVariant(token: StudioToken) {
+  if (Array.isArray(token.tags) && token.tags[0] === "component" && token.tags[2]) {
+    return String(token.tags[2]);
+  }
+  return token.id.split(".")[3] ?? "default";
+}
+
+function extractSlot(token: StudioToken, component: string) {
+  const source = token.id.split(".")[2] ?? "";
+  const prefix = `${component}-`;
+  if (source.startsWith(prefix)) {
+    return source.slice(prefix.length);
+  }
+  return source;
+}
+
+function asCssVar(tokenId: string) {
+  return `--${tokenId.replace(/\./g, "-")}`;
+}
+
+function slotMatches(slot: string, candidates: string[]) {
+  return candidates.some((candidate) => slot === candidate || slot.startsWith(`${candidate}-`));
+}
+
+function setStatePreview(entry: ComponentCatalogEntry, state: string, slot: string, value: string) {
+  const stateEntry = entry.states[state] ?? {};
+  if (slotMatches(slot, BACKGROUND_SLOT_KEYS) && !stateEntry.background) {
+    stateEntry.background = value;
+  } else if (slotMatches(slot, BORDER_SLOT_KEYS) && !stateEntry.border) {
+    stateEntry.border = value;
+  } else if (slotMatches(slot, TEXT_SLOT_KEYS) && !stateEntry.text) {
+    stateEntry.text = value;
+  } else if (slotMatches(slot, ACCENT_SLOT_KEYS) && !stateEntry.accent) {
+    stateEntry.accent = value;
+  } else if (!stateEntry.accent) {
+    stateEntry.accent = value;
+  }
+  entry.states[state] = stateEntry;
+}
+
+export function getComponentCatalog(tokens: StudioToken[]): ComponentCatalogEntry[] {
+  const grouped = new Map<string, ComponentCatalogEntry>();
+
+  for (const token of tokens) {
+    if (!token.id.startsWith("dk.component.")) {
+      continue;
+    }
+
+    const component = extractComponent(token);
+    const variant = extractVariant(token);
+    const key = `${component}:${variant}`;
+
+    const entry =
+      grouped.get(key) ??
+      ({
+        key,
+        component,
+        variant,
+        tokenCount: 0,
+        tokenIds: [],
+        cssVars: [],
+        states: {}
+      } satisfies ComponentCatalogEntry);
+
+    entry.tokenCount += 1;
+    entry.tokenIds.push(token.id);
+    entry.cssVars.push(asCssVar(token.id));
+
+    if (token.$type === "color" && typeof token.$value === "string") {
+      const slot = extractSlot(token, component);
+      setStatePreview(entry, token.state, slot, token.$value);
+    }
+
+    grouped.set(key, entry);
+  }
+
+  return [...grouped.values()]
+    .map((entry) => ({
+      ...entry,
+      tokenIds: [...new Set(entry.tokenIds)].sort((a, b) => a.localeCompare(b)),
+      cssVars: [...new Set(entry.cssVars)].sort((a, b) => a.localeCompare(b))
+    }))
+    .sort((a, b) => a.key.localeCompare(b.key));
+}

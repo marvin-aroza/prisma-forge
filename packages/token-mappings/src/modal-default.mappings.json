@@ -1,0 +1,155 @@
+[
+  {
+    "component": "modal",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.modal-border.default.default",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "modal",
+    "variant": "default",
+    "slot": "root",
+    "state": "hover",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.modal-border.default.hover",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "modal",
+    "variant": "default",
+    "slot": "root",
+    "state": "active",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.modal-border.default.active",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "modal",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.modal-border.default.disabled",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "modal",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.modal-border.default.focus",
+    "fallbackRef": "dk.color.border.focus.focus"
+  },
+  {
+    "component": "modal",
+    "variant": "default",
+    "slot": "panel",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.modal-bg.default.default",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "modal",
+    "variant": "default",
+    "slot": "panel",
+    "state": "hover",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.modal-bg.default.hover",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "modal",
+    "variant": "default",
+    "slot": "panel",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.modal-bg.default.active",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "modal",
+    "variant": "default",
+    "slot": "panel",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.modal-bg.default.disabled",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "modal",
+    "variant": "default",
+    "slot": "backdrop",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.modal-backdrop.default.default",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "modal",
+    "variant": "default",
+    "slot": "title",
+    "state": "default",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.modal-title.default.default",
+    "fallbackRef": "dk.color.text.default.base"
+  },
+  {
+    "component": "modal",
+    "variant": "default",
+    "slot": "title",
+    "state": "disabled",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.modal-title.default.disabled",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "modal",
+    "variant": "default",
+    "slot": "body",
+    "state": "default",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.modal-body.default.default",
+    "fallbackRef": "dk.color.text.default.base"
+  },
+  {
+    "component": "modal",
+    "variant": "default",
+    "slot": "body",
+    "state": "disabled",
+    "platformProperty": "color",
+    "tokenRef": "dk.component.modal-body.default.disabled",
+    "fallbackRef": "dk.color.text.muted.base"
+  },
+  {
+    "component": "modal",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "box-shadow",
+    "tokenRef": "dk.component.modal-shadow.default.focus",
+    "fallbackRef": "dk.shadow.control.default.base"
+  },
+  {
+    "component": "modal",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "opacity",
+    "tokenRef": "dk.component.modal-opacity.default.disabled",
+    "fallbackRef": "dk.opacity.disabled.default.base"
+  },
+  {
+    "component": "modal",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "transition-duration",
+    "tokenRef": "dk.component.modal-motion.default.default",
+    "fallbackRef": "dk.motion.duration.control.base"
+  }
+]

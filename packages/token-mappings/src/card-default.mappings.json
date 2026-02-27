@@ -1,0 +1,128 @@
+[
+  {
+    "component": "card",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.card-border.default.default",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "card",
+    "variant": "default",
+    "slot": "root",
+    "state": "hover",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.card-border.default.hover",
+    "fallbackRef": "dk.color.accent.primary.base"
+  },
+  {
+    "component": "card",
+    "variant": "default",
+    "slot": "root",
+    "state": "active",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.card-border.default.active",
+    "fallbackRef": "dk.color.accent.primary.hover"
+  },
+  {
+    "component": "card",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.card-border.default.disabled",
+    "fallbackRef": "dk.color.border.subtle.base"
+  },
+  {
+    "component": "card",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "border-color",
+    "tokenRef": "dk.component.card-border.default.focus",
+    "fallbackRef": "dk.color.border.focus.focus"
+  },
+  {
+    "component": "card",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.card-bg.default.default",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "card",
+    "variant": "default",
+    "slot": "root",
+    "state": "hover",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.card-bg.default.hover",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "card",
+    "variant": "default",
+    "slot": "root",
+    "state": "active",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.card-bg.default.active",
+    "fallbackRef": "dk.color.surface.default.base"
+  },
+  {
+    "component": "card",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "background-color",
+    "tokenRef": "dk.component.card-bg.default.disabled",
+    "fallbackRef": "dk.color.surface.raised.base"
+  },
+  {
+    "component": "card",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "box-shadow",
+    "tokenRef": "dk.component.card-shadow.default.default",
+    "fallbackRef": "dk.shadow.control.default.base"
+  },
+  {
+    "component": "card",
+    "variant": "default",
+    "slot": "root",
+    "state": "hover",
+    "platformProperty": "box-shadow",
+    "tokenRef": "dk.component.card-shadow.default.hover",
+    "fallbackRef": "dk.shadow.control.default.base"
+  },
+  {
+    "component": "card",
+    "variant": "default",
+    "slot": "root",
+    "state": "focus",
+    "platformProperty": "box-shadow",
+    "tokenRef": "dk.component.card-shadow.default.focus",
+    "fallbackRef": "dk.shadow.control.default.base"
+  },
+  {
+    "component": "card",
+    "variant": "default",
+    "slot": "root",
+    "state": "disabled",
+    "platformProperty": "opacity",
+    "tokenRef": "dk.component.card-opacity.default.disabled",
+    "fallbackRef": "dk.opacity.disabled.default.base"
+  },
+  {
+    "component": "card",
+    "variant": "default",
+    "slot": "root",
+    "state": "default",
+    "platformProperty": "transition-duration",
+    "tokenRef": "dk.component.card-motion.default.default",
+    "fallbackRef": "dk.motion.duration.control.base"
+  }
+]

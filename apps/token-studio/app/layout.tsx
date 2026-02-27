@@ -52,6 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Link href="/docs/react">React</Link>
                 <Link href="/docs/vue">Vue</Link>
                 <Link href="/docs/angular">Angular</Link>
+                <Link href="/docs/components">Components</Link>
               </nav>
             </div>
           </div>
