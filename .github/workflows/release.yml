@@ -1,0 +1,115 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: "Release channel"
+        required: true
+        default: stable
+        type: choice
+        options:
+          - stable
+          - next
+      dry_run:
+        description: "Run release pipeline without publish/push"
+        required: true
+        default: true
+        type: boolean
+
+concurrency:
+  group: release-${{ github.ref }}-${{ inputs.channel }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Verify main branch
+        run: |
+          if [ "${GITHUB_REF}" != "refs/heads/main" ]; then
+            echo "::error::Releases must run from main."
+            exit 1
+          fi
+
+      - name: Enable pnpm
+        run: corepack enable pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Release guard
+        run: node ./scripts/release-guard.mjs --channel ${{ inputs.channel }}
+
+      - name: Release preflight
+        run: pnpm release:preflight
+
+      - name: Validate
+        run: pnpm validate
+
+      - name: Test
+        run: pnpm test
+
+      - name: Build
+        run: pnpm build
+
+      - name: Enter next prerelease mode
+        if: ${{ inputs.channel == 'next' }}
+        run: pnpm changeset pre enter next
+
+      - name: Version packages
+        run: pnpm changeset version
+
+      - name: Show release status
+        run: pnpm changeset status
+
+      - name: Configure npm auth
+        if: ${{ !inputs.dry_run }}
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "${NPM_TOKEN}" ]; then
+            echo "::error::NPM_TOKEN secret is required for publish."
+            exit 1
+          fi
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+
+      - name: Publish packages
+        if: ${{ !inputs.dry_run }}
+        run: |
+          if [ "${{ inputs.channel }}" = "stable" ]; then
+            pnpm changeset publish --tag latest
+          else
+            pnpm changeset publish --tag next
+          fi
+
+      - name: Exit next prerelease mode
+        if: ${{ inputs.channel == 'next' }}
+        run: pnpm changeset pre exit
+
+      - name: Commit release artifacts
+        if: ${{ !inputs.dry_run }}
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -A
+            git commit -m "chore(release): ${{ inputs.channel }} release"
+            git push origin main
+          fi
+          git push --follow-tags origin main
+
+      - name: Release summary
+        run: |
+          echo "channel=${{ inputs.channel }}"
+          echo "dry_run=${{ inputs.dry_run }}"

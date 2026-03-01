@@ -3,6 +3,18 @@
   "version": "0.1.0",
   "type": "module",
   "description": "Schema, types, and validation utilities for PrismForge tokens.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prismforge/prismforge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/prismforge/prismforge/issues"
+  },
+  "homepage": "https://github.com/prismforge/prismforge#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": "./src/index.js",
     "./schema/token.schema.json": "./src/schema/token.schema.json",

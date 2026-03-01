@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { spawnSync } from "node:child_process";
 
 const root = process.cwd();
 const files = [
@@ -39,5 +40,30 @@ if (invalid.length > 0) {
   process.exit(1);
 }
 
-console.log("Example integration checks passed.");
+const buildTargets = [
+  "@prismforge/example-react",
+  "@prismforge/example-vue",
+  "@prismforge/example-angular"
+];
+
+for (const target of buildTargets) {
+  const result = spawnSync(`pnpm --filter ${target} build`, {
+    cwd: root,
+    encoding: "utf8",
+    shell: true
+  });
+
+  if (result.status !== 0) {
+    console.error(`Example build failed for ${target}.`);
+    if (result.stdout) {
+      console.error(result.stdout);
+    }
+    if (result.stderr) {
+      console.error(result.stderr);
+    }
+    process.exit(result.status ?? 1);
+  }
+}
+
+console.log("Example integration checks and builds passed.");
 

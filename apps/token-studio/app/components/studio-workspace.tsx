@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { TokenChangeForm } from "./token-change-form";
 import { contrastRatio } from "../../lib/color";
+import { loadMappings } from "../../../../packages/token-mappings/src/index.js";
 import {
   diffTokens,
   filterTokens,
@@ -82,6 +83,15 @@ export async function StudioWorkspace({
   const density = ["comfortable", "cozy", "compact"].includes(densityParam) ? densityParam : "cozy";
 
   const tokens = loadResolvedTokens(selectedBrand, selectedMode);
+  const allMappings = loadMappings() as Array<{
+    component: string;
+    variant: string;
+    slot: string;
+    state: string;
+    platformProperty: string;
+    tokenRef: string;
+    fallbackRef: string;
+  }>;
   const compareTokens = loadResolvedTokens(compareBrand, compareMode);
   const diff = diffTokens(tokens, compareTokens);
 
@@ -723,7 +733,13 @@ export async function StudioWorkspace({
         </div>
       </section>
 
-      <TokenChangeForm brand={selectedBrand} mode={selectedMode} sectionId="edit-workflow" />
+      <TokenChangeForm
+        brand={selectedBrand}
+        mode={selectedMode}
+        sectionId="edit-workflow"
+        existingMappings={allMappings}
+        existingTokenIds={tokens.map((token) => token.id)}
+      />
 
       <section id="token-catalog" className="panel">
         <div className="section-heading">

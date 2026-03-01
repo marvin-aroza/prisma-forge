@@ -5,6 +5,7 @@
 - Git is the source of truth for tokens.
 - Token changes must be validated by schema and mapping checks.
 - Breaking token changes require changelog entries and migration notes.
+- Publish boundaries are defined in `docs/PUBLISHING.md`.
 
 ## Local setup
 
@@ -22,6 +23,24 @@ pnpm test
 3. Run `prismforge validate` and tests.
 4. Add a changeset (stable or next).
 5. Open PR with screenshots from Token Studio if UI-related.
+6. If token IDs were removed, include a `major` changeset (enforced by CI guard).
+
+## Releases
+
+- Release workflow: `.github/workflows/release.yml`.
+- Run via GitHub Actions `workflow_dispatch`.
+- Channels:
+  - `stable`: publishes with npm tag `latest`.
+  - `next`: publishes with npm tag `next`.
+- Use `dry_run=true` first to validate guard/test/build without publish.
+- For publish, set repository secret `NPM_TOKEN`.
+- Follow the operator checklist: `docs/RELEASE_CHECKLIST.md`.
+- If release fails or is partial, file `.github/ISSUE_TEMPLATE/release-incident.md`.
+
+## Community and security
+
+- Follow `CODE_OF_CONDUCT.md`.
+- Report vulnerabilities using `SECURITY.md` guidance.
 
 ## Token naming
 

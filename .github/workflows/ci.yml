@@ -6,21 +6,25 @@ on:
   pull_request:
 
 jobs:
-  validate-and-test:
+  validate-test-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
       - name: Enable pnpm
         run: corepack enable pnpm
       - name: Install dependencies
-        run: pnpm install
-      - name: Validate token contracts
-        run: node ./packages/token-cli/src/cli.js validate
+        run: pnpm install --frozen-lockfile
+      - name: Guard breaking token changes
+        if: ${{ github.event_name == 'pull_request' }}
+        run: node ./scripts/token-breaking-guard.mjs --base-ref origin/${{ github.base_ref }}
+      - name: Validate
+        run: pnpm validate
       - name: Run tests
-        run: node --test ./packages/token-source/test/*.test.mjs ./packages/token-schema/test/*.test.mjs ./packages/token-mappings/test/*.test.mjs ./packages/token-build/test/*.test.mjs ./packages/token-cli/test/*.test.mjs ./apps/token-studio/test/*.test.mjs
-      - name: Verify integrations
-        run: node ./scripts/verify-examples.mjs
-
+        run: pnpm test
+      - name: Build
+        run: pnpm build
