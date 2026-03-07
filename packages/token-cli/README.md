@@ -29,6 +29,11 @@ npx @prismforge/token-cli init \
   --studio true
 ```
 
+Notes:
+
+- If run inside an existing git repo, `init` auto-detects provider/repository from `origin`.
+- `--repository` is optional. Leave it empty for new workspaces and set it later in `.env.local`.
+
 Then run:
 
 ```bash

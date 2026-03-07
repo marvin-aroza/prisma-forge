@@ -12,7 +12,11 @@ const SUPPORTED_RELEASE_CHANNELS = ["stable", "next", "alpha", "beta", "rc", "ca
 const SUPPORTED_GIT_PROVIDERS = ["github", "gitlab", "bitbucket", "generic"];
 const SUPPORTED_TOKEN_TARGETS = ["css", "js", "android", "ios"];
 const SEMVER_LIKE_PATTERN = /^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$/u;
-const DEFAULT_INIT_REPO_URL = "https://github.com/prismforge/prismforge.git";
+const DEFAULT_INIT_REPO_URLS = [
+  process.env.PRISMFORGE_TEMPLATE_REPO_URL?.trim(),
+  "https://github.com/marvin-aroza/prisma-forge.git",
+  "https://github.com/prismforge/prismforge.git"
+].filter(Boolean);
 const TARGET_PACKAGE_MAP = {
   css: "@prismforge/tokens-css",
   js: "@prismforge/tokens-js",
@@ -231,6 +235,98 @@ function runCommand(command, commandArgs, options = {}) {
   };
 }
 
+function normalizeGitHostProvider(hostname) {
+  const host = String(hostname ?? "").toLowerCase();
+  if (host === "github.com" || host.endsWith(".github.com")) {
+    return "github";
+  }
+  if (host === "gitlab.com" || host.endsWith(".gitlab.com")) {
+    return "gitlab";
+  }
+  if (host === "bitbucket.org" || host.endsWith(".bitbucket.org")) {
+    return "bitbucket";
+  }
+  return "generic";
+}
+
+function parseRemoteRepository(remoteUrl) {
+  const raw = String(remoteUrl ?? "").trim();
+  if (!raw) {
+    return null;
+  }
+
+  // SCP-like SSH URL: git@host:owner/repo.git
+  const scpMatch = raw.match(/^[^@]+@([^:]+):(.+)$/u);
+  if (scpMatch) {
+    const host = scpMatch[1].trim().toLowerCase();
+    const repoPath = scpMatch[2].replace(/\.git$/u, "").replace(/^\/+/u, "").trim();
+    if (!repoPath) {
+      return null;
+    }
+    const provider = normalizeGitHostProvider(host);
+    return {
+      provider,
+      repository: provider === "generic" ? `${host}/${repoPath}` : repoPath
+    };
+  }
+
+  try {
+    const parsed = new URL(raw);
+    const host = parsed.hostname.toLowerCase();
+    const repoPath = parsed.pathname.replace(/\.git$/u, "").replace(/^\/+/u, "").trim();
+    if (!repoPath) {
+      return null;
+    }
+    const provider = normalizeGitHostProvider(host);
+    return {
+      provider,
+      repository: provider === "generic" ? `${host}/${repoPath}` : repoPath
+    };
+  } catch {
+    return null;
+  }
+}
+
+function detectGitInitDefaults() {
+  const insideRepo = runCommand("git", ["rev-parse", "--is-inside-work-tree"]);
+  if (insideRepo.status !== 0 || insideRepo.stdout.trim() !== "true") {
+    return null;
+  }
+
+  const defaults = {
+    provider: "github",
+    repository: "",
+    baseBranch: "main",
+    source: "git"
+  };
+
+  const originUrl = runCommand("git", ["remote", "get-url", "origin"]);
+  if (originUrl.status === 0) {
+    const parsed = parseRemoteRepository(originUrl.stdout);
+    if (parsed) {
+      defaults.provider = parsed.provider;
+      defaults.repository = parsed.repository;
+    }
+  }
+
+  const originHead = runCommand("git", ["symbolic-ref", "--quiet", "--short", "refs/remotes/origin/HEAD"]);
+  if (originHead.status === 0) {
+    const head = originHead.stdout.trim();
+    if (head.includes("/")) {
+      defaults.baseBranch = head.split("/").slice(1).join("/");
+    } else if (head) {
+      defaults.baseBranch = head;
+    }
+  } else {
+    const currentBranch = runCommand("git", ["branch", "--show-current"]);
+    if (currentBranch.status === 0 && currentBranch.stdout.trim()) {
+      defaults.baseBranch = currentBranch.stdout.trim();
+    }
+  }
+
+  return defaults;
+}
+
 function resolveTemplateRoot(customRoot) {
   if (customRoot) {
     const resolved = path.resolve(String(customRoot));
@@ -247,17 +343,20 @@ function resolveTemplateRoot(customRoot) {
     return localRoot;
   }
 
-  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "prismforge-init-"));
-  const cloneTarget = path.join(tempRoot, "template");
-  const cloneResult = runCommand("git", ["clone", "--depth", "1", DEFAULT_INIT_REPO_URL, cloneTarget]);
-
-  if (cloneResult.status !== 0) {
-    throw new Error(
-      `Unable to fetch PrismForge template via git clone.\n${cloneResult.stderr || cloneResult.stdout}`
-    );
+  const failures = [];
+  for (const repositoryUrl of DEFAULT_INIT_REPO_URLS) {
+    const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "prismforge-init-"));
+    const cloneTarget = path.join(tempRoot, "template");
+    const cloneResult = runCommand("git", ["clone", "--depth", "1", repositoryUrl, cloneTarget]);
+    if (cloneResult.status === 0) {
+      return cloneTarget;
+    }
+    failures.push(`${repositoryUrl}: ${cloneResult.stderr || cloneResult.stdout}`);
   }
 
-  return cloneTarget;
+  throw new Error(
+    `Unable to fetch PrismForge template via git clone.\n${failures.join("\n")}`
+  );
 }
 
 function shouldPromptForInit(flags) {
@@ -458,9 +557,10 @@ GITHUB_BASE_BRANCH=${options.baseBranch}
 }
 
 async function commandInit(flags) {
-  const defaultProvider = String(flags.provider ?? "github").trim().toLowerCase();
-  const defaultRepository = String(flags.repository ?? "your-org/your-token-repo").trim();
-  const defaultBaseBranch = String(flags["base-branch"] ?? flags.baseBranch ?? "main").trim();
+  const detectedGitDefaults = detectGitInitDefaults();
+  const defaultProvider = String(flags.provider ?? detectedGitDefaults?.provider ?? "github").trim().toLowerCase();
+  const defaultRepository = String(flags.repository ?? detectedGitDefaults?.repository ?? "").trim();
+  const defaultBaseBranch = String(flags["base-branch"] ?? flags.baseBranch ?? detectedGitDefaults?.baseBranch ?? "main").trim();
   const defaultDir = String(flags.dir ?? "prismforge-studio").trim() || "prismforge-studio";
 
   let includeStudio = true;
@@ -497,7 +597,11 @@ async function commandInit(flags) {
         "Git provider (github|gitlab|bitbucket|generic)",
         provider
       );
-      const promptedRepository = await promptInput(rl, "Repository (owner/repo or host/path)", repository);
+      const promptedRepository = await promptInput(
+        rl,
+        "Repository (owner/repo or host/path, optional)",
+        repository
+      );
       const promptedBaseBranch = await promptInput(rl, "Base branch", baseBranch);
       const promptedTargets = await promptForTokenTargets(rl, targets.join(","));
       const promptedStudio = await promptBoolean(rl, "Include Token Studio UI", includeStudio);
@@ -517,11 +621,6 @@ async function commandInit(flags) {
 
   if (!SUPPORTED_GIT_PROVIDERS.includes(provider)) {
     fail("Init requires --provider <github|gitlab|bitbucket|generic>.");
-    return;
-  }
-
-  if (!repository) {
-    fail("Init requires a non-empty --repository value.");
     return;
   }
 
@@ -624,7 +723,7 @@ async function commandInit(flags) {
   console.log("");
   console.log("Configuration:");
   console.log(`  Provider: ${provider}`);
-  console.log(`  Repository: ${repository}`);
+  console.log(`  Repository: ${repository || "(not set)"}`);
   console.log(`  Base branch: ${baseBranch}`);
   console.log(`  Token targets: ${targets.join(", ")}`);
   console.log(`  Token packages: ${formatTargetPackageList(targets)}`);
@@ -640,6 +739,10 @@ async function commandInit(flags) {
     const stepOffset = installDeps ? 3 : 4;
     console.log(`  ${stepOffset}) copy apps/token-studio/.env.example to apps/token-studio/.env.local and adjust values`);
     console.log(`  ${stepOffset + 1}) pnpm dev`);
+    if (!repository) {
+      console.log("");
+      console.log("Note: repository is empty. Set GIT_REPOSITORY in apps/token-studio/.env.local before using PR flows.");
+    }
   }
 }
 

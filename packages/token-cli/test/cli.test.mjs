@@ -11,6 +11,13 @@ const __dirname = path.dirname(__filename);
 const cliPath = path.join(__dirname, "..", "src", "cli.js");
 const repoRoot = path.join(__dirname, "..", "..", "..");
 
+function runGit(args, cwd) {
+  return spawnSync("git", args, {
+    cwd,
+    encoding: "utf8"
+  });
+}
+
 test("prismforge without args prints help without module resolution failures", () => {
   const result = spawnSync(process.execPath, [cliPath], {
     cwd: repoRoot,
@@ -283,6 +290,44 @@ test("prismforge init rejects unknown token targets", () => {
 
   assert.equal(result.status, 1);
   assert.match(result.stderr, /Unknown token target/u);
+});
+
+test("prismforge init detects provider and repository from origin remote", () => {
+  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "prismforge-init-detect-git-"));
+  assert.equal(runGit(["init"], cwd).status, 0);
+  assert.equal(runGit(["remote", "add", "origin", "https://github.com/acme/platform-tokens.git"], cwd).status, 0);
+
+  const targetDir = path.join(cwd, "studio");
+  const result = spawnSync(
+    process.execPath,
+    [cliPath, "init", "--dir", targetDir, "--template-root", repoRoot, "--studio", "true"],
+    {
+      cwd,
+      encoding: "utf8"
+    }
+  );
+
+  assert.equal(result.status, 0);
+  const envExample = fs.readFileSync(path.join(targetDir, "apps", "token-studio", ".env.example"), "utf8");
+  assert.match(envExample, /GIT_PROVIDER=github/u);
+  assert.match(envExample, /GIT_REPOSITORY=acme\/platform-tokens/u);
+});
+
+test("prismforge init allows empty repository for new workspaces", () => {
+  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "prismforge-init-empty-repo-"));
+  const targetDir = path.join(cwd, "studio");
+  const result = spawnSync(
+    process.execPath,
+    [cliPath, "init", "--dir", targetDir, "--template-root", repoRoot, "--studio", "true"],
+    {
+      cwd,
+      encoding: "utf8"
+    }
+  );
+
+  assert.equal(result.status, 0);
+  const envExample = fs.readFileSync(path.join(targetDir, "apps", "token-studio", ".env.example"), "utf8");
+  assert.match(envExample, /^GIT_REPOSITORY=$/mu);
 });
 
 
