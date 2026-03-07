@@ -1,5 +1,11 @@
 # @prismforge/token-cli
 
+## 0.5.1
+
+### Patch Changes
+
+- 35f2963: Fix `prismforge init` dependency installation on Windows/npm environments by improving command execution fallback for package manager commands.
+
 ## 0.5.0
 
 ### Minor Changes
