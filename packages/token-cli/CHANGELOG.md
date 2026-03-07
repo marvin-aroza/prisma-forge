@@ -1,5 +1,11 @@
 # @prismforge/token-cli
 
+## 0.3.0
+
+### Minor Changes
+
+- 07face8: Improve `prismforge init` for external consumers with an interactive setup flow (targets + optional Token Studio) and tokens-only scaffold support. Also fix CLI startup module resolution by lazy-loading runtime token modules so `npx @prismforge/token-cli` works outside the monorepo.
+
 ## 0.2.0
 
 ### Minor Changes
