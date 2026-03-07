@@ -266,17 +266,48 @@ function copyDirectory(source, destination) {
 }
 
 function runCommand(command, commandArgs, options = {}) {
-  const result = spawnSync(command, commandArgs, {
+  const spawnOptions = {
     stdio: "pipe",
     encoding: "utf8",
     ...options
-  });
+  };
 
-  return {
-    status: result.status ?? 1,
+  const hasPathSeparator = String(command).includes("/") || String(command).includes("\\");
+  const hasExtension = path.extname(String(command)).length > 0;
+  const result = spawnSync(command, commandArgs, spawnOptions);
+  const normalized = {
+    status: result.status ?? (result.error ? 1 : 0),
     stdout: result.stdout ?? "",
     stderr: result.stderr ?? "",
     error: result.error ?? null
+  };
+
+  const isWindowsBareCommand = process.platform === "win32" && !hasPathSeparator && !hasExtension;
+  const shouldTryShellFallback =
+    isWindowsBareCommand &&
+    normalized.error &&
+    (normalized.error.code === "ENOENT" || normalized.error.code === "EINVAL");
+  if (!shouldTryShellFallback) {
+    return normalized;
+  }
+
+  const shellCommand = [command, ...commandArgs.map((arg) => {
+    const text = String(arg);
+    if (!/[ \t"^&|<>()]/u.test(text)) {
+      return text;
+    }
+    return `"${text.replace(/"/gu, '\\"')}"`;
+  })].join(" ");
+  const shellResult = spawnSync(shellCommand, {
+    ...spawnOptions,
+    shell: true
+  });
+
+  return {
+    status: shellResult.status ?? (shellResult.error ? 1 : 0),
+    stdout: shellResult.stdout ?? "",
+    stderr: shellResult.stderr ?? "",
+    error: shellResult.error ?? null
   };
 }
 
@@ -794,8 +825,11 @@ async function commandInit(flags) {
       stdio: "inherit"
     });
     if (installResult.status !== 0) {
+      const installDetails = installResult.error?.message
+        ? `\nInstall error: ${installResult.error.message}`
+        : "";
       fail(
-        `Scaffold completed, but dependency installation failed. Run \`${packageManager} install\` manually.`
+        `Scaffold completed, but dependency installation failed. Run \`${packageManager} install\` manually.${installDetails}`
       );
       return;
     }
