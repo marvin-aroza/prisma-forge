@@ -67,11 +67,11 @@ jobs:
         if: ${{ inputs.channel == 'next' }}
         run: pnpm changeset pre enter next
 
-      - name: Version packages
-        run: pnpm changeset version
-
       - name: Show release status
         run: pnpm changeset status
+
+      - name: Version packages
+        run: pnpm changeset version
 
       - name: Configure npm auth
         if: ${{ !inputs.dry_run }}
