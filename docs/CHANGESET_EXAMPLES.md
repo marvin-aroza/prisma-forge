@@ -36,6 +36,16 @@ After stable is published, create a new file under `.changeset/` such as `.chang
 Preview release for upcoming token and tooling updates on the `next` channel.
 ```
 
+## Other prerelease tags (`alpha`, `beta`, `rc`, `canary`, custom)
+
+Changeset files stay the same format. The tag is chosen at publish time via release workflow input `channel`:
+
+- `alpha` -> npm tag `alpha`
+- `beta` -> npm tag `beta`
+- `rc` -> npm tag `rc`
+- `canary` -> npm tag `canary`
+- `custom` + `dist_tag=<tag>` -> npm tag `<tag>`
+
 ## Notes
 
 - Keep entries focused on packages that actually changed.

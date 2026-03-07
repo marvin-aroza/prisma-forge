@@ -17,6 +17,11 @@
     "prismforge": "pnpm --filter @prismforge/token-cli prismforge",
     "release:guard:stable": "node ./scripts/release-guard.mjs --channel stable",
     "release:guard:next": "node ./scripts/release-guard.mjs --channel next",
+    "release:guard:alpha": "node ./scripts/release-guard.mjs --channel alpha",
+    "release:guard:beta": "node ./scripts/release-guard.mjs --channel beta",
+    "release:guard:rc": "node ./scripts/release-guard.mjs --channel rc",
+    "release:guard:canary": "node ./scripts/release-guard.mjs --channel canary",
+    "release:guard:custom": "node ./scripts/release-guard.mjs --channel custom --dist-tag preview",
     "test:studio:e2e": "pnpm --filter @prismforge/token-studio test:e2e"
   },
   "devDependencies": {

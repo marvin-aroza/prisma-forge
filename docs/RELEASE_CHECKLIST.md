@@ -14,7 +14,8 @@ This checklist is for maintainers publishing PrismForge packages.
 1. Open GitHub Actions.
 2. Run workflow `.github/workflows/release.yml`.
 3. Set:
-   - `channel`: `stable` or `next`
+   - `channel`: `stable|next|alpha|beta|rc|canary|custom`
+   - `dist_tag`: required only when `channel=custom`
    - `dry_run`: `true`
 4. Confirm the job passes:
    - release guard
@@ -23,7 +24,7 @@ This checklist is for maintainers publishing PrismForge packages.
    - `pnpm test`
    - `pnpm build`
 
-## Exact sequence for v0.1.x (stable + next)
+## Exact sequence for v0.1.x (stable + prerelease)
 
 Run these in order:
 
@@ -37,17 +38,19 @@ Run these in order:
 4. Verify npm `latest` tags and install smoke tests.
 5. Add a fresh changeset for post-stable work intended for prerelease.
 6. Run `.github/workflows/release.yml` with:
-   - `channel=next`
+   - `channel=next` (or `alpha|beta|rc|canary|custom`)
+   - if `channel=custom`, set `dist_tag=<your-tag>`
    - `dry_run=true`
 7. Run `.github/workflows/release.yml` with:
-   - `channel=next`
+   - `channel=next` (or `alpha|beta|rc|canary|custom`)
+   - if `channel=custom`, set `dist_tag=<your-tag>`
    - `dry_run=false`
-8. Verify npm `next` tags and install smoke tests.
+8. Verify npm prerelease tags and install smoke tests.
 
 Important:
 
-- Do not run stable and next publish back-to-back from the same pending changesets.
-- After stable publish, create at least one new `.changeset/*.md` entry before next publish.
+- Do not run stable and prerelease publish back-to-back from the same pending changesets.
+- After stable publish, create at least one new `.changeset/*.md` entry before prerelease publish.
 
 ## Publish run
 
@@ -58,6 +61,8 @@ Important:
 3. Confirm publish step succeeds:
    - `stable` -> `changeset publish --tag latest`
    - `next` -> `changeset publish --tag next`
+   - `alpha|beta|rc|canary` -> `changeset publish --tag <channel>`
+   - `custom` -> `changeset publish --tag <dist_tag>`
 4. Confirm release commit and tags are pushed to `main`.
 
 ## Post-release verification
@@ -71,6 +76,8 @@ Important:
 2. Verify install smoke test in a clean sandbox:
    - `npm i @prismforge/tokens-css@latest` (stable)
    - `npm i @prismforge/tokens-css@next` (next)
+   - `npm i @prismforge/tokens-css@alpha` (example alpha)
+   - `npm i @prismforge/tokens-css@beta` (example beta)
 3. Announce the release in project channels with changelog highlights.
 
 ## If publish fails

@@ -40,6 +40,8 @@ pnpm --filter @prismforge/token-cli prismforge validate
 
 - Stable: default `latest` channel.
 - Next: prerelease `next` channel for early adopters.
+- Additional prerelease channels: `alpha`, `beta`, `rc`, `canary`.
+- Custom prerelease tags are supported via `channel=custom` + `dist_tag`.
 
 ## Release automation
 
@@ -48,7 +50,8 @@ GitHub Actions includes a manual release workflow:
 - Workflow: `.github/workflows/release.yml`
 - Trigger: `workflow_dispatch`
 - Inputs:
-  - `channel`: `stable` or `next`
+  - `channel`: `stable|next|alpha|beta|rc|canary|custom`
+  - `dist_tag`: required when `channel=custom`
   - `dry_run`: run full checks without publish/push
 
 Required secret for publish:

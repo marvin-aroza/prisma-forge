@@ -32,6 +32,8 @@ pnpm test
 - Channels:
   - `stable`: publishes with npm tag `latest`.
   - `next`: publishes with npm tag `next`.
+  - `alpha|beta|rc|canary`: publish to matching prerelease tags.
+  - `custom`: publish to any custom npm dist-tag (requires `dist_tag` input).
 - Use `dry_run=true` first to validate guard/test/build without publish.
 - For publish, set repository secret `NPM_TOKEN`.
 - Follow the operator checklist: `docs/RELEASE_CHECKLIST.md`.

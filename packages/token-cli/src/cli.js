@@ -6,6 +6,9 @@ import { loadMappings, validateMappings } from "../../token-mappings/src/index.j
 import { resolveAliases, validateTokens } from "../../token-schema/src/index.js";
 import { loadAllTokenSources, loadTokenSource } from "../../token-source/src/index.js";
 
+const SUPPORTED_RELEASE_CHANNELS = ["stable", "next", "alpha", "beta", "rc", "canary", "custom"];
+const SEMVER_LIKE_PATTERN = /^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$/u;
+
 function parseFlags(args) {
   const flags = {};
   for (let i = 0; i < args.length; i += 1) {
@@ -33,7 +36,7 @@ Commands:
   prismforge validate
   prismforge build --brand <id> --mode <id> --target <css|js|android|ios|all> [--out <dir>]
   prismforge diff --from <version-or-file> --to <version-or-file>
-  prismforge release --channel <stable|next>
+  prismforge release --channel <stable|next|alpha|beta|rc|canary|custom> [--dist-tag <tag>]
   prismforge figma export --brand <id> --mode <id> [--out <file>]
 `);
 }
@@ -159,28 +162,59 @@ function commandDiff(flags) {
 
 function commandRelease(flags) {
   const channel = flags.channel;
-  if (!channel || !["stable", "next"].includes(channel)) {
-    fail("Release command requires --channel <stable|next>.");
+  const distTagInput = flags["dist-tag"] ?? flags.tag ?? "";
+  if (!channel || !SUPPORTED_RELEASE_CHANNELS.includes(channel)) {
+    fail("Release command requires --channel <stable|next|alpha|beta|rc|canary|custom>.");
     return;
+  }
+
+  let publishTag = "";
+  let preMode = null;
+
+  if (channel === "stable") {
+    publishTag = "latest";
+    if (distTagInput && String(distTagInput).trim() && String(distTagInput).trim() !== "latest") {
+      fail('Stable channel always publishes to "latest".');
+      return;
+    }
+  } else if (channel === "custom") {
+    const trimmed = String(distTagInput).trim();
+    const isValidFormat = /^[A-Za-z0-9][A-Za-z0-9._-]*$/u.test(trimmed);
+    if (!trimmed || !isValidFormat || SEMVER_LIKE_PATTERN.test(trimmed) || trimmed === "latest") {
+      fail(
+        "Custom channel requires --dist-tag with a valid npm dist-tag (letters/numbers/._-, non-semver, not latest)."
+      );
+      return;
+    }
+    publishTag = trimmed;
+    preMode = trimmed;
+  } else {
+    publishTag = channel;
+    preMode = channel;
   }
 
   const plan = {
     channel,
-    publishTag: channel === "stable" ? "latest" : "next",
+    publishTag,
+    preMode,
     steps:
-      channel === "stable"
-        ? ["pnpm changeset version", "pnpm changeset publish --tag latest"]
+      preMode === null
+        ? ["pnpm changeset version", `pnpm changeset publish --tag ${publishTag}`]
         : [
-            "pnpm changeset pre enter next",
+            `pnpm changeset pre enter ${preMode}`,
             "pnpm changeset version",
-            "pnpm changeset publish --tag next",
+            `pnpm changeset publish --tag ${publishTag}`,
             "pnpm changeset pre exit"
           ]
   };
 
   const outDir = path.resolve(process.cwd(), "artifacts", "release");
   fs.mkdirSync(outDir, { recursive: true });
-  const outFile = path.join(outDir, `release-${channel}.json`);
+  const fileSuffix =
+    channel === "custom"
+      ? `custom-${publishTag.replace(/[^A-Za-z0-9._-]/gu, "-")}`
+      : channel;
+  const outFile = path.join(outDir, `release-${fileSuffix}.json`);
   fs.writeFileSync(outFile, `${JSON.stringify(plan, null, 2)}\n`, "utf8");
   console.log(`Release plan written to ${outFile}`);
   console.log(JSON.stringify(plan, null, 2));

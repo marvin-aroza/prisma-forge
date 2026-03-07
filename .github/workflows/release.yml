@@ -11,6 +11,16 @@ on:
         options:
           - stable
           - next
+          - alpha
+          - beta
+          - rc
+          - canary
+          - custom
+      dist_tag:
+        description: "Custom npm dist-tag (required when channel=custom)"
+        required: false
+        default: ""
+        type: string
       dry_run:
         description: "Run release pipeline without publish/push"
         required: true
@@ -18,7 +28,7 @@ on:
         type: boolean
 
 concurrency:
-  group: release-${{ github.ref }}-${{ inputs.channel }}
+  group: release-${{ github.ref }}-${{ inputs.channel }}-${{ inputs.dist_tag || 'default' }}
   cancel-in-progress: false
 
 jobs:
@@ -49,7 +59,31 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Release guard
-        run: node ./scripts/release-guard.mjs --channel ${{ inputs.channel }}
+        run: node ./scripts/release-guard.mjs --channel ${{ inputs.channel }} --dist-tag "${{ inputs.dist_tag }}"
+
+      - name: Resolve release target
+        id: release_target
+        run: |
+          CHANNEL="${{ inputs.channel }}"
+          DIST_TAG_INPUT="${{ inputs.dist_tag }}"
+
+          if [ "$CHANNEL" = "stable" ]; then
+            RELEASE_TAG="latest"
+            PRE_MODE=""
+            IS_PRERELEASE="false"
+          elif [ "$CHANNEL" = "custom" ]; then
+            RELEASE_TAG="$DIST_TAG_INPUT"
+            PRE_MODE="$DIST_TAG_INPUT"
+            IS_PRERELEASE="true"
+          else
+            RELEASE_TAG="$CHANNEL"
+            PRE_MODE="$CHANNEL"
+            IS_PRERELEASE="true"
+          fi
+
+          echo "tag=$RELEASE_TAG" >> "$GITHUB_OUTPUT"
+          echo "pre_mode=$PRE_MODE" >> "$GITHUB_OUTPUT"
+          echo "is_prerelease=$IS_PRERELEASE" >> "$GITHUB_OUTPUT"
 
       - name: Release preflight
         run: pnpm release:preflight
@@ -63,9 +97,9 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Enter next prerelease mode
-        if: ${{ inputs.channel == 'next' }}
-        run: pnpm changeset pre enter next
+      - name: Enter prerelease mode
+        if: ${{ steps.release_target.outputs.is_prerelease == 'true' }}
+        run: pnpm changeset pre enter ${{ steps.release_target.outputs.pre_mode }}
 
       - name: Show release status
         run: pnpm changeset status
@@ -86,15 +120,10 @@ jobs:
 
       - name: Publish packages
         if: ${{ !inputs.dry_run }}
-        run: |
-          if [ "${{ inputs.channel }}" = "stable" ]; then
-            pnpm changeset publish --tag latest
-          else
-            pnpm changeset publish --tag next
-          fi
+        run: pnpm changeset publish --tag ${{ steps.release_target.outputs.tag }}
 
-      - name: Exit next prerelease mode
-        if: ${{ inputs.channel == 'next' }}
+      - name: Exit prerelease mode
+        if: ${{ steps.release_target.outputs.is_prerelease == 'true' }}
         run: pnpm changeset pre exit
 
       - name: Commit release artifacts
@@ -104,7 +133,7 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add -A
-            git commit -m "chore(release): ${{ inputs.channel }} release"
+            git commit -m "chore(release): ${{ inputs.channel }} (${{ steps.release_target.outputs.tag }}) release"
             git push origin main
           fi
           git push --follow-tags origin main
@@ -112,4 +141,7 @@ jobs:
       - name: Release summary
         run: |
           echo "channel=${{ inputs.channel }}"
+          echo "dist_tag_input=${{ inputs.dist_tag }}"
+          echo "resolved_tag=${{ steps.release_target.outputs.tag }}"
+          echo "prerelease=${{ steps.release_target.outputs.is_prerelease }}"
           echo "dry_run=${{ inputs.dry_run }}"

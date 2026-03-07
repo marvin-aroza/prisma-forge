@@ -20,4 +20,13 @@ jobs:
         run: node ./scripts/release-guard.mjs --channel stable
       - name: Next guard
         run: node ./scripts/release-guard.mjs --channel next
-
+      - name: Alpha guard
+        run: node ./scripts/release-guard.mjs --channel alpha
+      - name: Beta guard
+        run: node ./scripts/release-guard.mjs --channel beta
+      - name: RC guard
+        run: node ./scripts/release-guard.mjs --channel rc
+      - name: Canary guard
+        run: node ./scripts/release-guard.mjs --channel canary
+      - name: Custom guard
+        run: node ./scripts/release-guard.mjs --channel custom --dist-tag preview

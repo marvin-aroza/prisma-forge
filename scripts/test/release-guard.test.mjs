@@ -34,7 +34,8 @@ test("release guard passes for stable with public access config", () => {
   const result = runReleaseGuard(cwd, ["--channel", "stable"]);
 
   assert.equal(result.status, 0);
-  assert.match(result.stdout, /Stable channel guard passed/u);
+  assert.match(result.stdout, /channel=stable/u);
+  assert.match(result.stdout, /dist-tag=latest/u);
 });
 
 test("release guard passes for next with public access config", () => {
@@ -42,7 +43,26 @@ test("release guard passes for next with public access config", () => {
   const result = runReleaseGuard(cwd, ["--channel", "next"]);
 
   assert.equal(result.status, 0);
-  assert.match(result.stdout, /Next channel guard passed/u);
+  assert.match(result.stdout, /channel=next/u);
+  assert.match(result.stdout, /dist-tag=next/u);
+});
+
+test("release guard passes for alpha with public access config", () => {
+  const cwd = createTempRepoConfig("public");
+  const result = runReleaseGuard(cwd, ["--channel", "alpha"]);
+
+  assert.equal(result.status, 0);
+  assert.match(result.stdout, /channel=alpha/u);
+  assert.match(result.stdout, /dist-tag=alpha/u);
+});
+
+test("release guard passes for custom channel with explicit dist-tag", () => {
+  const cwd = createTempRepoConfig("public");
+  const result = runReleaseGuard(cwd, ["--channel", "custom", "--dist-tag", "preview-build"]);
+
+  assert.equal(result.status, 0);
+  assert.match(result.stdout, /channel=custom/u);
+  assert.match(result.stdout, /dist-tag=preview-build/u);
 });
 
 test("release guard fails when .changeset/config.json is missing", () => {
@@ -63,8 +83,24 @@ test("release guard fails when access is not public", () => {
 
 test("release guard fails for invalid channel", () => {
   const cwd = createTempRepoConfig("public");
-  const result = runReleaseGuard(cwd, ["--channel", "beta"]);
+  const result = runReleaseGuard(cwd, ["--channel", "ga"]);
 
   assert.equal(result.status, 1);
   assert.match(result.stderr, /Invalid --channel/u);
+});
+
+test("release guard fails when custom channel is missing dist-tag", () => {
+  const cwd = createTempRepoConfig("public");
+  const result = runReleaseGuard(cwd, ["--channel", "custom"]);
+
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /requires a valid --dist-tag/u);
+});
+
+test("release guard fails when custom dist-tag is semver-like", () => {
+  const cwd = createTempRepoConfig("public");
+  const result = runReleaseGuard(cwd, ["--channel", "custom", "--dist-tag", "1.2.3"]);
+
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /requires a valid --dist-tag/u);
 });
