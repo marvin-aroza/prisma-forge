@@ -12,8 +12,9 @@ import {
   upsertManyTokensJsonText
 } from "./helpers.mjs";
 
-const DEFAULT_REPOSITORY = "prismforge/prismforge";
-const DEFAULT_BASE_BRANCH = "main";
+const DEFAULT_GIT_PROVIDER = "github";
+const DEFAULT_GIT_REPOSITORY = "prismforge/prismforge";
+const DEFAULT_GIT_BASE_BRANCH = "main";
 const GITHUB_API_BASE = "https://api.github.com";
 
 interface DraftPayload {
@@ -59,6 +60,13 @@ interface GitHubConfig {
   repo: string;
   token: string;
   baseBranch: string;
+}
+
+interface GitSettings {
+  provider: "github" | "gitlab" | "bitbucket" | "generic";
+  repository: string;
+  baseBranch: string;
+  compareUrlTemplate: string | null;
 }
 
 interface GitHubRefResponse {
@@ -160,9 +168,43 @@ function asMappingValidationError(tokenId: string, issue: MappingValidationIssue
   return asError(tokenId, "mapping_contract_invalid", `${issue.code}: ${issue.message}`);
 }
 
+function normalizeProvider(raw: string): GitSettings["provider"] {
+  const value = raw.trim().toLowerCase();
+  if (value === "github" || value === "gitlab" || value === "bitbucket" || value === "generic") {
+    return value;
+  }
+  return "github";
+}
+
+function getGitSettings(): GitSettings {
+  const repository =
+    process.env.GIT_REPOSITORY ?? process.env.GITHUB_REPOSITORY ?? DEFAULT_GIT_REPOSITORY;
+  const baseBranch =
+    process.env.GIT_BASE_BRANCH ?? process.env.GITHUB_BASE_BRANCH ?? DEFAULT_GIT_BASE_BRANCH;
+  const provider = normalizeProvider(process.env.GIT_PROVIDER ?? DEFAULT_GIT_PROVIDER);
+  const compareUrlTemplate = process.env.GIT_COMPARE_URL_TEMPLATE?.trim() || null;
+
+  return {
+    provider,
+    repository,
+    baseBranch,
+    compareUrlTemplate
+  };
+}
+
+function applyCompareTemplate(
+  template: string,
+  values: Record<"repository" | "baseBranch" | "branch" | "title" | "body", string>
+) {
+  let next = template;
+  for (const [key, value] of Object.entries(values)) {
+    next = next.replaceAll(`{${key}}`, value);
+  }
+  return next;
+}
+
 function buildPrUrl(branch: string, tokenId: string, tokenPayload: unknown) {
-  const repository = process.env.GITHUB_REPOSITORY ?? DEFAULT_REPOSITORY;
-  const baseBranch = process.env.GITHUB_BASE_BRANCH ?? DEFAULT_BASE_BRANCH;
+  const settings = getGitSettings();
   const title = encodeURIComponent(`token: propose ${tokenId}`);
   const body = encodeURIComponent(
     `Generated from Token Studio.\n\nProposed token:\n\n\`\`\`json\n${JSON.stringify(
@@ -171,7 +213,40 @@ function buildPrUrl(branch: string, tokenId: string, tokenPayload: unknown) {
       2
     )}\n\`\`\``
   );
-  return `https://github.com/${repository}/compare/${baseBranch}...${branch}?expand=1&title=${title}&body=${body}`;
+
+  if (settings.compareUrlTemplate) {
+    return applyCompareTemplate(settings.compareUrlTemplate, {
+      repository: encodeURIComponent(settings.repository),
+      baseBranch: encodeURIComponent(settings.baseBranch),
+      branch: encodeURIComponent(branch),
+      title,
+      body
+    });
+  }
+
+  if (settings.provider === "gitlab") {
+    const encodedRepoPath = settings.repository
+      .split("/")
+      .map((segment) => encodeURIComponent(segment))
+      .join("/");
+    return `https://gitlab.com/${encodedRepoPath}/-/merge_requests/new?merge_request[source_branch]=${encodeURIComponent(
+      branch
+    )}&merge_request[target_branch]=${encodeURIComponent(settings.baseBranch)}&merge_request[title]=${title}&merge_request[description]=${body}`;
+  }
+
+  if (settings.provider === "bitbucket") {
+    return `https://bitbucket.org/${settings.repository}/pull-requests/new?source=${encodeURIComponent(
+      branch
+    )}&dest=${encodeURIComponent(settings.baseBranch)}&title=${title}&description=${body}`;
+  }
+
+  if (settings.provider === "generic") {
+    return /^https?:\/\//u.test(settings.repository)
+      ? settings.repository
+      : `https://${settings.repository}`;
+  }
+
+  return `https://github.com/${settings.repository}/compare/${settings.baseBranch}...${branch}?expand=1&title=${title}&body=${body}`;
 }
 
 function parseRepository(repository: string): { owner: string; repo: string } | null {
@@ -183,7 +258,12 @@ function parseRepository(repository: string): { owner: string; repo: string } | 
 }
 
 function getGitHubConfig(): GitHubConfig | null {
-  const repository = process.env.GITHUB_REPOSITORY ?? DEFAULT_REPOSITORY;
+  const settings = getGitSettings();
+  if (settings.provider !== "github") {
+    return null;
+  }
+
+  const repository = process.env.GITHUB_REPOSITORY ?? settings.repository;
   const parsed = parseRepository(repository);
   const token = process.env.GITHUB_TOKEN;
   if (!parsed || !token) {
@@ -194,7 +274,7 @@ function getGitHubConfig(): GitHubConfig | null {
     owner: parsed.owner,
     repo: parsed.repo,
     token,
-    baseBranch: process.env.GITHUB_BASE_BRANCH ?? DEFAULT_BASE_BRANCH
+    baseBranch: process.env.GITHUB_BASE_BRANCH ?? settings.baseBranch
   };
 }
 
@@ -517,6 +597,7 @@ export async function POST(request: Request) {
   }
 
   const branch = `token-update-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+  const gitSettings = getGitSettings();
   const github = getGitHubConfig();
   const primaryTokenId = draftTokens[0].id;
   const summaryPayload =
@@ -663,6 +744,11 @@ export async function POST(request: Request) {
   }
 
   if (!github) {
+    const message =
+      gitSettings.provider === "github"
+        ? "GitHub autopilot is not configured. Set GITHUB_TOKEN to enable automatic branch and PR creation."
+        : `Provider "${gitSettings.provider}" is running in compare-url mode. Configure GIT_COMPARE_URL_TEMPLATE for custom PR/MR links if needed.`;
+
     return Response.json({
       ok: true,
       mode: "compare-url",
@@ -671,7 +757,7 @@ export async function POST(request: Request) {
       mappingCount: draftMappings.length,
       branch,
       prUrl,
-      message: "GitHub autopilot is not configured. Set GITHUB_TOKEN to enable automatic branch and PR creation."
+      message
     });
   }
 

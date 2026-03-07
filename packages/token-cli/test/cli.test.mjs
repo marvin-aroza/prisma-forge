@@ -9,10 +9,11 @@ import { fileURLToPath } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const cliPath = path.join(__dirname, "..", "src", "cli.js");
+const repoRoot = path.join(__dirname, "..", "..", "..");
 
 test("prismforge validate exits successfully", () => {
   const result = spawnSync(process.execPath, [cliPath, "validate"], {
-    cwd: path.join(__dirname, "..", "..", ".."),
+    cwd: repoRoot,
     encoding: "utf8"
   });
 
@@ -27,7 +28,7 @@ test("prismforge figma export writes file", () => {
     process.execPath,
     [cliPath, "figma", "export", "--brand", "acme", "--mode", "light", "--out", outFile],
     {
-      cwd: path.join(__dirname, "..", "..", ".."),
+      cwd: repoRoot,
       encoding: "utf8"
     }
   );
@@ -166,6 +167,111 @@ test("prismforge release rejects semver-like custom dist-tag", () => {
 
   assert.equal(result.status, 1);
   assert.match(result.stderr, /valid npm dist-tag/u);
+});
+
+test("prismforge init scaffolds a self-hosted studio workspace", () => {
+  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "prismforge-init-workspace-"));
+  const targetDir = path.join(cwd, "studio");
+  const result = spawnSync(
+    process.execPath,
+    [
+      cliPath,
+      "init",
+      "--dir",
+      targetDir,
+      "--provider",
+      "gitlab",
+      "--repository",
+      "acme/platform-tokens",
+      "--base-branch",
+      "develop",
+      "--template-root",
+      repoRoot
+    ],
+    {
+      cwd,
+      encoding: "utf8"
+    }
+  );
+
+  assert.equal(result.status, 0);
+  assert.ok(fs.existsSync(path.join(targetDir, "apps", "token-studio", "package.json")));
+  assert.ok(fs.existsSync(path.join(targetDir, "packages", "token-source", "src", "tokens")));
+  assert.ok(fs.existsSync(path.join(targetDir, "packages", "token-schema", "src", "index.js")));
+  assert.ok(fs.existsSync(path.join(targetDir, "packages", "token-mappings", "src", "index.js")));
+
+  const envExample = fs.readFileSync(path.join(targetDir, "apps", "token-studio", ".env.example"), "utf8");
+  assert.match(envExample, /GIT_PROVIDER=gitlab/u);
+  assert.match(envExample, /GIT_REPOSITORY=acme\/platform-tokens/u);
+  assert.match(envExample, /GIT_BASE_BRANCH=develop/u);
+});
+
+test("prismforge init rejects non-empty target directories unless --force is used", () => {
+  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "prismforge-init-non-empty-"));
+  const targetDir = path.join(cwd, "studio");
+  fs.mkdirSync(targetDir, { recursive: true });
+  fs.writeFileSync(path.join(targetDir, "placeholder.txt"), "seed", "utf8");
+
+  const result = spawnSync(
+    process.execPath,
+    [cliPath, "init", "--dir", targetDir, "--template-root", repoRoot],
+    {
+      cwd,
+      encoding: "utf8"
+    }
+  );
+
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /already exists and is not empty/u);
+});
+
+test("prismforge init supports tokens-only scaffolds without Token Studio", () => {
+  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "prismforge-init-tokens-only-"));
+  const targetDir = path.join(cwd, "tokens-only");
+  const result = spawnSync(
+    process.execPath,
+    [
+      cliPath,
+      "init",
+      "--dir",
+      targetDir,
+      "--studio",
+      "false",
+      "--targets",
+      "ios",
+      "--template-root",
+      repoRoot
+    ],
+    {
+      cwd,
+      encoding: "utf8"
+    }
+  );
+
+  assert.equal(result.status, 0);
+  assert.equal(fs.existsSync(path.join(targetDir, "apps", "token-studio")), false);
+  assert.ok(fs.existsSync(path.join(targetDir, "packages", "token-source", "src", "tokens")));
+
+  const packageJson = JSON.parse(fs.readFileSync(path.join(targetDir, "package.json"), "utf8"));
+  assert.equal(packageJson.scripts.dev, undefined);
+  assert.equal(packageJson.dependencies["@prismforge/tokens-ios"], "latest");
+  assert.equal(packageJson.dependencies["@prismforge/tokens-css"], undefined);
+});
+
+test("prismforge init rejects unknown token targets", () => {
+  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "prismforge-init-target-invalid-"));
+  const targetDir = path.join(cwd, "invalid-target");
+  const result = spawnSync(
+    process.execPath,
+    [cliPath, "init", "--dir", targetDir, "--targets", "flutter", "--template-root", repoRoot],
+    {
+      cwd,
+      encoding: "utf8"
+    }
+  );
+
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /Unknown token target/u);
 });
 
 

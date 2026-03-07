@@ -16,6 +16,18 @@ pnpm --filter @prismforge/token-studio dev
 
 Open `http://localhost:3000`.
 
+## Bootstrap your own Studio workspace
+
+If you're consuming PrismForge tokens in another app/repo, scaffold your own Studio:
+
+```bash
+npx @prismforge/token-cli init \
+  --dir prismforge-studio \
+  --provider github \
+  --repository your-org/your-token-repo \
+  --base-branch main
+```
+
 ## Browser smoke tests (Playwright)
 
 Run e2e smoke tests locally:
@@ -42,16 +54,36 @@ Token Studio supports two PR modes:
 
 ## Self-host configuration
 
-To enable `auto-pr`, configure these environment variables for `apps/token-studio`:
+Token Studio supports git repository integrations in two modes:
+
+- `compare-url` mode: works with GitHub, GitLab, Bitbucket, or generic git hosts
+- `auto-pr` mode: currently supported for GitHub when `GITHUB_TOKEN` is configured
+
+Core git configuration (`.env.local`):
+
+- `GIT_PROVIDER` one of `github|gitlab|bitbucket|generic`
+- `GIT_REPOSITORY` repo id or host path (`owner/repo`, `group/project`, or domain/path for generic)
+- `GIT_BASE_BRANCH` target branch (default `main`)
+- `GIT_COMPARE_URL_TEMPLATE` optional custom compare/PR URL format
+
+GitHub autopilot configuration (optional):
 
 - `GITHUB_TOKEN` with repo write + pull request permissions
-- `GITHUB_REPOSITORY` in `owner/repo` format (optional, defaults to `prismforge/prismforge`)
-- `GITHUB_BASE_BRANCH` (optional, defaults to `main`)
+- `GITHUB_REPOSITORY` in `owner/repo` format
+- `GITHUB_BASE_BRANCH`
 
 Example `.env.local`:
 
 ```bash
-GITHUB_TOKEN=ghp_xxxxx
+GIT_PROVIDER=github
+GIT_REPOSITORY=your-org/your-repo
+GIT_BASE_BRANCH=main
+
+# Optional for custom hosts:
+# GIT_COMPARE_URL_TEMPLATE=https://git.example.com/{repository}/compare/{baseBranch}...{branch}?title={title}&body={body}
+
+# Optional GitHub autopilot:
+# GITHUB_TOKEN=ghp_xxxxx
 GITHUB_REPOSITORY=your-org/your-repo
 GITHUB_BASE_BRANCH=main
 ```

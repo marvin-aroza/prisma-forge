@@ -1,13 +1,28 @@
 #!/usr/bin/env node
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
+import readline from "node:readline/promises";
+import { spawnSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 import { buildArtifacts } from "../../token-build/src/index.js";
 import { loadMappings, validateMappings } from "../../token-mappings/src/index.js";
 import { resolveAliases, validateTokens } from "../../token-schema/src/index.js";
 import { loadAllTokenSources, loadTokenSource } from "../../token-source/src/index.js";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const SUPPORTED_RELEASE_CHANNELS = ["stable", "next", "alpha", "beta", "rc", "canary", "custom"];
+const SUPPORTED_GIT_PROVIDERS = ["github", "gitlab", "bitbucket", "generic"];
+const SUPPORTED_TOKEN_TARGETS = ["css", "js", "android", "ios"];
 const SEMVER_LIKE_PATTERN = /^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$/u;
+const DEFAULT_INIT_REPO_URL = "https://github.com/prismforge/prismforge.git";
+const TARGET_PACKAGE_MAP = {
+  css: "@prismforge/tokens-css",
+  js: "@prismforge/tokens-js",
+  android: "@prismforge/tokens-android",
+  ios: "@prismforge/tokens-ios"
+};
 
 function parseFlags(args) {
   const flags = {};
@@ -36,6 +51,7 @@ Commands:
   prismforge validate
   prismforge build --brand <id> --mode <id> --target <css|js|android|ios|all> [--out <dir>]
   prismforge diff --from <version-or-file> --to <version-or-file>
+  prismforge init [--dir <path>] [--provider <github|gitlab|bitbucket|generic>] [--repository <id-or-url>] [--base-branch <name>] [--targets <css,js,android,ios|all>] [--studio <true|false>] [--prompt] [--yes] [--install] [--force]
   prismforge release --channel <stable|next|alpha|beta|rc|canary|custom> [--dist-tag <tag>]
   prismforge figma export --brand <id> --mode <id> [--out <file>]
 `);
@@ -44,6 +60,518 @@ Commands:
 function fail(message) {
   console.error(`ERROR: ${message}`);
   process.exitCode = 1;
+}
+
+function parseBooleanFlag(value, flagName) {
+  if (value === undefined) {
+    return null;
+  }
+  if (typeof value === "boolean") {
+    return value;
+  }
+
+  const normalized = String(value).trim().toLowerCase();
+  if (["true", "1", "yes", "y", "on"].includes(normalized)) {
+    return true;
+  }
+  if (["false", "0", "no", "n", "off"].includes(normalized)) {
+    return false;
+  }
+
+  throw new Error(`Flag --${flagName} expects a boolean value (true|false).`);
+}
+
+function parseTokenTargets(input) {
+  const normalized = String(input ?? "css,js").trim().toLowerCase();
+  if (!normalized) {
+    return ["css", "js"];
+  }
+  if (normalized === "all") {
+    return [...SUPPORTED_TOKEN_TARGETS];
+  }
+
+  const requested = [...new Set(normalized.split(",").map((entry) => entry.trim()).filter(Boolean))];
+  if (requested.length === 0) {
+    return ["css", "js"];
+  }
+
+  const invalid = requested.filter((entry) => !SUPPORTED_TOKEN_TARGETS.includes(entry));
+  if (invalid.length > 0) {
+    throw new Error(
+      `Unknown token target(s): ${invalid.join(", ")}. Expected one or more of ${SUPPORTED_TOKEN_TARGETS.join(", ")} or "all".`
+    );
+  }
+
+  return requested;
+}
+
+function formatTargetPackageList(targets) {
+  return targets
+    .map((target) => TARGET_PACKAGE_MAP[target])
+    .filter(Boolean)
+    .join(", ");
+}
+
+function hasDirectoryEntries(directoryPath) {
+  if (!fs.existsSync(directoryPath)) {
+    return false;
+  }
+  return fs.readdirSync(directoryPath).length > 0;
+}
+
+function sanitizeName(value) {
+  return String(value)
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9._-]/gu, "-")
+    .replace(/-{2,}/gu, "-")
+    .replace(/^-+|-+$/gu, "");
+}
+
+function copyDirectory(source, destination) {
+  fs.cpSync(source, destination, {
+    recursive: true,
+    filter(entry) {
+      const normalized = entry.replace(/\\/gu, "/");
+      if (
+        normalized.includes("/node_modules/") ||
+        normalized.includes("/.next/") ||
+        normalized.includes("/.turbo/") ||
+        normalized.includes("/test-results/") ||
+        normalized.includes("/playwright-report/")
+      ) {
+        return false;
+      }
+      return true;
+    }
+  });
+}
+
+function runCommand(command, commandArgs, options = {}) {
+  const result = spawnSync(command, commandArgs, {
+    stdio: "pipe",
+    encoding: "utf8",
+    ...options
+  });
+
+  return {
+    status: result.status ?? 1,
+    stdout: result.stdout ?? "",
+    stderr: result.stderr ?? "",
+    error: result.error ?? null
+  };
+}
+
+function resolveTemplateRoot(customRoot) {
+  if (customRoot) {
+    const resolved = path.resolve(String(customRoot));
+    return resolved;
+  }
+
+  const localRoot = path.resolve(__dirname, "..", "..", "..");
+  if (
+    fs.existsSync(path.join(localRoot, "apps", "token-studio")) &&
+    fs.existsSync(path.join(localRoot, "packages", "token-source")) &&
+    fs.existsSync(path.join(localRoot, "packages", "token-schema")) &&
+    fs.existsSync(path.join(localRoot, "packages", "token-mappings"))
+  ) {
+    return localRoot;
+  }
+
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "prismforge-init-"));
+  const cloneTarget = path.join(tempRoot, "template");
+  const cloneResult = runCommand("git", ["clone", "--depth", "1", DEFAULT_INIT_REPO_URL, cloneTarget]);
+
+  if (cloneResult.status !== 0) {
+    throw new Error(
+      `Unable to fetch PrismForge template via git clone.\n${cloneResult.stderr || cloneResult.stdout}`
+    );
+  }
+
+  return cloneTarget;
+}
+
+function shouldPromptForInit(flags) {
+  const interactive = Boolean(process.stdin.isTTY && process.stdout.isTTY);
+  if (!interactive || flags.yes) {
+    return false;
+  }
+  if (flags.prompt) {
+    return true;
+  }
+
+  const hasConfigFlags = [
+    "dir",
+    "provider",
+    "repository",
+    "base-branch",
+    "baseBranch",
+    "targets",
+    "studio",
+    "install"
+  ].some((key) => flags[key] !== undefined);
+
+  return !hasConfigFlags;
+}
+
+async function promptInput(rl, label, defaultValue) {
+  const suffix = defaultValue ? ` [${defaultValue}]` : "";
+  const answer = await rl.question(`${label}${suffix}: `);
+  const trimmed = answer.trim();
+  return trimmed || defaultValue;
+}
+
+async function promptBoolean(rl, label, defaultValue) {
+  const suffix = defaultValue ? "Y/n" : "y/N";
+  const answer = (await rl.question(`${label} (${suffix}): `)).trim().toLowerCase();
+  if (!answer) {
+    return defaultValue;
+  }
+  if (["y", "yes", "true", "1", "on"].includes(answer)) {
+    return true;
+  }
+  if (["n", "no", "false", "0", "off"].includes(answer)) {
+    return false;
+  }
+  return defaultValue;
+}
+
+async function promptForTokenTargets(rl, defaultValue) {
+  while (true) {
+    const answer = await promptInput(
+      rl,
+      "Token targets (css,js,android,ios or all)",
+      defaultValue
+    );
+    try {
+      const parsed = parseTokenTargets(answer);
+      return {
+        raw: answer,
+        parsed
+      };
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Invalid token targets.";
+      console.log(message);
+    }
+  }
+}
+
+function writeScaffoldRootPackageJson(targetDir, workspaceName, options) {
+  const scripts = {
+    validate: "node ./packages/token-source/src/index.js --list && node ./packages/token-schema/src/index.js --self-check"
+  };
+
+  if (options.includeStudio) {
+    scripts.dev = "pnpm --filter @prismforge/token-studio dev";
+    scripts.build = "pnpm --filter @prismforge/token-studio build";
+    scripts.test = "pnpm --filter @prismforge/token-studio test";
+    scripts["test:e2e"] = "pnpm --filter @prismforge/token-studio test:e2e";
+  }
+
+  const dependencies = {};
+  for (const target of options.targets) {
+    const packageName = TARGET_PACKAGE_MAP[target];
+    if (packageName) {
+      dependencies[packageName] = "latest";
+    }
+  }
+
+  const packageJson = {
+    name: workspaceName,
+    private: true,
+    version: "0.1.0",
+    license: "Apache-2.0",
+    type: "module",
+    packageManager: "pnpm@10.17.0",
+    scripts
+  };
+
+  if (Object.keys(dependencies).length > 0) {
+    packageJson.dependencies = dependencies;
+  }
+
+  fs.writeFileSync(path.join(targetDir, "package.json"), `${JSON.stringify(packageJson, null, 2)}\n`, "utf8");
+}
+
+function writeScaffoldWorkspaceFile(targetDir) {
+  const content = `packages:
+  - "apps/*"
+  - "packages/*"
+`;
+  fs.writeFileSync(path.join(targetDir, "pnpm-workspace.yaml"), content, "utf8");
+}
+
+function writeScaffoldGitignore(targetDir) {
+  const content = `node_modules/
+.next/
+.turbo/
+dist/
+coverage/
+playwright-report/
+test-results/
+*.log
+*.tmp
+`;
+  fs.writeFileSync(path.join(targetDir, ".gitignore"), content, "utf8");
+}
+
+function writeScaffoldReadme(targetDir, options) {
+  const studioSection = options.includeStudio
+    ? `## Run Token Studio
+
+\`\`\`bash
+pnpm dev
+\`\`\`
+
+Open \`http://localhost:3000\`.
+`
+    : `## Token Studio
+
+Token Studio was skipped for this workspace. Re-run init with \`--studio true\` if you want the UI.
+`;
+
+  const repositorySection = options.includeStudio
+    ? `## Repository integration
+
+Edit \`apps/token-studio/.env.local\` from \`apps/token-studio/.env.example\`.
+
+- \`GIT_PROVIDER=${options.provider}\`
+- \`GIT_REPOSITORY=${options.repository}\`
+- \`GIT_BASE_BRANCH=${options.baseBranch}\`
+
+GitHub autopilot PR creation requires:
+
+- \`GITHUB_TOKEN\`
+- \`GITHUB_REPOSITORY\`
+- \`GITHUB_BASE_BRANCH\`
+`
+    : "";
+
+  const content = `# ${options.workspaceTitle}
+
+Self-hosted PrismForge workspace.
+Selected token targets: ${options.targets.join(", ")}
+Token packages: ${formatTargetPackageList(options.targets)}
+
+## Quick start
+
+\`\`\`bash
+corepack enable pnpm
+pnpm install
+\`\`\`
+
+${studioSection}
+
+${repositorySection}`;
+
+  fs.writeFileSync(path.join(targetDir, "README.md"), content, "utf8");
+}
+
+function writeStudioEnvExample(targetDir, options) {
+  const envExample = `# Generic git integration (compare URL mode)
+GIT_PROVIDER=${options.provider}
+GIT_REPOSITORY=${options.repository}
+GIT_BASE_BRANCH=${options.baseBranch}
+
+# Optional: override compare URL format for non-standard git hosts.
+# Placeholders: {repository} {baseBranch} {branch} {title} {body}
+# GIT_COMPARE_URL_TEMPLATE=https://git.example.com/{repository}/compare/{baseBranch}...{branch}?title={title}&body={body}
+
+# Optional: GitHub autopilot mode (branch + commit + draft PR).
+# Only used when GIT_PROVIDER=github.
+# GITHUB_TOKEN=ghp_xxxxx
+GITHUB_REPOSITORY=${options.repository}
+GITHUB_BASE_BRANCH=${options.baseBranch}
+`;
+
+  const studioDir = path.join(targetDir, "apps", "token-studio");
+  fs.writeFileSync(path.join(studioDir, ".env.example"), envExample, "utf8");
+}
+
+async function commandInit(flags) {
+  const defaultProvider = String(flags.provider ?? "github").trim().toLowerCase();
+  const defaultRepository = String(flags.repository ?? "your-org/your-token-repo").trim();
+  const defaultBaseBranch = String(flags["base-branch"] ?? flags.baseBranch ?? "main").trim();
+  const defaultDir = String(flags.dir ?? "prismforge-studio").trim() || "prismforge-studio";
+
+  let includeStudio = true;
+  let installDeps = Boolean(flags.install);
+  let targets = ["css", "js"];
+
+  try {
+    const studioFlag = parseBooleanFlag(flags.studio, "studio");
+    const installFlag = parseBooleanFlag(flags.install, "install");
+    includeStudio = studioFlag ?? true;
+    installDeps = installFlag ?? false;
+    targets = parseTokenTargets(flags.targets ?? "css,js");
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Invalid init options.";
+    fail(message);
+    return;
+  }
+
+  let provider = defaultProvider;
+  let repository = defaultRepository;
+  let baseBranch = defaultBaseBranch;
+  let targetDir = path.resolve(defaultDir);
+
+  if (shouldPromptForInit(flags)) {
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+
+    try {
+      const promptedDir = await promptInput(rl, "Workspace directory", defaultDir);
+      const promptedProvider = await promptInput(
+        rl,
+        "Git provider (github|gitlab|bitbucket|generic)",
+        provider
+      );
+      const promptedRepository = await promptInput(rl, "Repository (owner/repo or host/path)", repository);
+      const promptedBaseBranch = await promptInput(rl, "Base branch", baseBranch);
+      const promptedTargets = await promptForTokenTargets(rl, targets.join(","));
+      const promptedStudio = await promptBoolean(rl, "Include Token Studio UI", includeStudio);
+      const promptedInstall = await promptBoolean(rl, "Install dependencies now", installDeps);
+
+      provider = String(promptedProvider ?? provider).trim().toLowerCase();
+      repository = String(promptedRepository ?? repository).trim();
+      baseBranch = String(promptedBaseBranch ?? baseBranch).trim();
+      targetDir = path.resolve(String(promptedDir ?? defaultDir).trim() || defaultDir);
+      targets = promptedTargets.parsed;
+      includeStudio = promptedStudio;
+      installDeps = promptedInstall;
+    } finally {
+      rl.close();
+    }
+  }
+
+  if (!SUPPORTED_GIT_PROVIDERS.includes(provider)) {
+    fail("Init requires --provider <github|gitlab|bitbucket|generic>.");
+    return;
+  }
+
+  if (!repository) {
+    fail("Init requires a non-empty --repository value.");
+    return;
+  }
+
+  if (!baseBranch) {
+    fail("Init requires a non-empty --base-branch value.");
+    return;
+  }
+
+  if (hasDirectoryEntries(targetDir) && !flags.force) {
+    fail(`Target directory "${targetDir}" already exists and is not empty. Use --force to continue.`);
+    return;
+  }
+
+  const templateRootFlag = flags["template-root"] ? String(flags["template-root"]) : "";
+
+  let templateRoot = "";
+  try {
+    templateRoot = resolveTemplateRoot(templateRootFlag);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unable to resolve template source.";
+    fail(message);
+    return;
+  }
+
+  fs.mkdirSync(targetDir, { recursive: true });
+
+  const copyTargets = [
+    ["packages", "token-source"],
+    ["packages", "token-schema"],
+    ["packages", "token-mappings"]
+  ];
+  if (includeStudio) {
+    copyTargets.unshift(["apps", "token-studio"]);
+  }
+
+  for (const segments of copyTargets) {
+    const relativePath = path.join(...segments);
+    const sourcePath = path.join(templateRoot, relativePath);
+    if (!fs.existsSync(sourcePath)) {
+      fail(`Template path is missing required content: ${relativePath}`);
+      return;
+    }
+
+    const destinationPath = path.join(targetDir, relativePath);
+    copyDirectory(sourcePath, destinationPath);
+  }
+
+  const tsconfigBaseSource = path.join(templateRoot, "tsconfig.base.json");
+  if (fs.existsSync(tsconfigBaseSource)) {
+    fs.copyFileSync(tsconfigBaseSource, path.join(targetDir, "tsconfig.base.json"));
+  } else {
+    const fallbackTsconfig = {
+      compilerOptions: {
+        target: "ES2022",
+        module: "ESNext",
+        moduleResolution: "Bundler",
+        strict: true,
+        baseUrl: ".",
+        paths: {},
+        skipLibCheck: true
+      }
+    };
+    fs.writeFileSync(
+      path.join(targetDir, "tsconfig.base.json"),
+      `${JSON.stringify(fallbackTsconfig, null, 2)}\n`,
+      "utf8"
+    );
+  }
+
+  const licenseSource = path.join(templateRoot, "LICENSE");
+  if (fs.existsSync(licenseSource)) {
+    fs.copyFileSync(licenseSource, path.join(targetDir, "LICENSE"));
+  }
+
+  const workspaceName = sanitizeName(path.basename(targetDir) || "prismforge-studio") || "prismforge-studio";
+  writeScaffoldRootPackageJson(targetDir, workspaceName, { includeStudio, targets });
+  writeScaffoldWorkspaceFile(targetDir);
+  writeScaffoldGitignore(targetDir);
+  writeScaffoldReadme(targetDir, {
+    workspaceTitle: workspaceName,
+    provider,
+    repository,
+    baseBranch,
+    includeStudio,
+    targets
+  });
+  if (includeStudio) {
+    writeStudioEnvExample(targetDir, { provider, repository, baseBranch });
+  }
+
+  if (installDeps) {
+    const installResult = runCommand("pnpm", ["install"], { cwd: targetDir, stdio: "inherit" });
+    if (installResult.status !== 0) {
+      fail("Scaffold completed, but dependency installation failed. Run `pnpm install` manually.");
+      return;
+    }
+  }
+
+  console.log(`PrismForge workspace created at: ${targetDir}`);
+  console.log("");
+  console.log("Configuration:");
+  console.log(`  Provider: ${provider}`);
+  console.log(`  Repository: ${repository}`);
+  console.log(`  Base branch: ${baseBranch}`);
+  console.log(`  Token targets: ${targets.join(", ")}`);
+  console.log(`  Token packages: ${formatTargetPackageList(targets)}`);
+  console.log(`  Token Studio: ${includeStudio ? "enabled" : "disabled"}`);
+  console.log("");
+  console.log("Next steps:");
+  console.log("  1) cd " + targetDir);
+  console.log("  2) corepack enable pnpm");
+  if (!installDeps) {
+    console.log("  3) pnpm install");
+  }
+  if (includeStudio) {
+    const stepOffset = installDeps ? 3 : 4;
+    console.log(`  ${stepOffset}) copy apps/token-studio/.env.example to apps/token-studio/.env.local and adjust values`);
+    console.log(`  ${stepOffset + 1}) pnpm dev`);
+  }
 }
 
 function commandValidate() {
@@ -254,7 +782,7 @@ function commandFigmaExport(flags) {
   console.log(`Figma export written to ${outFile}`);
 }
 
-function main() {
+async function main() {
   const [, , command, maybeSubcommand, ...rest] = process.argv;
   if (!command || command === "--help" || command === "-h") {
     printHelp();
@@ -273,6 +801,9 @@ function main() {
 
   const flags = parseFlags([maybeSubcommand, ...rest].filter(Boolean));
   switch (command) {
+    case "init":
+      await commandInit(flags);
+      break;
     case "validate":
       commandValidate();
       break;
@@ -291,6 +822,9 @@ function main() {
   }
 }
 
-main();
+main().catch((error) => {
+  const message = error instanceof Error ? error.message : "Unexpected CLI error.";
+  fail(message);
+});
 
 

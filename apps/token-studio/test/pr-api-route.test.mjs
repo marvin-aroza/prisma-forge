@@ -4,6 +4,30 @@ import { POST } from "../app/api/pr/route.ts";
 
 delete process.env.GITHUB_TOKEN;
 
+function withEnv(overrides, fn) {
+  const original = {};
+  for (const [key, value] of Object.entries(overrides)) {
+    original[key] = process.env[key];
+    if (value === null) {
+      delete process.env[key];
+    } else {
+      process.env[key] = value;
+    }
+  }
+
+  return Promise.resolve()
+    .then(fn)
+    .finally(() => {
+      for (const [key, value] of Object.entries(original)) {
+        if (value === undefined) {
+          delete process.env[key];
+        } else {
+          process.env[key] = value;
+        }
+      }
+    });
+}
+
 function createToken(overrides = {}) {
   return {
     id: "dk.color.accent.primary.base",
@@ -44,6 +68,36 @@ test("POST /api/pr returns compare-url mode for valid update without GitHub toke
   assert.equal(body.mode, "compare-url");
   assert.equal(body.tokenCount, 1);
   assert.equal(body.mappingCount, 0);
+});
+
+test("POST /api/pr builds gitlab compare-url when git provider is gitlab", async () => {
+  await withEnv(
+    {
+      GIT_PROVIDER: "gitlab",
+      GIT_REPOSITORY: "acme/platform-tokens",
+      GIT_BASE_BRANCH: "develop",
+      GITHUB_TOKEN: null
+    },
+    async () => {
+      const response = await postDraft({
+        tokens: [createToken()],
+        brand: "acme",
+        mode: "light",
+        deprecated: false,
+        since: "0.1.0",
+        operation: "update",
+        layer: "semantic",
+        includeMappings: false
+      });
+      const body = await response.json();
+
+      assert.equal(response.status, 200);
+      assert.equal(body.ok, true);
+      assert.equal(body.mode, "compare-url");
+      assert.match(body.prUrl, /^https:\/\/gitlab\.com\/acme\/platform-tokens\/-\/merge_requests\/new/u);
+      assert.match(body.message, /compare-url mode/u);
+    }
+  );
 });
 
 test("POST /api/pr rejects includeMappings with empty mapping list", async () => {

@@ -22,6 +22,30 @@ pnpm test:studio:e2e
 pnpm --filter @prismforge/token-cli prismforge validate
 ```
 
+## Self-hosted Token Studio for consumers
+
+Teams can scaffold their own Token Studio workspace and connect it to their own git repo:
+
+```bash
+npx @prismforge/token-cli init
+```
+
+Or use flags:
+
+```bash
+npx @prismforge/token-cli init \
+  --dir prismforge-studio \
+  --provider github \
+  --repository your-org/your-token-repo \
+  --base-branch main \
+  --targets css,js,ios \
+  --studio true
+```
+
+Then configure `apps/token-studio/.env.local` and run `pnpm dev` inside the generated workspace.
+
+For tokens-only consumers (no Studio UI), pass `--studio false`.
+
 ## Monorepo layout
 
 - `packages/token-source` canonical token data.
