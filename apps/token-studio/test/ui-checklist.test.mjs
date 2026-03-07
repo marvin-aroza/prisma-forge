@@ -39,10 +39,13 @@ test("Token Studio page contains required viewer capabilities", () => {
   assert.ok(content.includes("Status Light"));
   assert.ok(content.includes("Tray"));
   assert.ok(content.includes("Well"));
+  assert.ok(content.includes("existingMappings={allMappings}"));
+  assert.ok(content.includes("existingTokenIds={tokens.map((token) => token.id)}"));
 });
 
 test("Studio route split and PR workflow files exist", () => {
   const rootContent = fs.readFileSync(rootPageFile, "utf8");
+  const formContent = fs.readFileSync(formFile, "utf8");
   assert.ok(rootContent.includes("redirect(\"/studio\")"));
   assert.ok(fs.existsSync(studioPageFile));
   assert.ok(fs.existsSync(previewPageFile));
@@ -52,6 +55,22 @@ test("Studio route split and PR workflow files exist", () => {
   assert.ok(fs.existsSync(editPageFile));
   assert.ok(fs.existsSync(formFile));
   assert.ok(fs.existsSync(apiFile));
+  assert.ok(formContent.includes("Template Family"));
+  assert.ok(formContent.includes("Form Control"));
+  assert.ok(formContent.includes("Overlay"));
+  assert.ok(formContent.includes("Navigation"));
+  assert.ok(formContent.includes("Feedback"));
+  assert.ok(formContent.includes("Also generate component mappings for this template batch"));
+  assert.ok(formContent.includes("Submit mapping deltas only (skip unchanged entries)"));
+  assert.ok(formContent.includes("Generate missing states only (based on Existing Mapping Coverage)"));
+  assert.ok(formContent.includes("Create new tokens only (skip IDs already present in this brand/mode)"));
+  assert.ok(formContent.includes("Mapping Preview Diff"));
+  assert.ok(formContent.includes("Mapping Contract Precheck"));
+  assert.ok(formContent.includes("Existing Mapping Coverage"));
+  assert.ok(formContent.includes("Use First Missing State"));
+  assert.ok(formContent.includes("No New Tokens To Create"));
+  assert.ok(formContent.includes("No Missing States To Generate"));
+  assert.ok(formContent.includes("Fix Mapping Precheck Errors"));
 });
 
 test("Component docs include featured examples for latest widget batch", () => {

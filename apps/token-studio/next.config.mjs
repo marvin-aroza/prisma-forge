@@ -7,6 +7,7 @@ const withMDX = createMDX({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ["ts", "tsx", "md", "mdx"],
+  allowedDevOrigins: ["http://127.0.0.1:3100", "127.0.0.1:3100"],
   experimental: {
     externalDir: true
   }

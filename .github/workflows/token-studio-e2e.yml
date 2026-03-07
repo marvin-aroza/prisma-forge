@@ -1,0 +1,40 @@
+name: Token Studio E2E
+
+on:
+  pull_request:
+    paths:
+      - "apps/token-studio/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/token-studio-e2e.yml"
+  workflow_dispatch:
+
+jobs:
+  playwright-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Enable pnpm
+        run: corepack enable pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browser
+        run: pnpm --filter @prismforge/token-studio exec playwright install --with-deps chromium
+
+      - name: Run Token Studio browser smoke tests
+        run: pnpm --filter @prismforge/token-studio test:e2e
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: token-studio-playwright-report
+          path: apps/token-studio/playwright-report
+          if-no-files-found: ignore

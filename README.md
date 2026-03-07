@@ -18,6 +18,7 @@ corepack enable pnpm
 pnpm install
 pnpm build
 pnpm test
+pnpm test:studio:e2e
 pnpm --filter @prismforge/token-cli prismforge validate
 ```
 
@@ -40,8 +41,38 @@ pnpm --filter @prismforge/token-cli prismforge validate
 - Stable: default `latest` channel.
 - Next: prerelease `next` channel for early adopters.
 
+## Release automation
+
+GitHub Actions includes a manual release workflow:
+
+- Workflow: `.github/workflows/release.yml`
+- Trigger: `workflow_dispatch`
+- Inputs:
+  - `channel`: `stable` or `next`
+  - `dry_run`: run full checks without publish/push
+
+Required secret for publish:
+
+- `NPM_TOKEN` with publish access to `@prismforge/*`.
+
+Operational runbook:
+
+- `docs/RELEASE_CHECKLIST.md`
+- `docs/CHANGESET_EXAMPLES.md`
+- `docs/PUBLISHING.md`
+
+Semver guardrail:
+
+- CI enforces breaking token guard on PRs (`pnpm guard:breaking`).
+- Removing token IDs requires a `major` changeset.
+
 ## License
 
 Apache-2.0. See [LICENSE](./LICENSE).
+
+## Community
+
+- [Code of Conduct](./CODE_OF_CONDUCT.md)
+- [Security Policy](./SECURITY.md)
 
 
