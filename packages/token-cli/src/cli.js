@@ -12,6 +12,7 @@ const SUPPORTED_RELEASE_CHANNELS = ["stable", "next", "alpha", "beta", "rc", "ca
 const SUPPORTED_GIT_PROVIDERS = ["github", "gitlab", "bitbucket", "generic"];
 const SUPPORTED_TOKEN_TARGETS = ["css", "js", "android", "ios"];
 const SUPPORTED_PACKAGE_MANAGERS = ["pnpm", "npm"];
+const SUPPORTED_INIT_MODES = ["standalone", "embedded"];
 const SEMVER_LIKE_PATTERN = /^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$/u;
 const DEFAULT_INIT_REPO_URLS = [
   process.env.PRISMFORGE_TEMPLATE_REPO_URL?.trim(),
@@ -52,7 +53,7 @@ Commands:
   prismforge validate
   prismforge build --brand <id> --mode <id> --target <css|js|android|ios|all> [--out <dir>]
   prismforge diff --from <version-or-file> --to <version-or-file>
-  prismforge init [--dir <path>] [--provider <github|gitlab|bitbucket|generic>] [--repository <id-or-url>] [--base-branch <name>] [--targets <css,js,android,ios|all>] [--studio <true|false>] [--package-manager <pnpm|npm>] [--prompt] [--yes] [--install] [--force]
+  prismforge init [--mode <standalone|embedded>] [--embedded-path <path>] [--dir <path>] [--provider <github|gitlab|bitbucket|generic>] [--repository <id-or-url>] [--base-branch <name>] [--targets <css,js,android,ios|all>] [--studio <true|false>] [--package-manager <pnpm|npm>] [--prompt] [--yes] [--install] [--force]
   prismforge release --channel <stable|next|alpha|beta|rc|canary|custom> [--dist-tag <tag>]
   prismforge figma export --brand <id> --mode <id> [--out <file>]
 `);
@@ -126,6 +127,19 @@ function parsePackageManager(value) {
   return normalized;
 }
 
+function parseInitMode(value) {
+  const normalized = String(value ?? "").trim().toLowerCase();
+  if (!normalized) {
+    return "";
+  }
+  if (!SUPPORTED_INIT_MODES.includes(normalized)) {
+    throw new Error(
+      `Unsupported init mode "${normalized}". Expected one of ${SUPPORTED_INIT_MODES.join(", ")}.`
+    );
+  }
+  return normalized;
+}
+
 function detectPackageManager(flags) {
   const explicit = parsePackageManager(flags["package-manager"] ?? flags.pm ?? "");
   if (explicit) {
@@ -155,6 +169,24 @@ function getInstallCommandForPackageManager(packageManager) {
     return { command: "npm", args: ["install"] };
   }
   return { command: "pnpm", args: ["install"] };
+}
+
+function getWorkspaceCommandsForPackageManager(packageManager, workspaceRelativePath) {
+  const normalizedPath = workspaceRelativePath.replace(/\\/gu, "/");
+  if (packageManager === "npm") {
+    return {
+      install: `npm --prefix ${normalizedPath} install`,
+      dev: `npm --prefix ${normalizedPath} run dev`,
+      build: `npm --prefix ${normalizedPath} run build`,
+      test: `npm --prefix ${normalizedPath} run test`
+    };
+  }
+  return {
+    install: `pnpm --dir ${normalizedPath} install`,
+    dev: `pnpm --dir ${normalizedPath} dev`,
+    build: `pnpm --dir ${normalizedPath} build`,
+    test: `pnpm --dir ${normalizedPath} test`
+  };
 }
 
 function asFileModuleSpecifier(absolutePath) {
@@ -445,6 +477,9 @@ function shouldPromptForInit(flags) {
   }
 
   const hasConfigFlags = [
+    "mode",
+    "embedded-path",
+    "embeddedPath",
     "dir",
     "provider",
     "repository",
@@ -577,7 +612,7 @@ function writeScaffoldReadme(targetDir, options) {
     ? `## Run Token Studio
 
 \`\`\`bash
-pnpm dev
+${options.packageManager} run dev
 \`\`\`
 
 Open \`http://localhost:3000\`.
@@ -607,6 +642,7 @@ GitHub autopilot PR creation requires:
   const content = `# ${options.workspaceTitle}
 
 Self-hosted PrismForge workspace.
+Init mode: ${options.initMode}
 Selected token targets: ${options.targets.join(", ")}
 Token packages: ${formatTargetPackageList(options.targets)}
 Package manager: ${options.packageManager}
@@ -646,13 +682,75 @@ GITHUB_BASE_BRANCH=${options.baseBranch}
   fs.writeFileSync(path.join(studioDir, ".env.example"), envExample, "utf8");
 }
 
+function attachEmbeddedScriptsToHostProject(projectRoot, embeddedWorkspaceDir, packageManager) {
+  const hostPackagePath = path.join(projectRoot, "package.json");
+  if (!fs.existsSync(hostPackagePath)) {
+    return {
+      updated: false,
+      reason: "Host project package.json not found; skipping root script integration."
+    };
+  }
+
+  const raw = fs.readFileSync(hostPackagePath, "utf8");
+  let hostPackageJson = {};
+  try {
+    hostPackageJson = JSON.parse(raw);
+  } catch {
+    return {
+      updated: false,
+      reason: "Host package.json is invalid JSON; skipping root script integration."
+    };
+  }
+
+  const workspaceRelative = path.relative(projectRoot, embeddedWorkspaceDir) || ".";
+  const commands = getWorkspaceCommandsForPackageManager(packageManager, workspaceRelative);
+
+  if (!hostPackageJson.scripts || typeof hostPackageJson.scripts !== "object") {
+    hostPackageJson.scripts = {};
+  }
+
+  const nextScripts = {
+    ...hostPackageJson.scripts
+  };
+  const proposed = {
+    "prismforge:install": commands.install,
+    "prismforge:dev": commands.dev,
+    "prismforge:build": commands.build,
+    "prismforge:test": commands.test
+  };
+
+  let changes = 0;
+  for (const [scriptName, scriptValue] of Object.entries(proposed)) {
+    if (!nextScripts[scriptName]) {
+      nextScripts[scriptName] = scriptValue;
+      changes += 1;
+    }
+  }
+
+  if (changes === 0) {
+    return {
+      updated: false,
+      reason: "Host scripts already include PrismForge commands."
+    };
+  }
+
+  hostPackageJson.scripts = nextScripts;
+  fs.writeFileSync(hostPackagePath, `${JSON.stringify(hostPackageJson, null, 2)}\n`, "utf8");
+  return {
+    updated: true,
+    reason: `Added ${changes} prismforge script(s) to host package.json.`
+  };
+}
+
 async function commandInit(flags) {
   const detectedGitDefaults = detectGitInitDefaults();
   const defaultProvider = String(flags.provider ?? detectedGitDefaults?.provider ?? "github").trim().toLowerCase();
   const defaultRepository = String(flags.repository ?? detectedGitDefaults?.repository ?? "").trim();
   const defaultBaseBranch = String(flags["base-branch"] ?? flags.baseBranch ?? detectedGitDefaults?.baseBranch ?? "main").trim();
-  const defaultDir = String(flags.dir ?? "prismforge-studio").trim() || "prismforge-studio";
+  const defaultStandaloneDir = String(flags.dir ?? "prismforge-studio").trim() || "prismforge-studio";
+  const defaultEmbeddedPath = String(flags["embedded-path"] ?? flags.embeddedPath ?? "tools/prismforge").trim() || "tools/prismforge";
   let packageManager = "pnpm";
+  let initMode = "standalone";
 
   let includeStudio = true;
   let installDeps = Boolean(flags.install);
@@ -661,7 +759,9 @@ async function commandInit(flags) {
   try {
     const studioFlag = parseBooleanFlag(flags.studio, "studio");
     const installFlag = parseBooleanFlag(flags.install, "install");
+    const modeFlag = parseInitMode(flags.mode ?? "");
     packageManager = detectPackageManager(flags);
+    initMode = modeFlag || "standalone";
     includeStudio = studioFlag ?? true;
     installDeps = installFlag ?? false;
     targets = parseTokenTargets(flags.targets ?? "css,js");
@@ -674,7 +774,13 @@ async function commandInit(flags) {
   let provider = defaultProvider;
   let repository = defaultRepository;
   let baseBranch = defaultBaseBranch;
-  let targetDir = path.resolve(defaultDir);
+  let embeddedPath = defaultEmbeddedPath;
+  let targetDir =
+    initMode === "embedded"
+      ? flags.dir
+        ? path.resolve(String(flags.dir))
+        : path.resolve(process.cwd(), embeddedPath)
+      : path.resolve(defaultStandaloneDir);
 
   if (shouldPromptForInit(flags)) {
     const rl = readline.createInterface({
@@ -683,7 +789,29 @@ async function commandInit(flags) {
     });
 
     try {
-      const promptedDir = await promptInput(rl, "Workspace directory", defaultDir);
+      const suggestedMode =
+        parseInitMode(flags.mode ?? "") ||
+        (fs.existsSync(path.join(process.cwd(), "package.json")) ? "embedded" : "standalone");
+      const promptedModeRaw = await promptInput(
+        rl,
+        "Init mode (standalone|embedded)",
+        suggestedMode
+      );
+      initMode = parseInitMode(promptedModeRaw) || "standalone";
+
+      if (initMode === "embedded") {
+        const promptedEmbeddedPath = await promptInput(
+          rl,
+          "Embedded workspace path (relative to current project)",
+          embeddedPath
+        );
+        embeddedPath = String(promptedEmbeddedPath ?? embeddedPath).trim() || embeddedPath;
+        targetDir = path.resolve(process.cwd(), embeddedPath);
+      } else {
+        const promptedDir = await promptInput(rl, "Workspace directory", defaultStandaloneDir);
+        targetDir = path.resolve(String(promptedDir ?? defaultStandaloneDir).trim() || defaultStandaloneDir);
+      }
+
       const promptedProvider = await promptInput(
         rl,
         "Git provider (github|gitlab|bitbucket|generic)",
@@ -707,7 +835,6 @@ async function commandInit(flags) {
       provider = String(promptedProvider ?? provider).trim().toLowerCase();
       repository = String(promptedRepository ?? repository).trim();
       baseBranch = String(promptedBaseBranch ?? baseBranch).trim();
-      targetDir = path.resolve(String(promptedDir ?? defaultDir).trim() || defaultDir);
       targets = promptedTargets.parsed;
       includeStudio = promptedStudio;
       packageManager = parsePackageManager(promptedPackageManager) || "pnpm";
@@ -731,6 +858,7 @@ async function commandInit(flags) {
     return;
   }
 
+  const hostProjectRoot = process.cwd();
   if (hasDirectoryEntries(targetDir) && !flags.force) {
     fail(`Target directory "${targetDir}" already exists and is not empty. Use --force to continue.`);
     return;
@@ -807,6 +935,7 @@ async function commandInit(flags) {
   writeScaffoldGitignore(targetDir);
   writeScaffoldReadme(targetDir, {
     workspaceTitle: workspaceName,
+    initMode,
     provider,
     repository,
     baseBranch,
@@ -816,6 +945,15 @@ async function commandInit(flags) {
   });
   if (includeStudio) {
     writeStudioEnvExample(targetDir, { provider, repository, baseBranch });
+  }
+
+  let embeddedScriptIntegration = null;
+  if (initMode === "embedded") {
+    embeddedScriptIntegration = attachEmbeddedScriptsToHostProject(
+      hostProjectRoot,
+      targetDir,
+      packageManager
+    );
   }
 
   if (installDeps) {
@@ -838,6 +976,7 @@ async function commandInit(flags) {
   console.log(`PrismForge workspace created at: ${targetDir}`);
   console.log("");
   console.log("Configuration:");
+  console.log(`  Init mode: ${initMode}`);
   console.log(`  Provider: ${provider}`);
   console.log(`  Repository: ${repository || "(not set)"}`);
   console.log(`  Base branch: ${baseBranch}`);
@@ -845,25 +984,47 @@ async function commandInit(flags) {
   console.log(`  Token packages: ${formatTargetPackageList(targets)}`);
   console.log(`  Package manager: ${packageManager}`);
   console.log(`  Token Studio: ${includeStudio ? "enabled" : "disabled"}`);
+  if (embeddedScriptIntegration) {
+    console.log(`  Host scripts: ${embeddedScriptIntegration.reason}`);
+  }
   console.log("");
   console.log("Next steps:");
-  console.log("  1) cd " + targetDir);
-  if (packageManager === "pnpm") {
-    console.log("  2) corepack enable pnpm");
-  } else {
-    console.log("  2) npm --version");
-  }
-  if (!installDeps) {
-    console.log(`  3) ${packageManager} install`);
-  }
-  if (includeStudio) {
-    const stepOffset = installDeps ? 3 : 4;
-    console.log(`  ${stepOffset}) copy apps/token-studio/.env.example to apps/token-studio/.env.local and adjust values`);
-    console.log(`  ${stepOffset + 1}) ${packageManager} run dev`);
-    if (!repository) {
-      console.log("");
-      console.log("Note: repository is empty. Set GIT_REPOSITORY in apps/token-studio/.env.local before using PR flows.");
+  if (initMode === "embedded") {
+    const workspaceRelative = path.relative(hostProjectRoot, targetDir) || ".";
+    const hostCommands = getWorkspaceCommandsForPackageManager(packageManager, workspaceRelative);
+    console.log("  1) Stay in your existing project root:");
+    console.log(`     ${hostProjectRoot}`);
+    if (!installDeps) {
+      console.log(`  2) Install embedded workspace dependencies: ${hostCommands.install}`);
     }
+    if (includeStudio) {
+      const step = installDeps ? 2 : 3;
+      console.log(`  ${step}) copy ${workspaceRelative.replace(/\\/gu, "/")}/apps/token-studio/.env.example to .env.local and adjust values`);
+      if (embeddedScriptIntegration?.updated) {
+        console.log(`  ${step + 1}) ${packageManager} run prismforge:dev`);
+      } else {
+        console.log(`  ${step + 1}) ${hostCommands.dev}`);
+      }
+    }
+  } else {
+    console.log("  1) cd " + targetDir);
+    if (packageManager === "pnpm") {
+      console.log("  2) corepack enable pnpm");
+    } else {
+      console.log("  2) npm --version");
+    }
+    if (!installDeps) {
+      console.log(`  3) ${packageManager} install`);
+    }
+    if (includeStudio) {
+      const stepOffset = installDeps ? 3 : 4;
+      console.log(`  ${stepOffset}) copy apps/token-studio/.env.example to apps/token-studio/.env.local and adjust values`);
+      console.log(`  ${stepOffset + 1}) ${packageManager} run dev`);
+    }
+  }
+  if (includeStudio && !repository) {
+    console.log("");
+    console.log("Note: repository is empty. Set GIT_REPOSITORY in apps/token-studio/.env.local before using PR flows.");
   }
 }
 

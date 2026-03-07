@@ -360,4 +360,59 @@ test("prismforge init uses npm install flow when package manager is npm", () => 
   assert.ok(Array.isArray(packageJson.workspaces));
 });
 
+test("prismforge init supports embedded mode in existing projects", () => {
+  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "prismforge-init-embedded-"));
+  fs.writeFileSync(
+    path.join(cwd, "package.json"),
+    `${JSON.stringify({ name: "host-project", private: true, scripts: { test: "echo test" } }, null, 2)}\n`,
+    "utf8"
+  );
+
+  const result = spawnSync(
+    process.execPath,
+    [
+      cliPath,
+      "init",
+      "--mode",
+      "embedded",
+      "--embedded-path",
+      "tools/prismforge",
+      "--template-root",
+      repoRoot,
+      "--package-manager",
+      "npm",
+      "--studio",
+      "true"
+    ],
+    {
+      cwd,
+      encoding: "utf8"
+    }
+  );
+
+  assert.equal(result.status, 0);
+  assert.ok(fs.existsSync(path.join(cwd, "tools", "prismforge", "apps", "token-studio", "package.json")));
+
+  const hostPackage = JSON.parse(fs.readFileSync(path.join(cwd, "package.json"), "utf8"));
+  assert.equal(hostPackage.scripts.test, "echo test");
+  assert.equal(hostPackage.scripts["prismforge:dev"], "npm --prefix tools/prismforge run dev");
+  assert.equal(hostPackage.scripts["prismforge:install"], "npm --prefix tools/prismforge install");
+});
+
+test("prismforge init rejects invalid mode values", () => {
+  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "prismforge-init-mode-invalid-"));
+  const targetDir = path.join(cwd, "studio");
+  const result = spawnSync(
+    process.execPath,
+    [cliPath, "init", "--mode", "inplace", "--dir", targetDir, "--template-root", repoRoot],
+    {
+      cwd,
+      encoding: "utf8"
+    }
+  );
+
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /Unsupported init mode/u);
+});
+
 

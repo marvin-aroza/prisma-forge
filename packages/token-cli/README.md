@@ -2,7 +2,7 @@
 
 Commands:
 
-- `prismforge init [--dir <path>] [--provider <github|gitlab|bitbucket|generic>] [--repository <id-or-url>] [--base-branch <name>] [--targets <css,js,android,ios|all>] [--studio <true|false>] [--package-manager <pnpm|npm>] [--prompt] [--yes] [--install]`
+- `prismforge init [--mode <standalone|embedded>] [--embedded-path <path>] [--dir <path>] [--provider <github|gitlab|bitbucket|generic>] [--repository <id-or-url>] [--base-branch <name>] [--targets <css,js,android,ios|all>] [--studio <true|false>] [--package-manager <pnpm|npm>] [--prompt] [--yes] [--install]`
 - `prismforge validate`
 - `prismforge build --brand <id> --mode <id> --target <css|js|android|ios|all>`
 - `prismforge diff --from <snapshot> --to <snapshot>`
@@ -34,6 +34,22 @@ Notes:
 - If run inside an existing git repo, `init` auto-detects provider/repository from `origin`.
 - `--repository` is optional. Leave it empty for new workspaces and set it later in `.env.local`.
 - Package manager is auto-detected (`npm` or `pnpm`) and can be forced with `--package-manager`.
+
+## Embedded mode (inside existing repo)
+
+```bash
+npx @prismforge/token-cli init \
+  --mode embedded \
+  --embedded-path tools/prismforge \
+  --package-manager npm
+```
+
+This keeps PrismForge inside your current project and adds helper scripts to your root `package.json`:
+
+- `prismforge:install`
+- `prismforge:dev`
+- `prismforge:build`
+- `prismforge:test`
 
 Then run:
 

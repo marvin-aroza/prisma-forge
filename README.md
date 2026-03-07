@@ -46,6 +46,12 @@ Then configure `apps/token-studio/.env.local` and run `pnpm dev` inside the gene
 
 For tokens-only consumers (no Studio UI), pass `--studio false`.
 
+For existing repos that want Studio in the same project, use embedded mode:
+
+```bash
+npx @prismforge/token-cli init --mode embedded --embedded-path tools/prismforge
+```
+
 ## Monorepo layout
 
 - `packages/token-source` canonical token data.
