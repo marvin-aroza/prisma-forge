@@ -1,6 +1,6 @@
 {
   "name": "@prismforge/tokens-css",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "CSS variable artifacts for PrismForge tokens.",
   "license": "Apache-2.0",
@@ -15,7 +15,10 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": ["artifacts", "index.js"],
+  "files": [
+    "artifacts",
+    "index.js"
+  ],
   "exports": {
     ".": "./index.js",
     "./tokens.css": "./artifacts/css/tokens.css"
@@ -24,4 +27,3 @@
     "build": "node ./scripts/generate.js"
   }
 }
-

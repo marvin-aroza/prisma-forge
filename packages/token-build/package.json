@@ -1,6 +1,6 @@
 {
   "name": "@prismforge/token-build",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Deterministic token artifact builders for PrismForge.",
   "license": "Apache-2.0",
@@ -28,4 +28,3 @@
     "@prismforge/token-source": "workspace:*"
   }
 }
-

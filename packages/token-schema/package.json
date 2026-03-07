@@ -1,6 +1,6 @@
 {
   "name": "@prismforge/token-schema",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Schema, types, and validation utilities for PrismForge tokens.",
   "license": "Apache-2.0",
@@ -27,4 +27,3 @@
     "validate": "node ./src/index.js --self-check"
   }
 }
-

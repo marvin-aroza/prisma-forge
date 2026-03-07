@@ -1,6 +1,6 @@
 {
   "name": "@prismforge/token-mappings",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Component token mapping contracts for PrismForge.",
   "license": "Apache-2.0",
@@ -24,4 +24,3 @@
     "test": "node --test ./test/*.test.mjs"
   }
 }
-
