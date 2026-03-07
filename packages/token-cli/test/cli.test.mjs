@@ -330,4 +330,34 @@ test("prismforge init allows empty repository for new workspaces", () => {
   assert.match(envExample, /^GIT_REPOSITORY=$/mu);
 });
 
+test("prismforge init uses npm install flow when package manager is npm", () => {
+  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "prismforge-init-npm-pm-"));
+  const targetDir = path.join(cwd, "studio");
+  const result = spawnSync(
+    process.execPath,
+    [
+      cliPath,
+      "init",
+      "--dir",
+      targetDir,
+      "--template-root",
+      repoRoot,
+      "--studio",
+      "true",
+      "--package-manager",
+      "npm"
+    ],
+    {
+      cwd,
+      encoding: "utf8"
+    }
+  );
+
+  assert.equal(result.status, 0);
+  const packageJson = JSON.parse(fs.readFileSync(path.join(targetDir, "package.json"), "utf8"));
+  assert.equal(packageJson.packageManager, undefined);
+  assert.equal(packageJson.scripts.dev, "npm run dev --workspace @prismforge/token-studio");
+  assert.ok(Array.isArray(packageJson.workspaces));
+});
+
 

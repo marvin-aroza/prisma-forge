@@ -11,6 +11,7 @@ const __dirname = path.dirname(__filename);
 const SUPPORTED_RELEASE_CHANNELS = ["stable", "next", "alpha", "beta", "rc", "canary", "custom"];
 const SUPPORTED_GIT_PROVIDERS = ["github", "gitlab", "bitbucket", "generic"];
 const SUPPORTED_TOKEN_TARGETS = ["css", "js", "android", "ios"];
+const SUPPORTED_PACKAGE_MANAGERS = ["pnpm", "npm"];
 const SEMVER_LIKE_PATTERN = /^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$/u;
 const DEFAULT_INIT_REPO_URLS = [
   process.env.PRISMFORGE_TEMPLATE_REPO_URL?.trim(),
@@ -51,7 +52,7 @@ Commands:
   prismforge validate
   prismforge build --brand <id> --mode <id> --target <css|js|android|ios|all> [--out <dir>]
   prismforge diff --from <version-or-file> --to <version-or-file>
-  prismforge init [--dir <path>] [--provider <github|gitlab|bitbucket|generic>] [--repository <id-or-url>] [--base-branch <name>] [--targets <css,js,android,ios|all>] [--studio <true|false>] [--prompt] [--yes] [--install] [--force]
+  prismforge init [--dir <path>] [--provider <github|gitlab|bitbucket|generic>] [--repository <id-or-url>] [--base-branch <name>] [--targets <css,js,android,ios|all>] [--studio <true|false>] [--package-manager <pnpm|npm>] [--prompt] [--yes] [--install] [--force]
   prismforge release --channel <stable|next|alpha|beta|rc|canary|custom> [--dist-tag <tag>]
   prismforge figma export --brand <id> --mode <id> [--out <file>]
 `);
@@ -110,6 +111,50 @@ function formatTargetPackageList(targets) {
     .map((target) => TARGET_PACKAGE_MAP[target])
     .filter(Boolean)
     .join(", ");
+}
+
+function parsePackageManager(value) {
+  const normalized = String(value ?? "").trim().toLowerCase();
+  if (!normalized) {
+    return "";
+  }
+  if (!SUPPORTED_PACKAGE_MANAGERS.includes(normalized)) {
+    throw new Error(
+      `Unsupported package manager "${normalized}". Expected one of ${SUPPORTED_PACKAGE_MANAGERS.join(", ")}.`
+    );
+  }
+  return normalized;
+}
+
+function detectPackageManager(flags) {
+  const explicit = parsePackageManager(flags["package-manager"] ?? flags.pm ?? "");
+  if (explicit) {
+    return explicit;
+  }
+
+  const userAgent = String(process.env.npm_config_user_agent ?? "").trim();
+  if (userAgent.startsWith("npm/")) {
+    return "npm";
+  }
+  if (userAgent.startsWith("pnpm/")) {
+    return "pnpm";
+  }
+
+  if (fs.existsSync(path.join(process.cwd(), "package-lock.json"))) {
+    return "npm";
+  }
+  if (fs.existsSync(path.join(process.cwd(), "pnpm-lock.yaml"))) {
+    return "pnpm";
+  }
+
+  return "pnpm";
+}
+
+function getInstallCommandForPackageManager(packageManager) {
+  if (packageManager === "npm") {
+    return { command: "npm", args: ["install"] };
+  }
+  return { command: "pnpm", args: ["install"] };
 }
 
 function asFileModuleSpecifier(absolutePath) {
@@ -376,6 +421,8 @@ function shouldPromptForInit(flags) {
     "baseBranch",
     "targets",
     "studio",
+    "package-manager",
+    "pm",
     "install"
   ].some((key) => flags[key] !== undefined);
 
@@ -430,10 +477,17 @@ function writeScaffoldRootPackageJson(targetDir, workspaceName, options) {
   };
 
   if (options.includeStudio) {
-    scripts.dev = "pnpm --filter @prismforge/token-studio dev";
-    scripts.build = "pnpm --filter @prismforge/token-studio build";
-    scripts.test = "pnpm --filter @prismforge/token-studio test";
-    scripts["test:e2e"] = "pnpm --filter @prismforge/token-studio test:e2e";
+    if (options.packageManager === "npm") {
+      scripts.dev = "npm run dev --workspace @prismforge/token-studio";
+      scripts.build = "npm run build --workspace @prismforge/token-studio";
+      scripts.test = "npm run test --workspace @prismforge/token-studio";
+      scripts["test:e2e"] = "npm run test:e2e --workspace @prismforge/token-studio";
+    } else {
+      scripts.dev = "pnpm --filter @prismforge/token-studio dev";
+      scripts.build = "pnpm --filter @prismforge/token-studio build";
+      scripts.test = "pnpm --filter @prismforge/token-studio test";
+      scripts["test:e2e"] = "pnpm --filter @prismforge/token-studio test:e2e";
+    }
   }
 
   const dependencies = {};
@@ -450,9 +504,13 @@ function writeScaffoldRootPackageJson(targetDir, workspaceName, options) {
     version: "0.1.0",
     license: "Apache-2.0",
     type: "module",
-    packageManager: "pnpm@10.17.0",
+    workspaces: ["apps/*", "packages/*"],
     scripts
   };
+
+  if (options.packageManager === "pnpm") {
+    packageJson.packageManager = "pnpm@10.17.0";
+  }
 
   if (Object.keys(dependencies).length > 0) {
     packageJson.dependencies = dependencies;
@@ -520,12 +578,13 @@ GitHub autopilot PR creation requires:
 Self-hosted PrismForge workspace.
 Selected token targets: ${options.targets.join(", ")}
 Token packages: ${formatTargetPackageList(options.targets)}
+Package manager: ${options.packageManager}
 
 ## Quick start
 
 \`\`\`bash
-corepack enable pnpm
-pnpm install
+${options.packageManager === "pnpm" ? "corepack enable pnpm" : "npm --version"}
+${options.packageManager} install
 \`\`\`
 
 ${studioSection}
@@ -562,6 +621,7 @@ async function commandInit(flags) {
   const defaultRepository = String(flags.repository ?? detectedGitDefaults?.repository ?? "").trim();
   const defaultBaseBranch = String(flags["base-branch"] ?? flags.baseBranch ?? detectedGitDefaults?.baseBranch ?? "main").trim();
   const defaultDir = String(flags.dir ?? "prismforge-studio").trim() || "prismforge-studio";
+  let packageManager = "pnpm";
 
   let includeStudio = true;
   let installDeps = Boolean(flags.install);
@@ -570,6 +630,7 @@ async function commandInit(flags) {
   try {
     const studioFlag = parseBooleanFlag(flags.studio, "studio");
     const installFlag = parseBooleanFlag(flags.install, "install");
+    packageManager = detectPackageManager(flags);
     includeStudio = studioFlag ?? true;
     installDeps = installFlag ?? false;
     targets = parseTokenTargets(flags.targets ?? "css,js");
@@ -605,6 +666,11 @@ async function commandInit(flags) {
       const promptedBaseBranch = await promptInput(rl, "Base branch", baseBranch);
       const promptedTargets = await promptForTokenTargets(rl, targets.join(","));
       const promptedStudio = await promptBoolean(rl, "Include Token Studio UI", includeStudio);
+      const promptedPackageManager = await promptInput(
+        rl,
+        "Package manager (pnpm|npm)",
+        packageManager
+      );
       const promptedInstall = await promptBoolean(rl, "Install dependencies now", installDeps);
 
       provider = String(promptedProvider ?? provider).trim().toLowerCase();
@@ -613,7 +679,12 @@ async function commandInit(flags) {
       targetDir = path.resolve(String(promptedDir ?? defaultDir).trim() || defaultDir);
       targets = promptedTargets.parsed;
       includeStudio = promptedStudio;
+      packageManager = parsePackageManager(promptedPackageManager) || "pnpm";
       installDeps = promptedInstall;
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Invalid init options.";
+      fail(message);
+      return;
     } finally {
       rl.close();
     }
@@ -696,7 +767,11 @@ async function commandInit(flags) {
   }
 
   const workspaceName = sanitizeName(path.basename(targetDir) || "prismforge-studio") || "prismforge-studio";
-  writeScaffoldRootPackageJson(targetDir, workspaceName, { includeStudio, targets });
+  writeScaffoldRootPackageJson(targetDir, workspaceName, {
+    includeStudio,
+    targets,
+    packageManager
+  });
   writeScaffoldWorkspaceFile(targetDir);
   writeScaffoldGitignore(targetDir);
   writeScaffoldReadme(targetDir, {
@@ -705,16 +780,23 @@ async function commandInit(flags) {
     repository,
     baseBranch,
     includeStudio,
-    targets
+    targets,
+    packageManager
   });
   if (includeStudio) {
     writeStudioEnvExample(targetDir, { provider, repository, baseBranch });
   }
 
   if (installDeps) {
-    const installResult = runCommand("pnpm", ["install"], { cwd: targetDir, stdio: "inherit" });
+    const installCommand = getInstallCommandForPackageManager(packageManager);
+    const installResult = runCommand(installCommand.command, installCommand.args, {
+      cwd: targetDir,
+      stdio: "inherit"
+    });
     if (installResult.status !== 0) {
-      fail("Scaffold completed, but dependency installation failed. Run `pnpm install` manually.");
+      fail(
+        `Scaffold completed, but dependency installation failed. Run \`${packageManager} install\` manually.`
+      );
       return;
     }
   }
@@ -727,18 +809,23 @@ async function commandInit(flags) {
   console.log(`  Base branch: ${baseBranch}`);
   console.log(`  Token targets: ${targets.join(", ")}`);
   console.log(`  Token packages: ${formatTargetPackageList(targets)}`);
+  console.log(`  Package manager: ${packageManager}`);
   console.log(`  Token Studio: ${includeStudio ? "enabled" : "disabled"}`);
   console.log("");
   console.log("Next steps:");
   console.log("  1) cd " + targetDir);
-  console.log("  2) corepack enable pnpm");
+  if (packageManager === "pnpm") {
+    console.log("  2) corepack enable pnpm");
+  } else {
+    console.log("  2) npm --version");
+  }
   if (!installDeps) {
-    console.log("  3) pnpm install");
+    console.log(`  3) ${packageManager} install`);
   }
   if (includeStudio) {
     const stepOffset = installDeps ? 3 : 4;
     console.log(`  ${stepOffset}) copy apps/token-studio/.env.example to apps/token-studio/.env.local and adjust values`);
-    console.log(`  ${stepOffset + 1}) pnpm dev`);
+    console.log(`  ${stepOffset + 1}) ${packageManager} run dev`);
     if (!repository) {
       console.log("");
       console.log("Note: repository is empty. Set GIT_REPOSITORY in apps/token-studio/.env.local before using PR flows.");
