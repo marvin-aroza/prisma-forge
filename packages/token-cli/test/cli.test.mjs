@@ -11,6 +11,17 @@ const __dirname = path.dirname(__filename);
 const cliPath = path.join(__dirname, "..", "src", "cli.js");
 const repoRoot = path.join(__dirname, "..", "..", "..");
 
+test("prismforge without args prints help without module resolution failures", () => {
+  const result = spawnSync(process.execPath, [cliPath], {
+    cwd: repoRoot,
+    encoding: "utf8"
+  });
+
+  assert.equal(result.status, 0);
+  assert.match(result.stdout, /PrismForge CLI/u);
+  assert.doesNotMatch(result.stderr, /ERR_MODULE_NOT_FOUND/u);
+});
+
 test("prismforge validate exits successfully", () => {
   const result = spawnSync(process.execPath, [cliPath, "validate"], {
     cwd: repoRoot,

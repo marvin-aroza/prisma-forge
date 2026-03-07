@@ -4,11 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import readline from "node:readline/promises";
 import { spawnSync } from "node:child_process";
-import { fileURLToPath } from "node:url";
-import { buildArtifacts } from "../../token-build/src/index.js";
-import { loadMappings, validateMappings } from "../../token-mappings/src/index.js";
-import { resolveAliases, validateTokens } from "../../token-schema/src/index.js";
-import { loadAllTokenSources, loadTokenSource } from "../../token-source/src/index.js";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -110,6 +106,79 @@ function formatTargetPackageList(targets) {
     .map((target) => TARGET_PACKAGE_MAP[target])
     .filter(Boolean)
     .join(", ");
+}
+
+function asFileModuleSpecifier(absolutePath) {
+  return pathToFileURL(absolutePath).href;
+}
+
+function getWorkspaceModuleCandidate(relativePathFromCwd) {
+  const absolutePath = path.resolve(process.cwd(), relativePathFromCwd);
+  if (!fs.existsSync(absolutePath)) {
+    return null;
+  }
+  return asFileModuleSpecifier(absolutePath);
+}
+
+function getCliRelativeModuleCandidate(relativePathFromCliDir) {
+  const absolutePath = path.resolve(__dirname, relativePathFromCliDir);
+  if (!fs.existsSync(absolutePath)) {
+    return null;
+  }
+  return asFileModuleSpecifier(absolutePath);
+}
+
+async function importFromCandidates(purposeLabel, candidates) {
+  const attempts = [];
+
+  for (const candidate of candidates.filter(Boolean)) {
+    try {
+      return await import(candidate);
+    } catch (error) {
+      const reason =
+        error instanceof Error
+          ? `${error.name}: ${error.message}`
+          : "Unknown import error";
+      attempts.push(`${candidate} (${reason})`);
+    }
+  }
+
+  const details = attempts.length > 0 ? ` Attempts: ${attempts.join(" | ")}` : "";
+  throw new Error(
+    `Unable to load ${purposeLabel}. Run this command from a PrismForge workspace or install required runtime packages.${details}`
+  );
+}
+
+async function loadTokenSchemaModule() {
+  return importFromCandidates("token schema module", [
+    getWorkspaceModuleCandidate("packages/token-schema/src/index.js"),
+    getCliRelativeModuleCandidate("../../token-schema/src/index.js"),
+    "@prismforge/token-schema"
+  ]);
+}
+
+async function loadTokenMappingsModule() {
+  return importFromCandidates("token mappings module", [
+    getWorkspaceModuleCandidate("packages/token-mappings/src/index.js"),
+    getCliRelativeModuleCandidate("../../token-mappings/src/index.js"),
+    "@prismforge/token-mappings"
+  ]);
+}
+
+async function loadTokenSourceModule() {
+  return importFromCandidates("token source module", [
+    getWorkspaceModuleCandidate("packages/token-source/src/index.js"),
+    getCliRelativeModuleCandidate("../../token-source/src/index.js"),
+    "@prismforge/token-source"
+  ]);
+}
+
+async function loadTokenBuildModule() {
+  return importFromCandidates("token build module", [
+    getWorkspaceModuleCandidate("packages/token-build/src/index.js"),
+    getCliRelativeModuleCandidate("../../token-build/src/index.js"),
+    "@prismforge/token-build"
+  ]);
 }
 
 function hasDirectoryEntries(directoryPath) {
@@ -574,7 +643,14 @@ async function commandInit(flags) {
   }
 }
 
-function commandValidate() {
+async function commandValidate() {
+  const [{ validateTokens, resolveAliases }, { loadMappings, validateMappings }, { loadAllTokenSources }] =
+    await Promise.all([
+      loadTokenSchemaModule(),
+      loadTokenMappingsModule(),
+      loadTokenSourceModule()
+    ]);
+
   const sets = loadAllTokenSources();
   const mappings = loadMappings();
   const report = [];
@@ -607,7 +683,8 @@ function commandValidate() {
   console.log("Validation passed.");
 }
 
-function commandBuild(flags) {
+async function commandBuild(flags) {
+  const { buildArtifacts } = await loadTokenBuildModule();
   const brand = flags.brand ?? "acme";
   const mode = flags.mode ?? "light";
   const target = flags.target ?? "all";
@@ -748,7 +825,12 @@ function commandRelease(flags) {
   console.log(JSON.stringify(plan, null, 2));
 }
 
-function commandFigmaExport(flags) {
+async function commandFigmaExport(flags) {
+  const [{ loadTokenSource }, { resolveAliases }] = await Promise.all([
+    loadTokenSourceModule(),
+    loadTokenSchemaModule()
+  ]);
+
   const brand = flags.brand ?? "acme";
   const mode = flags.mode ?? "light";
   const set = loadTokenSource({ brand, mode });
@@ -795,7 +877,7 @@ async function main() {
       fail('Only "prismforge figma export" is supported in v1.');
       return;
     }
-    commandFigmaExport(flags);
+    await commandFigmaExport(flags);
     return;
   }
 
@@ -805,10 +887,10 @@ async function main() {
       await commandInit(flags);
       break;
     case "validate":
-      commandValidate();
+      await commandValidate();
       break;
     case "build":
-      commandBuild(flags);
+      await commandBuild(flags);
       break;
     case "diff":
       commandDiff(flags);
