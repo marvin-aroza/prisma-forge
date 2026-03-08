@@ -1,5 +1,11 @@
 # @prismforge/token-cli
 
+## 0.7.1
+
+### Patch Changes
+
+- aed42c4: Publish a patch release for PrismForge CLI maintenance updates and release-flow alignment.
+
 ## 0.7.0
 
 ### Minor Changes
