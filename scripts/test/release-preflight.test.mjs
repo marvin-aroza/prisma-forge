@@ -10,8 +10,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const preflightScript = path.resolve(__dirname, "..", "release-preflight.mjs");
 
-function runPreflight(cwd) {
-  return spawnSync(process.execPath, [preflightScript], {
+function runPreflight(cwd, args = []) {
+  return spawnSync(process.execPath, [preflightScript, ...args], {
     cwd,
     encoding: "utf8"
   });
@@ -50,6 +50,15 @@ test("release preflight fails when there are no pending changesets", () => {
   const result = runPreflight(cwd);
   assert.equal(result.status, 1);
   assert.match(result.stderr, /No pending changesets found/u);
+});
+
+test("release preflight allows empty changesets when --allow-empty is passed", () => {
+  const cwd = makeRepoRoot();
+  write(path.join(cwd, ".changeset", "README.md"), "# changesets");
+
+  const result = runPreflight(cwd, ["--allow-empty"]);
+  assert.equal(result.status, 0);
+  assert.match(result.stdout, /allowed for dry run/u);
 });
 
 test("release preflight fails when changeset is missing frontmatter", () => {

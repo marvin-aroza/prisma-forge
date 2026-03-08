@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const CHANGESET_DIR = path.join(process.cwd(), ".changeset");
+const allowEmpty = process.argv.includes("--allow-empty");
 
 function fail(message) {
   console.error(`ERROR: ${message}`);
@@ -44,6 +45,10 @@ function hasPackageEntries(frontmatterText) {
 function main() {
   const files = getChangesetMarkdownFiles();
   if (files.length === 0) {
+    if (allowEmpty) {
+      console.log("Release preflight warning: no pending changesets found (allowed for dry run).");
+      return;
+    }
     fail("No pending changesets found. Add a changeset before running release.");
   }
 

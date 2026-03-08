@@ -86,7 +86,12 @@ jobs:
           echo "is_prerelease=$IS_PRERELEASE" >> "$GITHUB_OUTPUT"
 
       - name: Release preflight
-        run: pnpm release:preflight
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            pnpm release:preflight -- --allow-empty
+          else
+            pnpm release:preflight
+          fi
 
       - name: Validate
         run: pnpm validate
