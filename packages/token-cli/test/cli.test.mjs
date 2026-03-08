@@ -392,7 +392,7 @@ test("prismforge init supports embedded mode in existing projects", () => {
 
   assert.equal(result.status, 0);
   assert.ok(fs.existsSync(path.join(cwd, "tools", "prismforge", "apps", "token-studio", "package.json")));
-  assert.ok(fs.existsSync(path.join(cwd, "tools", "prismforge", "design-tokens", "src", "tokens")));
+  assert.ok(fs.existsSync(path.join(cwd, "design-tokens", "src", "tokens")));
   assert.equal(
     fs.existsSync(path.join(cwd, "tools", "prismforge", "packages", "token-source")),
     false
@@ -402,6 +402,41 @@ test("prismforge init supports embedded mode in existing projects", () => {
   assert.equal(hostPackage.scripts.test, "echo test");
   assert.equal(hostPackage.scripts["prismforge:dev"], "npm --prefix tools/prismforge run dev");
   assert.equal(hostPackage.scripts["prismforge:install"], "npm --prefix tools/prismforge install");
+});
+
+test("prismforge init embedded app-first supports custom --tokens-path", () => {
+  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "prismforge-init-embedded-custom-tokens-path-"));
+  fs.writeFileSync(path.join(cwd, "package.json"), `${JSON.stringify({ name: "host", private: true }, null, 2)}\n`, "utf8");
+
+  const result = spawnSync(
+    process.execPath,
+    [
+      cliPath,
+      "init",
+      "--mode",
+      "embedded",
+      "--layout",
+      "app-first",
+      "--embedded-path",
+      "tools/prismforge",
+      "--tokens-path",
+      "tokens/design",
+      "--template-root",
+      repoRoot,
+      "--package-manager",
+      "npm",
+      "--studio",
+      "true"
+    ],
+    {
+      cwd,
+      encoding: "utf8"
+    }
+  );
+
+  assert.equal(result.status, 0);
+  assert.ok(fs.existsSync(path.join(cwd, "tokens", "design", "src", "tokens")));
+  assert.equal(fs.existsSync(path.join(cwd, "tools", "prismforge", "design-tokens")), false);
 });
 
 test("prismforge init embedded mode supports workspace layout", () => {

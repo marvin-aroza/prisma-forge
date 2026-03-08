@@ -54,7 +54,7 @@ Commands:
   prismforge validate
   prismforge build --brand <id> --mode <id> --target <css|js|android|ios|all> [--out <dir>]
   prismforge diff --from <version-or-file> --to <version-or-file>
-  prismforge init [--mode <standalone|embedded>] [--layout <workspace|app-first>] [--embedded-path <path>] [--dir <path>] [--provider <github|gitlab|bitbucket|generic>] [--repository <id-or-url>] [--base-branch <name>] [--targets <css,js,android,ios|all>] [--studio <true|false>] [--package-manager <pnpm|npm>] [--prompt] [--yes] [--install] [--force]
+  prismforge init [--mode <standalone|embedded>] [--layout <workspace|app-first>] [--embedded-path <path>] [--tokens-path <path>] [--dir <path>] [--provider <github|gitlab|bitbucket|generic>] [--repository <id-or-url>] [--base-branch <name>] [--targets <css,js,android,ios|all>] [--studio <true|false>] [--package-manager <pnpm|npm>] [--prompt] [--yes] [--install] [--force]
   prismforge release --channel <stable|next|alpha|beta|rc|canary|custom> [--dist-tag <tag>]
   prismforge figma export --brand <id> --mode <id> [--out <file>]
 `);
@@ -113,6 +113,18 @@ function formatTargetPackageList(targets) {
     .map((target) => TARGET_PACKAGE_MAP[target])
     .filter(Boolean)
     .join(", ");
+}
+
+function toPosixPath(value) {
+  return String(value).replace(/\\/gu, "/");
+}
+
+function ensureScriptPath(relativePath) {
+  const normalized = toPosixPath(relativePath || "packages/token-source/src/index.js");
+  if (normalized.startsWith("./") || normalized.startsWith("../")) {
+    return normalized;
+  }
+  return `./${normalized}`;
 }
 
 function parsePackageManager(value) {
@@ -495,6 +507,8 @@ function shouldPromptForInit(flags) {
     "layout",
     "embedded-path",
     "embeddedPath",
+    "tokens-path",
+    "tokensPath",
     "dir",
     "provider",
     "repository",
@@ -553,12 +567,9 @@ async function promptForTokenTargets(rl, defaultValue) {
 }
 
 function writeScaffoldRootPackageJson(targetDir, workspaceName, options) {
-  const tokenSourceEntryPoint =
-    options.tokenSourcePath === "design-tokens"
-      ? "node ./design-tokens/src/index.js --list"
-      : "node ./packages/token-source/src/index.js --list";
+  const tokenSourceEntryPoint = `node ${ensureScriptPath(options.tokenSourceEntryPoint || "packages/token-source/src/index.js")} --list`;
   const scripts = {
-    validate: `${tokenSourceEntryPoint} && node ./packages/token-schema/src/index.js --self-check`
+    validate: `${tokenSourceEntryPoint} && node ${ensureScriptPath("packages/token-schema/src/index.js")} --self-check`
   };
 
   if (options.includeStudio) {
@@ -663,6 +674,7 @@ GitHub autopilot PR creation requires:
 Self-hosted PrismForge workspace.
 Init mode: ${options.initMode}
 Layout: ${options.layout}
+Token source location: ${options.tokenSourceLocation}
 Selected token targets: ${options.targets.join(", ")}
 Token packages: ${formatTargetPackageList(options.targets)}
 Package manager: ${options.packageManager}
@@ -702,35 +714,48 @@ GITHUB_BASE_BRANCH=${options.baseBranch}
   fs.writeFileSync(path.join(studioDir, ".env.example"), envExample, "utf8");
 }
 
-function applyAppFirstLayoutPatches(targetDir) {
-  const replacements = [
-    {
-      file: path.join(targetDir, "apps", "token-studio", "lib", "tokens.ts"),
-      from: "../../../packages/token-source/src/index.js",
-      to: "../../../design-tokens/src/index.js"
-    },
-    {
-      file: path.join(targetDir, "apps", "token-studio", "app", "api", "pr", "route.ts"),
-      from: "../../../../../packages/token-source/src/index.js",
-      to: "../../../../../design-tokens/src/index.js"
-    },
-    {
-      file: path.join(targetDir, "apps", "token-studio", "app", "api", "pr", "helpers.mjs"),
-      from: 'path.join(\n  REPO_ROOT,\n  "packages",\n  "token-source",\n  "src",\n  "tokens"\n);',
-      to: 'path.join(REPO_ROOT, "design-tokens", "src", "tokens");'
-    }
-  ];
+function toModuleSpecifier(fromFilePath, toFilePath) {
+  const relativePath = toPosixPath(path.relative(path.dirname(fromFilePath), toFilePath));
+  if (relativePath.startsWith("./") || relativePath.startsWith("../")) {
+    return relativePath;
+  }
+  return `./${relativePath}`;
+}
 
-  for (const replacement of replacements) {
-    if (!fs.existsSync(replacement.file)) {
-      continue;
-    }
-    const current = fs.readFileSync(replacement.file, "utf8");
-    if (!current.includes(replacement.from)) {
-      continue;
-    }
-    const next = current.replace(replacement.from, replacement.to);
-    fs.writeFileSync(replacement.file, next, "utf8");
+function applyAppFirstLayoutPatches(targetDir, tokenSourceRootDir) {
+  const tokenSourceEntryPoint = path.join(tokenSourceRootDir, "src", "index.js");
+  const tokenSourceRelativeFromRepoRoot = toPosixPath(path.relative(targetDir, tokenSourceRootDir) || ".");
+
+  const studioLibFile = path.join(targetDir, "apps", "token-studio", "lib", "tokens.ts");
+  if (fs.existsSync(studioLibFile)) {
+    const current = fs.readFileSync(studioLibFile, "utf8");
+    const importSpecifier = toModuleSpecifier(studioLibFile, tokenSourceEntryPoint);
+    const next = current.replace(
+      /from\s+"[^"]*token-source\/src\/index\.js";/u,
+      `from "${importSpecifier}";`
+    );
+    fs.writeFileSync(studioLibFile, next, "utf8");
+  }
+
+  const studioRouteFile = path.join(targetDir, "apps", "token-studio", "app", "api", "pr", "route.ts");
+  if (fs.existsSync(studioRouteFile)) {
+    const current = fs.readFileSync(studioRouteFile, "utf8");
+    const importSpecifier = toModuleSpecifier(studioRouteFile, tokenSourceEntryPoint);
+    const next = current.replace(
+      /from\s+"[^"]*token-source\/src\/index\.js";/u,
+      `from "${importSpecifier}";`
+    );
+    fs.writeFileSync(studioRouteFile, next, "utf8");
+  }
+
+  const studioHelpersFile = path.join(targetDir, "apps", "token-studio", "app", "api", "pr", "helpers.mjs");
+  if (fs.existsSync(studioHelpersFile)) {
+    const current = fs.readFileSync(studioHelpersFile, "utf8");
+    const next = current.replace(
+      /export const TOKEN_SOURCE_ROOT = path\.join\([\s\S]*?\);\n/u,
+      `export const TOKEN_SOURCE_ROOT = path.resolve(REPO_ROOT, ${JSON.stringify(tokenSourceRelativeFromRepoRoot)}, "src", "tokens");\n`
+    );
+    fs.writeFileSync(studioHelpersFile, next, "utf8");
   }
 }
 
@@ -801,9 +826,11 @@ async function commandInit(flags) {
   const defaultBaseBranch = String(flags["base-branch"] ?? flags.baseBranch ?? detectedGitDefaults?.baseBranch ?? "main").trim();
   const defaultStandaloneDir = String(flags.dir ?? "prismforge-studio").trim() || "prismforge-studio";
   const defaultEmbeddedPath = String(flags["embedded-path"] ?? flags.embeddedPath ?? "tools/prismforge").trim() || "tools/prismforge";
+  const defaultTokensPath = String(flags["tokens-path"] ?? flags.tokensPath ?? "design-tokens").trim() || "design-tokens";
   let packageManager = "pnpm";
   let initMode = "standalone";
   let initLayout = "";
+  let tokensPath = defaultTokensPath;
 
   let includeStudio = true;
   let installDeps = Boolean(flags.install);
@@ -873,6 +900,14 @@ async function commandInit(flags) {
         const promptedDir = await promptInput(rl, "Workspace directory", defaultStandaloneDir);
         targetDir = path.resolve(String(promptedDir ?? defaultStandaloneDir).trim() || defaultStandaloneDir);
       }
+      if (initLayout === "app-first") {
+        const tokensPathLabel =
+          initMode === "embedded"
+            ? "Token source path (relative to current project)"
+            : "Token source path (relative to workspace)";
+        const promptedTokensPath = await promptInput(rl, tokensPathLabel, tokensPath);
+        tokensPath = String(promptedTokensPath ?? tokensPath).trim() || tokensPath;
+      }
 
       const promptedProvider = await promptInput(
         rl,
@@ -924,8 +959,27 @@ async function commandInit(flags) {
   }
 
   const hostProjectRoot = process.cwd();
+  const tokenSourceRootDir =
+    initLayout === "app-first"
+      ? path.resolve(initMode === "embedded" ? hostProjectRoot : targetDir, tokensPath)
+      : path.join(targetDir, "packages", "token-source");
+  const tokenSourceEntryPoint = path.join(tokenSourceRootDir, "src", "index.js");
+  const tokenSourceLocation =
+    initMode === "embedded"
+      ? toPosixPath(path.relative(hostProjectRoot, tokenSourceRootDir) || ".")
+      : toPosixPath(path.relative(targetDir, tokenSourceRootDir) || ".");
+
   if (hasDirectoryEntries(targetDir) && !flags.force) {
     fail(`Target directory "${targetDir}" already exists and is not empty. Use --force to continue.`);
+    return;
+  }
+  if (
+    initLayout === "app-first" &&
+    path.resolve(tokenSourceRootDir) !== path.resolve(targetDir) &&
+    hasDirectoryEntries(tokenSourceRootDir) &&
+    !flags.force
+  ) {
+    fail(`Token source directory "${tokenSourceRootDir}" already exists and is not empty. Use --force to continue.`);
     return;
   }
 
@@ -963,15 +1017,15 @@ async function commandInit(flags) {
 
     const destinationPath =
       initLayout === "app-first" && relativePath === path.join("packages", "token-source", "src")
-        ? path.join(targetDir, "design-tokens", "src")
+        ? path.join(tokenSourceRootDir, "src")
         : initLayout === "app-first" && relativePath === path.join("packages", "token-source", "package.json")
-          ? path.join(targetDir, "design-tokens", "package.json")
+          ? path.join(tokenSourceRootDir, "package.json")
           : path.join(targetDir, relativePath);
     copyDirectory(sourcePath, destinationPath);
   }
 
   if (initLayout === "app-first") {
-    applyAppFirstLayoutPatches(targetDir);
+    applyAppFirstLayoutPatches(targetDir, tokenSourceRootDir);
   }
 
   const tsconfigBaseSource = path.join(templateRoot, "tsconfig.base.json");
@@ -1006,7 +1060,7 @@ async function commandInit(flags) {
     includeStudio,
     targets,
     packageManager,
-    tokenSourcePath: initLayout === "app-first" ? "design-tokens" : "packages/token-source"
+    tokenSourceEntryPoint: toPosixPath(path.relative(targetDir, tokenSourceEntryPoint))
   });
   writeScaffoldWorkspaceFile(targetDir);
   writeScaffoldGitignore(targetDir);
@@ -1014,6 +1068,7 @@ async function commandInit(flags) {
     workspaceTitle: workspaceName,
     initMode,
     layout: initLayout,
+    tokenSourceLocation,
     provider,
     repository,
     baseBranch,
@@ -1063,6 +1118,7 @@ async function commandInit(flags) {
   console.log(`  Token packages: ${formatTargetPackageList(targets)}`);
   console.log(`  Package manager: ${packageManager}`);
   console.log(`  Token Studio: ${includeStudio ? "enabled" : "disabled"}`);
+  console.log(`  Token source path: ${tokenSourceLocation}`);
   if (embeddedScriptIntegration) {
     console.log(`  Host scripts: ${embeddedScriptIntegration.reason}`);
   }

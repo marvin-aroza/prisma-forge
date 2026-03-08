@@ -49,8 +49,10 @@ For tokens-only consumers (no Studio UI), pass `--studio false`.
 For existing repos that want Studio in the same project, use embedded mode:
 
 ```bash
-npx @prismforge/token-cli init --mode embedded --layout app-first --embedded-path tools/prismforge
+npx @prismforge/token-cli init --mode embedded --layout app-first --embedded-path tools/prismforge --tokens-path design-tokens
 ```
+
+In embedded `app-first`, token source is placed at project root (`design-tokens/` by default), not under `tools/prismforge`.
 
 ## Monorepo layout
 

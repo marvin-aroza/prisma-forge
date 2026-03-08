@@ -2,7 +2,7 @@
 
 Commands:
 
-- `prismforge init [--mode <standalone|embedded>] [--layout <workspace|app-first>] [--embedded-path <path>] [--dir <path>] [--provider <github|gitlab|bitbucket|generic>] [--repository <id-or-url>] [--base-branch <name>] [--targets <css,js,android,ios|all>] [--studio <true|false>] [--package-manager <pnpm|npm>] [--prompt] [--yes] [--install]`
+- `prismforge init [--mode <standalone|embedded>] [--layout <workspace|app-first>] [--embedded-path <path>] [--tokens-path <path>] [--dir <path>] [--provider <github|gitlab|bitbucket|generic>] [--repository <id-or-url>] [--base-branch <name>] [--targets <css,js,android,ios|all>] [--studio <true|false>] [--package-manager <pnpm|npm>] [--prompt] [--yes] [--install]`
 - `prismforge validate`
 - `prismforge build --brand <id> --mode <id> --target <css|js|android|ios|all>`
 - `prismforge diff --from <snapshot> --to <snapshot>`
@@ -42,6 +42,7 @@ npx @prismforge/token-cli init \
   --mode embedded \
   --layout app-first \
   --embedded-path tools/prismforge \
+  --tokens-path design-tokens \
   --package-manager npm
 ```
 
@@ -54,7 +55,8 @@ This keeps PrismForge inside your current project and adds helper scripts to you
 
 Layout notes:
 
-- `app-first` (default for embedded): token source lives in `tools/prismforge/design-tokens`.
+- `app-first` (default for embedded): token source lives at project root (`design-tokens/` by default).
+- `--tokens-path` lets you move token source anywhere in your host repo (for example `tokens/design`).
 - `workspace`: token source stays in `tools/prismforge/packages/token-source`.
 
 Then run:
