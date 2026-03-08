@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Manrope, Source_Sans_3 } from "next/font/google";
+import { getStudioFeatureFlags, getStudioInitials, getStudioMetadata } from "../lib/studio-config.js";
 import "./globals.css";
 
 const headingFont = Manrope({
@@ -14,9 +15,12 @@ const bodyFont = Source_Sans_3({
   variable: "--font-body"
 });
 
+const studioMeta = getStudioMetadata();
+const studioFlags = getStudioFeatureFlags();
+
 export const metadata: Metadata = {
-  title: "PrismForge Token Studio",
-  description: "Browse, diff, and propose token changes across brands and modes."
+  title: studioMeta.name,
+  description: studioMeta.description
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -28,11 +32,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="brand-cluster">
               <Link className="brand-link" href="/studio">
                 <span className="brand-mark" aria-hidden>
-                  PF
+                  {getStudioInitials(studioMeta.name)}
                 </span>
                 <div>
-                  <p className="brand">PrismForge Token Studio</p>
-                  <p className="subtitle">Cross-platform token governance</p>
+                  <p className="brand">{studioMeta.name}</p>
+                  <p className="subtitle">{studioMeta.subtitle}</p>
                 </div>
               </Link>
               <div className="header-tags" aria-label="Platform highlights">
@@ -49,10 +53,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </p>
               <nav className="topnav" aria-label="Documentation links">
                 <Link href="/studio">Studio</Link>
-                <Link href="/docs/react">React</Link>
-                <Link href="/docs/vue">Vue</Link>
-                <Link href="/docs/angular">Angular</Link>
-                <Link href="/docs/components">Components</Link>
+                {studioFlags.docs ? <Link href="/docs/react">React</Link> : null}
+                {studioFlags.docs ? <Link href="/docs/vue">Vue</Link> : null}
+                {studioFlags.docs ? <Link href="/docs/angular">Angular</Link> : null}
+                {studioFlags.docs ? <Link href="/docs/components">Components</Link> : null}
               </nav>
             </div>
           </div>

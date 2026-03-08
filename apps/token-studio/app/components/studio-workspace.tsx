@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { TokenChangeForm } from "./token-change-form";
 import { contrastRatio } from "../../lib/color";
+import { getStudioFeatureFlags } from "../../lib/studio-config.js";
 import { loadMappings } from "../../../../packages/token-mappings/src/index.js";
 import {
   diffTokens,
@@ -68,6 +69,20 @@ export async function StudioWorkspace({
   searchParams?: Promise<Record<string, string | string[] | undefined>>;
   view?: StudioView;
 }) {
+  const featureFlags = getStudioFeatureFlags();
+  const viewAvailability: Record<Exclude<StudioView, "all">, boolean> = {
+    preview: featureFlags.preview,
+    diff: featureFlags.diff,
+    catalog: featureFlags.catalog,
+    components: featureFlags.components,
+    edit: featureFlags.edit
+  };
+  const enabledViews = (Object.keys(viewAvailability) as Array<Exclude<StudioView, "all">>).filter(
+    (entry) => viewAvailability[entry]
+  );
+  const activeView =
+    view === "all" || viewAvailability[view] ? view : (enabledViews[0] ?? "all");
+
   const resolvedSearchParams: Record<string, string | string[] | undefined> =
     ((searchParams ? await searchParams : {}) as Record<string, string | string[] | undefined>) ?? {};
   const brandModes = listBrandsAndModes() as Record<string, string[]>;
@@ -165,6 +180,18 @@ export async function StudioWorkspace({
 
   const routeQueryString = routeQuery.toString();
   const toStudioRoute = (path: string) => (routeQueryString ? `${path}?${routeQueryString}` : path);
+  const sidebarSectionLinks = [
+    { href: "/studio/preview", label: "2. Visual Preview", enabled: featureFlags.preview },
+    { href: "/studio/diff", label: "3. Diff Analysis", enabled: featureFlags.diff },
+    { href: "/studio/edit", label: "4. Propose Edit", enabled: featureFlags.edit },
+    { href: "/studio/catalog", label: "5. Token Catalog", enabled: featureFlags.catalog },
+    { href: "/studio/components", label: "6. Component Widgets", enabled: featureFlags.components },
+    { href: "/studio/components", label: "7. Component Docs", enabled: featureFlags.components }
+  ].filter((entry) => entry.enabled);
+  const heroStepLinks = [
+    { href: "/studio", label: "1. Theme Controls", enabled: true },
+    ...sidebarSectionLinks
+  ];
 
   const chipWidget = {
     defaultBg: getRenderableTokenColor(tokenMap, "dk.component.chip-bg.default.default", "#1473E6"),
@@ -381,7 +408,7 @@ export async function StudioWorkspace({
   const additionalWidgetCatalog = componentCatalog.filter((entry) => !featuredWidgetComponents.has(entry.component));
 
   return (
-    <div className={`page-shell density-${density} studio-view-${view}`}>
+    <div className={`page-shell density-${density} studio-view-${activeView}`}>
       <div className="studio-shell">
         <aside className="studio-sidebar" aria-label="Token Studio sidebar">
           <section id="theme-controls" className="panel sidebar-panel">
@@ -509,12 +536,11 @@ export async function StudioWorkspace({
               <p className="muted">Jump directly to each workspace block.</p>
             </div>
             <nav className="sidebar-nav" aria-label="Token Studio sections">
-              <Link href={toStudioRoute("/studio/preview")}>2. Visual Preview</Link>
-              <Link href={toStudioRoute("/studio/diff")}>3. Diff Analysis</Link>
-              <Link href={toStudioRoute("/studio/edit")}>4. Propose Edit</Link>
-              <Link href={toStudioRoute("/studio/catalog")}>5. Token Catalog</Link>
-              <Link href={toStudioRoute("/studio/components")}>6. Component Widgets</Link>
-              <Link href={toStudioRoute("/studio/components")}>7. Component Docs</Link>
+              {sidebarSectionLinks.map((entry) => (
+                <Link key={`${entry.href}-${entry.label}`} href={toStudioRoute(entry.href)}>
+                  {entry.label}
+                </Link>
+              ))}
             </nav>
           </section>
         </aside>
@@ -529,13 +555,11 @@ export async function StudioWorkspace({
                 environments, then send a validated token edit to draft PR.
               </p>
               <div className="step-links">
-                <Link href={toStudioRoute("/studio")}>1. Theme Controls</Link>
-                <Link href={toStudioRoute("/studio/preview")}>2. Visual Preview</Link>
-                <Link href={toStudioRoute("/studio/diff")}>3. Diff Analysis</Link>
-                <Link href={toStudioRoute("/studio/edit")}>4. Propose Edit</Link>
-                <Link href={toStudioRoute("/studio/catalog")}>5. Token Catalog</Link>
-                <Link href={toStudioRoute("/studio/components")}>6. Component Widgets</Link>
-                <Link href={toStudioRoute("/studio/components")}>7. Component Docs</Link>
+                {heroStepLinks.map((entry) => (
+                  <Link key={`${entry.href}-${entry.label}`} href={toStudioRoute(entry.href)}>
+                    {entry.label}
+                  </Link>
+                ))}
               </div>
             </div>
 
@@ -593,7 +617,7 @@ export async function StudioWorkspace({
             </div>
           </section>
 
-          <section id="preview-board" className="panel">
+          {featureFlags.preview ? <section id="preview-board" className="panel">
         <div className="section-heading">
           <h2>2. Visual Preview Board</h2>
           <p className="muted">Evaluate visual behavior quickly before inspecting raw token payloads.</p>
@@ -689,9 +713,9 @@ export async function StudioWorkspace({
             )}
           </article>
         </div>
-      </section>
+      </section> : null}
 
-      <section id="diff-analysis" className="panel">
+      {featureFlags.diff ? <section id="diff-analysis" className="panel">
         <div className="section-heading">
           <h2>3. Diff Analysis</h2>
           <p className="muted">{`Comparing ${selectedBrand}/${selectedMode} against ${compareBrand}/${compareMode}`}</p>
@@ -731,17 +755,17 @@ export async function StudioWorkspace({
             </ul>
           </div>
         </div>
-      </section>
+      </section> : null}
 
-      <TokenChangeForm
+      {featureFlags.edit ? <TokenChangeForm
         brand={selectedBrand}
         mode={selectedMode}
         sectionId="edit-workflow"
         existingMappings={allMappings}
         existingTokenIds={tokens.map((token) => token.id)}
-      />
+      /> : null}
 
-      <section id="token-catalog" className="panel">
+      {featureFlags.catalog ? <section id="token-catalog" className="panel">
         <div className="section-heading">
           <h2>5. Token Catalog</h2>
           <p className="muted">Complete listing for final verification before proposing edits.</p>
@@ -786,9 +810,9 @@ export async function StudioWorkspace({
             </tbody>
           </table>
         </div>
-      </section>
+      </section> : null}
 
-      <section id="component-widgets" className="panel">
+      {featureFlags.components ? <section id="component-widgets" className="panel">
         <div className="section-heading">
           <h2>6. Component Widgets</h2>
           <p className="muted">
@@ -1339,9 +1363,9 @@ export async function StudioWorkspace({
             </div>
           </div>
         ) : null}
-      </section>
+      </section> : null}
 
-      <section id="component-docs" className="panel">
+      {featureFlags.components ? <section id="component-docs" className="panel">
         <div className="section-heading">
           <h2>7. Component Previews and Docs</h2>
           <p className="muted">Per-component state previews with quick variable references for implementation handoff.</p>
@@ -1410,9 +1434,9 @@ export async function StudioWorkspace({
           ))}
           {componentCatalog.length === 0 ? <p className="muted">No component tokens match the current filter.</p> : null}
         </div>
-      </section>
+      </section> : null}
 
-      <section id="developer-docs" className="panel">
+      {featureFlags.docs ? <section id="developer-docs" className="panel">
         <div className="section-heading">
           <h2>Developer Documentation</h2>
           <p className="muted">Framework integration snippets are available in MDX pages.</p>
@@ -1423,7 +1447,7 @@ export async function StudioWorkspace({
           <Link href="/docs/angular">Angular</Link>
           <Link href="/docs/components">Components</Link>
         </div>
-      </section>
+      </section> : null}
         </div>
       </div>
     </div>

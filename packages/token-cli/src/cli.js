@@ -14,6 +14,7 @@ const SUPPORTED_TOKEN_TARGETS = ["css", "js", "android", "ios"];
 const SUPPORTED_PACKAGE_MANAGERS = ["pnpm", "npm"];
 const SUPPORTED_INIT_MODES = ["standalone", "embedded"];
 const SUPPORTED_INIT_LAYOUTS = ["workspace", "app-first"];
+const DEFAULT_STUDIO_NAME = "PrismForge Token Studio";
 const SEMVER_LIKE_PATTERN = /^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$/u;
 const DEFAULT_INIT_REPO_URLS = [
   process.env.PRISMFORGE_TEMPLATE_REPO_URL?.trim(),
@@ -54,7 +55,8 @@ Commands:
   prismforge validate
   prismforge build --brand <id> --mode <id> --target <css|js|android|ios|all> [--out <dir>]
   prismforge diff --from <version-or-file> --to <version-or-file>
-  prismforge init [--mode <standalone|embedded>] [--layout <workspace|app-first>] [--embedded-path <path>] [--tokens-path <path>] [--dir <path>] [--provider <github|gitlab|bitbucket|generic>] [--repository <id-or-url>] [--base-branch <name>] [--targets <css,js,android,ios|all>] [--studio <true|false>] [--package-manager <pnpm|npm>] [--prompt] [--yes] [--install] [--force]
+  prismforge init [--mode <standalone|embedded>] [--layout <workspace|app-first>] [--embedded-path <path>] [--tokens-path <path>] [--studio-name <name>] [--dir <path>] [--provider <github|gitlab|bitbucket|generic>] [--repository <id-or-url>] [--base-branch <name>] [--targets <css,js,android,ios|all>] [--studio <true|false>] [--package-manager <pnpm|npm>] [--prompt] [--yes] [--install] [--force]
+  prismforge brand add --brand <id> [--modes <light,dark>] [--from <brand>] [--tokens-root <path>] [--force]
   prismforge release --channel <stable|next|alpha|beta|rc|canary|custom> [--dist-tag <tag>]
   prismforge figma export --brand <id> --mode <id> [--out <file>]
 `);
@@ -164,6 +166,22 @@ function parseInitLayout(value) {
     );
   }
   return normalized;
+}
+
+function parseStudioName(value) {
+  const normalized = String(value ?? "").trim();
+  return normalized || DEFAULT_STUDIO_NAME;
+}
+
+function parseModeList(value, fallback = ["light", "dark"]) {
+  const normalized = String(value ?? "")
+    .split(",")
+    .map((entry) => sanitizeName(entry))
+    .filter(Boolean);
+  if (normalized.length === 0) {
+    return [...fallback];
+  }
+  return [...new Set(normalized)];
 }
 
 function detectPackageManager(flags) {
@@ -509,6 +527,8 @@ function shouldPromptForInit(flags) {
     "embeddedPath",
     "tokens-path",
     "tokensPath",
+    "studio-name",
+    "studioName",
     "dir",
     "provider",
     "repository",
@@ -674,6 +694,7 @@ GitHub autopilot PR creation requires:
 Self-hosted PrismForge workspace.
 Init mode: ${options.initMode}
 Layout: ${options.layout}
+Token Studio name: ${options.studioName}
 Token source location: ${options.tokenSourceLocation}
 Selected token targets: ${options.targets.join(", ")}
 Token packages: ${formatTargetPackageList(options.targets)}
@@ -694,7 +715,20 @@ ${repositorySection}`;
 }
 
 function writeStudioEnvExample(targetDir, options) {
-  const envExample = `# Generic git integration (compare URL mode)
+  const envExample = `# Studio identity
+NEXT_PUBLIC_STUDIO_NAME=${options.studioName}
+NEXT_PUBLIC_STUDIO_SUBTITLE=Cross-platform token governance
+
+# Studio feature flags
+NEXT_PUBLIC_STUDIO_FLAG_PREVIEW=true
+NEXT_PUBLIC_STUDIO_FLAG_DIFF=true
+NEXT_PUBLIC_STUDIO_FLAG_EDIT=true
+NEXT_PUBLIC_STUDIO_FLAG_CATALOG=true
+NEXT_PUBLIC_STUDIO_FLAG_COMPONENTS=true
+NEXT_PUBLIC_STUDIO_FLAG_DOCS=true
+STUDIO_FLAG_GITHUB_AUTOPILOT=true
+
+# Generic git integration (compare URL mode)
 GIT_PROVIDER=${options.provider}
 GIT_REPOSITORY=${options.repository}
 GIT_BASE_BRANCH=${options.baseBranch}
@@ -819,6 +853,166 @@ function attachEmbeddedScriptsToHostProject(projectRoot, embeddedWorkspaceDir, p
   };
 }
 
+function resolveTokenSourceRoot(flags) {
+  const explicitRoot = String(flags["tokens-root"] ?? flags.tokensRoot ?? "").trim();
+  if (explicitRoot) {
+    return path.resolve(explicitRoot);
+  }
+
+  const candidates = [
+    path.resolve(process.cwd(), "design-tokens", "src", "tokens"),
+    path.resolve(process.cwd(), "packages", "token-source", "src", "tokens"),
+    path.resolve(process.cwd(), "tools", "prismforge", "design-tokens", "src", "tokens"),
+    path.resolve(process.cwd(), "tools", "prismforge", "packages", "token-source", "src", "tokens")
+  ];
+
+  return candidates.find((candidate) => fs.existsSync(candidate)) ?? "";
+}
+
+function listBrandModes(tokensRoot) {
+  const semanticRoot = path.join(tokensRoot, "semantic");
+  if (!fs.existsSync(semanticRoot)) {
+    return {};
+  }
+
+  const brandModes = {};
+  for (const entry of fs.readdirSync(semanticRoot, { withFileTypes: true })) {
+    if (!entry.isDirectory()) {
+      continue;
+    }
+    const modeFiles = fs
+      .readdirSync(path.join(semanticRoot, entry.name), { withFileTypes: true })
+      .filter((file) => file.isFile() && file.name.endsWith(".json"))
+      .map((file) => file.name.replace(/\.json$/u, ""))
+      .sort();
+    brandModes[entry.name] = modeFiles;
+  }
+
+  return brandModes;
+}
+
+function rewriteTokenBrandMetadata(node, fromBrand, toBrand) {
+  if (Array.isArray(node)) {
+    return node.map((entry) => rewriteTokenBrandMetadata(entry, fromBrand, toBrand));
+  }
+
+  if (!node || typeof node !== "object") {
+    return node;
+  }
+
+  const next = {};
+  for (const [key, value] of Object.entries(node)) {
+    if (key === "brand" && typeof value === "string") {
+      next[key] = toBrand;
+      continue;
+    }
+
+    if (key === "tags" && Array.isArray(value)) {
+      next[key] = value.map((tag) => (tag === fromBrand ? toBrand : tag));
+      continue;
+    }
+
+    next[key] = rewriteTokenBrandMetadata(value, fromBrand, toBrand);
+  }
+
+  return next;
+}
+
+function buildBrandSeedPayload(layer) {
+  return {
+    dk: {
+      generated: {
+        [`dk.${layer}.placeholder.default.base`]: {
+          $type: "color",
+          $value: "{dk.color.gray.0.base}",
+          id: `dk.${layer}.placeholder.default.base`,
+          description: `Placeholder ${layer} token. Replace with your own tokens.`,
+          brand: "placeholder",
+          mode: "light",
+          state: "base",
+          category: "color",
+          deprecated: false,
+          since: "0.1.0",
+          tags: [layer, "generated"]
+        }
+      }
+    }
+  };
+}
+
+async function commandBrandAdd(flags) {
+  const brand = sanitizeName(flags.brand ?? "");
+  if (!brand) {
+    fail('Brand add requires --brand <id>.');
+    return;
+  }
+
+  const tokensRoot = resolveTokenSourceRoot(flags);
+  if (!tokensRoot) {
+    fail(
+      'Unable to resolve token source root. Run from a PrismForge workspace or pass --tokens-root <path>.'
+    );
+    return;
+  }
+
+  const brandModes = listBrandModes(tokensRoot);
+  const existingBrands = Object.keys(brandModes).sort();
+  const seedBrand = sanitizeName(flags.from ?? existingBrands[0] ?? "");
+  const baseModes = seedBrand && brandModes[seedBrand]?.length > 0 ? brandModes[seedBrand] : ["light", "dark"];
+  const modes = parseModeList(flags.modes ?? "", baseModes);
+  const force = Boolean(flags.force);
+
+  const componentBrandRoot = path.join(tokensRoot, "component", brand);
+  const semanticBrandRoot = path.join(tokensRoot, "semantic", brand);
+
+  if (!force && (fs.existsSync(componentBrandRoot) || fs.existsSync(semanticBrandRoot))) {
+    fail(
+      `Brand "${brand}" already exists in ${toPosixPath(tokensRoot)}. Use --force to overwrite existing files.`
+    );
+    return;
+  }
+
+  const writes = [];
+  for (const layer of ["semantic", "component"]) {
+    const layerRoot = path.join(tokensRoot, layer, brand);
+    fs.mkdirSync(layerRoot, { recursive: true });
+
+    for (const mode of modes) {
+      const targetFile = path.join(layerRoot, `${mode}.json`);
+      if (fs.existsSync(targetFile) && !force) {
+        fail(`Target file already exists: ${toPosixPath(targetFile)} (use --force to overwrite).`);
+        return;
+      }
+
+      const seedFile = seedBrand
+        ? path.join(tokensRoot, layer, seedBrand, `${mode}.json`)
+        : "";
+
+      let payload;
+      if (seedFile && fs.existsSync(seedFile)) {
+        const sourcePayload = JSON.parse(fs.readFileSync(seedFile, "utf8"));
+        payload = rewriteTokenBrandMetadata(sourcePayload, seedBrand, brand);
+      } else {
+        payload = rewriteTokenBrandMetadata(buildBrandSeedPayload(layer), "placeholder", brand);
+      }
+
+      fs.writeFileSync(targetFile, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
+      writes.push(toPosixPath(path.relative(process.cwd(), targetFile)));
+    }
+  }
+
+  console.log(`Brand "${brand}" added.`);
+  console.log(`Token source root: ${toPosixPath(tokensRoot)}`);
+  console.log(`Modes: ${modes.join(", ")}`);
+  if (seedBrand) {
+    console.log(`Seeded from brand: ${seedBrand}`);
+  }
+  console.log("Created/updated files:");
+  for (const file of writes) {
+    console.log(`  - ${file}`);
+  }
+}
+
 async function commandInit(flags) {
   const detectedGitDefaults = detectGitInitDefaults();
   const defaultProvider = String(flags.provider ?? detectedGitDefaults?.provider ?? "github").trim().toLowerCase();
@@ -827,10 +1021,12 @@ async function commandInit(flags) {
   const defaultStandaloneDir = String(flags.dir ?? "prismforge-studio").trim() || "prismforge-studio";
   const defaultEmbeddedPath = String(flags["embedded-path"] ?? flags.embeddedPath ?? "tools/prismforge").trim() || "tools/prismforge";
   const defaultTokensPath = String(flags["tokens-path"] ?? flags.tokensPath ?? "design-tokens").trim() || "design-tokens";
+  const defaultStudioName = parseStudioName(flags["studio-name"] ?? flags.studioName);
   let packageManager = "pnpm";
   let initMode = "standalone";
   let initLayout = "";
   let tokensPath = defaultTokensPath;
+  let studioName = defaultStudioName;
 
   let includeStudio = true;
   let installDeps = Boolean(flags.install);
@@ -922,6 +1118,10 @@ async function commandInit(flags) {
       const promptedBaseBranch = await promptInput(rl, "Base branch", baseBranch);
       const promptedTargets = await promptForTokenTargets(rl, targets.join(","));
       const promptedStudio = await promptBoolean(rl, "Include Token Studio UI", includeStudio);
+      let promptedStudioName = studioName;
+      if (promptedStudio) {
+        promptedStudioName = await promptInput(rl, "Studio display name", studioName);
+      }
       const promptedPackageManager = await promptInput(
         rl,
         "Package manager (pnpm|npm)",
@@ -934,6 +1134,7 @@ async function commandInit(flags) {
       baseBranch = String(promptedBaseBranch ?? baseBranch).trim();
       targets = promptedTargets.parsed;
       includeStudio = promptedStudio;
+      studioName = parseStudioName(promptedStudioName);
       packageManager = parsePackageManager(promptedPackageManager) || "pnpm";
       installDeps = promptedInstall;
     } catch (error) {
@@ -1068,6 +1269,7 @@ async function commandInit(flags) {
     workspaceTitle: workspaceName,
     initMode,
     layout: initLayout,
+    studioName,
     tokenSourceLocation,
     provider,
     repository,
@@ -1077,7 +1279,7 @@ async function commandInit(flags) {
     packageManager
   });
   if (includeStudio) {
-    writeStudioEnvExample(targetDir, { provider, repository, baseBranch });
+    writeStudioEnvExample(targetDir, { provider, repository, baseBranch, studioName });
   }
 
   let embeddedScriptIntegration = null;
@@ -1118,6 +1320,7 @@ async function commandInit(flags) {
   console.log(`  Token packages: ${formatTargetPackageList(targets)}`);
   console.log(`  Package manager: ${packageManager}`);
   console.log(`  Token Studio: ${includeStudio ? "enabled" : "disabled"}`);
+  console.log(`  Studio name: ${studioName}`);
   console.log(`  Token source path: ${tokenSourceLocation}`);
   if (embeddedScriptIntegration) {
     console.log(`  Host scripts: ${embeddedScriptIntegration.reason}`);
@@ -1398,6 +1601,16 @@ async function main() {
       return;
     }
     await commandFigmaExport(flags);
+    return;
+  }
+
+  if (command === "brand") {
+    const flags = parseFlags(rest);
+    if (maybeSubcommand !== "add") {
+      fail('Only "prismforge brand add" is supported in v1.');
+      return;
+    }
+    await commandBrandAdd(flags);
     return;
   }
 

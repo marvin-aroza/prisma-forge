@@ -35,6 +35,7 @@ Or use flags:
 ```bash
 npx @prismforge/token-cli init \
   --dir prismforge-studio \
+  --studio-name "Acme Token Studio" \
   --provider github \
   --repository your-org/your-token-repo \
   --base-branch main \
@@ -53,6 +54,12 @@ npx @prismforge/token-cli init --mode embedded --layout app-first --embedded-pat
 ```
 
 In embedded `app-first`, token source is placed at project root (`design-tokens/` by default), not under `tools/prismforge`.
+
+Add custom brands to your token source:
+
+```bash
+npx @prismforge/token-cli brand add --brand acme-enterprise --modes light,dark --from acme
+```
 
 ## Monorepo layout
 

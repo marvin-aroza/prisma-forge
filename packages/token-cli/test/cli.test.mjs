@@ -313,6 +313,34 @@ test("prismforge init detects provider and repository from origin remote", () =>
   assert.match(envExample, /GIT_REPOSITORY=acme\/platform-tokens/u);
 });
 
+test("prismforge init supports custom studio name", () => {
+  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "prismforge-init-studio-name-"));
+  const targetDir = path.join(cwd, "studio");
+  const result = spawnSync(
+    process.execPath,
+    [
+      cliPath,
+      "init",
+      "--dir",
+      targetDir,
+      "--template-root",
+      repoRoot,
+      "--studio",
+      "true",
+      "--studio-name",
+      "Acme Token Studio"
+    ],
+    {
+      cwd,
+      encoding: "utf8"
+    }
+  );
+
+  assert.equal(result.status, 0);
+  const envExample = fs.readFileSync(path.join(targetDir, "apps", "token-studio", ".env.example"), "utf8");
+  assert.match(envExample, /NEXT_PUBLIC_STUDIO_NAME=Acme Token Studio/u);
+});
+
 test("prismforge init allows empty repository for new workspaces", () => {
   const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "prismforge-init-empty-repo-"));
   const targetDir = path.join(cwd, "studio");
@@ -501,6 +529,38 @@ test("prismforge init rejects invalid layout values", () => {
 
   assert.equal(result.status, 1);
   assert.match(result.stderr, /Unsupported init layout/u);
+});
+
+test("prismforge brand add creates semantic and component files in token-source workspace", () => {
+  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "prismforge-brand-add-workspace-"));
+  const targetDir = path.join(cwd, "studio");
+  const initResult = spawnSync(
+    process.execPath,
+    [cliPath, "init", "--dir", targetDir, "--studio", "false", "--template-root", repoRoot],
+    {
+      cwd,
+      encoding: "utf8"
+    }
+  );
+  assert.equal(initResult.status, 0);
+
+  const addResult = spawnSync(
+    process.execPath,
+    [cliPath, "brand", "add", "--brand", "zen", "--modes", "light,dark", "--from", "acme"],
+    {
+      cwd: targetDir,
+      encoding: "utf8"
+    }
+  );
+  assert.equal(addResult.status, 0);
+
+  const semanticFile = path.join(targetDir, "packages", "token-source", "src", "tokens", "semantic", "zen", "light.json");
+  const componentFile = path.join(targetDir, "packages", "token-source", "src", "tokens", "component", "zen", "dark.json");
+  assert.ok(fs.existsSync(semanticFile));
+  assert.ok(fs.existsSync(componentFile));
+
+  const semanticContent = fs.readFileSync(semanticFile, "utf8");
+  assert.match(semanticContent, /"brand": "zen"/u);
 });
 
 

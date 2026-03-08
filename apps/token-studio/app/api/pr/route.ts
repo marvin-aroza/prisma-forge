@@ -1,6 +1,7 @@
 import { resolveAliases, validateTokens } from "../../../../../packages/token-schema/src/index.js";
 import { validateMappings } from "../../../../../packages/token-mappings/src/index.js";
 import { loadTokenSource } from "../../../../../packages/token-source/src/index.js";
+import { getStudioFeatureFlags, getStudioName } from "../../../lib/studio-config.js";
 import {
   findTokenFilePath,
   loadMappingsFromFile,
@@ -424,6 +425,8 @@ async function createPullRequest(
 }
 
 export async function POST(request: Request) {
+  const studioFlags = getStudioFeatureFlags();
+  const studioName = getStudioName();
   const payload = normalizePayload(await request.json());
   const draftTokens = payload.tokens.map((token) => ({
     ...token,
@@ -598,7 +601,7 @@ export async function POST(request: Request) {
 
   const branch = `token-update-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
   const gitSettings = getGitSettings();
-  const github = getGitHubConfig();
+  const github = studioFlags.githubAutopilot ? getGitHubConfig() : null;
   const primaryTokenId = draftTokens[0].id;
   const summaryPayload =
     draftTokens.length === 1 && draftMappings.length === 0
@@ -745,7 +748,9 @@ export async function POST(request: Request) {
 
   if (!github) {
     const message =
-      gitSettings.provider === "github"
+      !studioFlags.githubAutopilot
+        ? "GitHub autopilot is disabled by feature flag. Running in compare-url mode."
+        : gitSettings.provider === "github"
         ? "GitHub autopilot is not configured. Set GITHUB_TOKEN to enable automatic branch and PR creation."
         : `Provider "${gitSettings.provider}" is running in compare-url mode. Configure GIT_COMPARE_URL_TEMPLATE for custom PR/MR links if needed.`;
 
@@ -768,7 +773,7 @@ export async function POST(request: Request) {
       ? `token: ${actionLabel} ${primaryTokenId}`
       : `token: ${actionLabel} ${draftTokens.length} tokens (${payload.layer})`;
   const prBody = [
-    "Generated from PrismForge Token Studio.",
+    `Generated from ${studioName}.`,
     "",
     `Operation: \`${payload.operation}\``,
     `Layer: \`${payload.layer}\``,

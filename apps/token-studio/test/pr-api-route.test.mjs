@@ -100,6 +100,36 @@ test("POST /api/pr builds gitlab compare-url when git provider is gitlab", async
   );
 });
 
+test("POST /api/pr forces compare-url when GitHub autopilot flag is disabled", async () => {
+  await withEnv(
+    {
+      GIT_PROVIDER: "github",
+      GIT_REPOSITORY: "acme/platform-tokens",
+      GIT_BASE_BRANCH: "main",
+      GITHUB_TOKEN: "ghp_test_token",
+      STUDIO_FLAG_GITHUB_AUTOPILOT: "false"
+    },
+    async () => {
+      const response = await postDraft({
+        tokens: [createToken()],
+        brand: "acme",
+        mode: "light",
+        deprecated: false,
+        since: "0.1.0",
+        operation: "update",
+        layer: "semantic",
+        includeMappings: false
+      });
+      const body = await response.json();
+
+      assert.equal(response.status, 200);
+      assert.equal(body.ok, true);
+      assert.equal(body.mode, "compare-url");
+      assert.match(body.message, /disabled by feature flag/u);
+    }
+  );
+});
+
 test("POST /api/pr rejects includeMappings with empty mapping list", async () => {
   const response = await postDraft({
     tokens: [createToken()],

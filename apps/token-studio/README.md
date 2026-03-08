@@ -75,6 +75,16 @@ GitHub autopilot configuration (optional):
 Example `.env.local`:
 
 ```bash
+NEXT_PUBLIC_STUDIO_NAME=PrismForge Token Studio
+NEXT_PUBLIC_STUDIO_SUBTITLE=Cross-platform token governance
+NEXT_PUBLIC_STUDIO_FLAG_PREVIEW=true
+NEXT_PUBLIC_STUDIO_FLAG_DIFF=true
+NEXT_PUBLIC_STUDIO_FLAG_EDIT=true
+NEXT_PUBLIC_STUDIO_FLAG_CATALOG=true
+NEXT_PUBLIC_STUDIO_FLAG_COMPONENTS=true
+NEXT_PUBLIC_STUDIO_FLAG_DOCS=true
+STUDIO_FLAG_GITHUB_AUTOPILOT=true
+
 GIT_PROVIDER=github
 GIT_REPOSITORY=your-org/your-repo
 GIT_BASE_BRANCH=main
@@ -86,6 +96,14 @@ GIT_BASE_BRANCH=main
 # GITHUB_TOKEN=ghp_xxxxx
 GITHUB_REPOSITORY=your-org/your-repo
 GITHUB_BASE_BRANCH=main
+```
+
+### Add custom brands
+
+Use CLI scaffolding for new brand folders/files:
+
+```bash
+npx @prismforge/token-cli brand add --brand acme-enterprise --modes light,dark --from acme
 ```
 
 New token creation is inserted into a generated bucket in the selected layer file:

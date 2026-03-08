@@ -2,7 +2,8 @@
 
 Commands:
 
-- `prismforge init [--mode <standalone|embedded>] [--layout <workspace|app-first>] [--embedded-path <path>] [--tokens-path <path>] [--dir <path>] [--provider <github|gitlab|bitbucket|generic>] [--repository <id-or-url>] [--base-branch <name>] [--targets <css,js,android,ios|all>] [--studio <true|false>] [--package-manager <pnpm|npm>] [--prompt] [--yes] [--install]`
+- `prismforge init [--mode <standalone|embedded>] [--layout <workspace|app-first>] [--embedded-path <path>] [--tokens-path <path>] [--studio-name <name>] [--dir <path>] [--provider <github|gitlab|bitbucket|generic>] [--repository <id-or-url>] [--base-branch <name>] [--targets <css,js,android,ios|all>] [--studio <true|false>] [--package-manager <pnpm|npm>] [--prompt] [--yes] [--install]`
+- `prismforge brand add --brand <id> [--modes <light,dark>] [--from <brand>] [--tokens-root <path>] [--force]`
 - `prismforge validate`
 - `prismforge build --brand <id> --mode <id> --target <css|js|android|ios|all>`
 - `prismforge diff --from <snapshot> --to <snapshot>`
@@ -22,6 +23,7 @@ Non-interactive:
 ```bash
 npx @prismforge/token-cli init \
   --dir prismforge-studio \
+  --studio-name "Acme Token Studio" \
   --provider github \
   --repository your-org/your-token-repo \
   --base-branch main \
@@ -34,6 +36,7 @@ Notes:
 - If run inside an existing git repo, `init` auto-detects provider/repository from `origin`.
 - `--repository` is optional. Leave it empty for new workspaces and set it later in `.env.local`.
 - Package manager is auto-detected (`npm` or `pnpm`) and can be forced with `--package-manager`.
+- `--studio-name` customizes the Token Studio header/title (default: `PrismForge Token Studio`).
 
 ## Embedded mode (inside existing repo)
 
@@ -62,11 +65,10 @@ Layout notes:
 Then run:
 
 ```bash
-cd prismforge-studio
-corepack enable pnpm
-pnpm install
-# copy apps/token-studio/.env.example to apps/token-studio/.env.local
-pnpm dev
+# from host project root
+npm run prismforge:install
+# copy tools/prismforge/apps/token-studio/.env.example to .env.local (inside tools/prismforge/apps/token-studio)
+npm run prismforge:dev
 ```
 
 ## Tokens-only scaffold (no Studio UI)
@@ -77,5 +79,16 @@ npx @prismforge/token-cli init \
   --targets ios \
   --studio false
 ```
+
+## Add your own brand
+
+```bash
+npx @prismforge/token-cli brand add \
+  --brand acme-enterprise \
+  --modes light,dark \
+  --from acme
+```
+
+This creates semantic/component files for your brand in the detected token source root (`design-tokens/src/tokens` or `packages/token-source/src/tokens`).
 
 
