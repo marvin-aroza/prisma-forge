@@ -1,5 +1,15 @@
 # @prismforge/token-cli
 
+## 0.7.0
+
+### Minor Changes
+
+- ed72936: Add embedded init layout controls for existing repositories:
+
+  - new `--layout <workspace|app-first>` option for `prismforge init`,
+  - `app-first` as default layout for embedded mode, moving token source to `design-tokens`,
+  - updated embedded scaffolding to patch Studio/token source paths for app-first layout.
+
 ## 0.6.0
 
 ### Minor Changes
