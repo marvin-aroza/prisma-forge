@@ -13,6 +13,7 @@ const SUPPORTED_GIT_PROVIDERS = ["github", "gitlab", "bitbucket", "generic"];
 const SUPPORTED_TOKEN_TARGETS = ["css", "js", "android", "ios"];
 const SUPPORTED_PACKAGE_MANAGERS = ["pnpm", "npm"];
 const SUPPORTED_INIT_MODES = ["standalone", "embedded"];
+const SUPPORTED_INIT_LAYOUTS = ["workspace", "app-first"];
 const SEMVER_LIKE_PATTERN = /^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$/u;
 const DEFAULT_INIT_REPO_URLS = [
   process.env.PRISMFORGE_TEMPLATE_REPO_URL?.trim(),
@@ -53,7 +54,7 @@ Commands:
   prismforge validate
   prismforge build --brand <id> --mode <id> --target <css|js|android|ios|all> [--out <dir>]
   prismforge diff --from <version-or-file> --to <version-or-file>
-  prismforge init [--mode <standalone|embedded>] [--embedded-path <path>] [--dir <path>] [--provider <github|gitlab|bitbucket|generic>] [--repository <id-or-url>] [--base-branch <name>] [--targets <css,js,android,ios|all>] [--studio <true|false>] [--package-manager <pnpm|npm>] [--prompt] [--yes] [--install] [--force]
+  prismforge init [--mode <standalone|embedded>] [--layout <workspace|app-first>] [--embedded-path <path>] [--dir <path>] [--provider <github|gitlab|bitbucket|generic>] [--repository <id-or-url>] [--base-branch <name>] [--targets <css,js,android,ios|all>] [--studio <true|false>] [--package-manager <pnpm|npm>] [--prompt] [--yes] [--install] [--force]
   prismforge release --channel <stable|next|alpha|beta|rc|canary|custom> [--dist-tag <tag>]
   prismforge figma export --brand <id> --mode <id> [--out <file>]
 `);
@@ -135,6 +136,19 @@ function parseInitMode(value) {
   if (!SUPPORTED_INIT_MODES.includes(normalized)) {
     throw new Error(
       `Unsupported init mode "${normalized}". Expected one of ${SUPPORTED_INIT_MODES.join(", ")}.`
+    );
+  }
+  return normalized;
+}
+
+function parseInitLayout(value) {
+  const normalized = String(value ?? "").trim().toLowerCase();
+  if (!normalized) {
+    return "";
+  }
+  if (!SUPPORTED_INIT_LAYOUTS.includes(normalized)) {
+    throw new Error(
+      `Unsupported init layout "${normalized}". Expected one of ${SUPPORTED_INIT_LAYOUTS.join(", ")}.`
     );
   }
   return normalized;
@@ -478,6 +492,7 @@ function shouldPromptForInit(flags) {
 
   const hasConfigFlags = [
     "mode",
+    "layout",
     "embedded-path",
     "embeddedPath",
     "dir",
@@ -538,8 +553,12 @@ async function promptForTokenTargets(rl, defaultValue) {
 }
 
 function writeScaffoldRootPackageJson(targetDir, workspaceName, options) {
+  const tokenSourceEntryPoint =
+    options.tokenSourcePath === "design-tokens"
+      ? "node ./design-tokens/src/index.js --list"
+      : "node ./packages/token-source/src/index.js --list";
   const scripts = {
-    validate: "node ./packages/token-source/src/index.js --list && node ./packages/token-schema/src/index.js --self-check"
+    validate: `${tokenSourceEntryPoint} && node ./packages/token-schema/src/index.js --self-check`
   };
 
   if (options.includeStudio) {
@@ -643,6 +662,7 @@ GitHub autopilot PR creation requires:
 
 Self-hosted PrismForge workspace.
 Init mode: ${options.initMode}
+Layout: ${options.layout}
 Selected token targets: ${options.targets.join(", ")}
 Token packages: ${formatTargetPackageList(options.targets)}
 Package manager: ${options.packageManager}
@@ -680,6 +700,38 @@ GITHUB_BASE_BRANCH=${options.baseBranch}
 
   const studioDir = path.join(targetDir, "apps", "token-studio");
   fs.writeFileSync(path.join(studioDir, ".env.example"), envExample, "utf8");
+}
+
+function applyAppFirstLayoutPatches(targetDir) {
+  const replacements = [
+    {
+      file: path.join(targetDir, "apps", "token-studio", "lib", "tokens.ts"),
+      from: "../../../packages/token-source/src/index.js",
+      to: "../../../design-tokens/src/index.js"
+    },
+    {
+      file: path.join(targetDir, "apps", "token-studio", "app", "api", "pr", "route.ts"),
+      from: "../../../../../packages/token-source/src/index.js",
+      to: "../../../../../design-tokens/src/index.js"
+    },
+    {
+      file: path.join(targetDir, "apps", "token-studio", "app", "api", "pr", "helpers.mjs"),
+      from: 'path.join(\n  REPO_ROOT,\n  "packages",\n  "token-source",\n  "src",\n  "tokens"\n);',
+      to: 'path.join(REPO_ROOT, "design-tokens", "src", "tokens");'
+    }
+  ];
+
+  for (const replacement of replacements) {
+    if (!fs.existsSync(replacement.file)) {
+      continue;
+    }
+    const current = fs.readFileSync(replacement.file, "utf8");
+    if (!current.includes(replacement.from)) {
+      continue;
+    }
+    const next = current.replace(replacement.from, replacement.to);
+    fs.writeFileSync(replacement.file, next, "utf8");
+  }
 }
 
 function attachEmbeddedScriptsToHostProject(projectRoot, embeddedWorkspaceDir, packageManager) {
@@ -751,6 +803,7 @@ async function commandInit(flags) {
   const defaultEmbeddedPath = String(flags["embedded-path"] ?? flags.embeddedPath ?? "tools/prismforge").trim() || "tools/prismforge";
   let packageManager = "pnpm";
   let initMode = "standalone";
+  let initLayout = "";
 
   let includeStudio = true;
   let installDeps = Boolean(flags.install);
@@ -760,8 +813,10 @@ async function commandInit(flags) {
     const studioFlag = parseBooleanFlag(flags.studio, "studio");
     const installFlag = parseBooleanFlag(flags.install, "install");
     const modeFlag = parseInitMode(flags.mode ?? "");
+    const layoutFlag = parseInitLayout(flags.layout ?? "");
     packageManager = detectPackageManager(flags);
     initMode = modeFlag || "standalone";
+    initLayout = layoutFlag || (initMode === "embedded" ? "app-first" : "workspace");
     includeStudio = studioFlag ?? true;
     installDeps = installFlag ?? false;
     targets = parseTokenTargets(flags.targets ?? "css,js");
@@ -798,6 +853,13 @@ async function commandInit(flags) {
         suggestedMode
       );
       initMode = parseInitMode(promptedModeRaw) || "standalone";
+      const defaultLayoutForMode = initMode === "embedded" ? "app-first" : "workspace";
+      const promptedLayoutRaw = await promptInput(
+        rl,
+        "Layout (workspace|app-first)",
+        initLayout || defaultLayoutForMode
+      );
+      initLayout = parseInitLayout(promptedLayoutRaw) || defaultLayoutForMode;
 
       if (initMode === "embedded") {
         const promptedEmbeddedPath = await promptInput(
@@ -854,8 +916,11 @@ async function commandInit(flags) {
   }
 
   if (!baseBranch) {
-    fail("Init requires a non-empty --base-branch value.");
-    return;
+      fail("Init requires a non-empty --base-branch value.");
+      return;
+  }
+  if (!initLayout) {
+    initLayout = initMode === "embedded" ? "app-first" : "workspace";
   }
 
   const hostProjectRoot = process.cwd();
@@ -878,7 +943,9 @@ async function commandInit(flags) {
   fs.mkdirSync(targetDir, { recursive: true });
 
   const copyTargets = [
-    ["packages", "token-source"],
+    ...(initLayout === "app-first"
+      ? [["packages", "token-source", "src"], ["packages", "token-source", "package.json"]]
+      : [["packages", "token-source"]]),
     ["packages", "token-schema"],
     ["packages", "token-mappings"]
   ];
@@ -894,8 +961,17 @@ async function commandInit(flags) {
       return;
     }
 
-    const destinationPath = path.join(targetDir, relativePath);
+    const destinationPath =
+      initLayout === "app-first" && relativePath === path.join("packages", "token-source", "src")
+        ? path.join(targetDir, "design-tokens", "src")
+        : initLayout === "app-first" && relativePath === path.join("packages", "token-source", "package.json")
+          ? path.join(targetDir, "design-tokens", "package.json")
+          : path.join(targetDir, relativePath);
     copyDirectory(sourcePath, destinationPath);
+  }
+
+  if (initLayout === "app-first") {
+    applyAppFirstLayoutPatches(targetDir);
   }
 
   const tsconfigBaseSource = path.join(templateRoot, "tsconfig.base.json");
@@ -929,13 +1005,15 @@ async function commandInit(flags) {
   writeScaffoldRootPackageJson(targetDir, workspaceName, {
     includeStudio,
     targets,
-    packageManager
+    packageManager,
+    tokenSourcePath: initLayout === "app-first" ? "design-tokens" : "packages/token-source"
   });
   writeScaffoldWorkspaceFile(targetDir);
   writeScaffoldGitignore(targetDir);
   writeScaffoldReadme(targetDir, {
     workspaceTitle: workspaceName,
     initMode,
+    layout: initLayout,
     provider,
     repository,
     baseBranch,
@@ -977,6 +1055,7 @@ async function commandInit(flags) {
   console.log("");
   console.log("Configuration:");
   console.log(`  Init mode: ${initMode}`);
+  console.log(`  Layout: ${initLayout}`);
   console.log(`  Provider: ${provider}`);
   console.log(`  Repository: ${repository || "(not set)"}`);
   console.log(`  Base branch: ${baseBranch}`);
